@@ -23,7 +23,6 @@ Get Started
    :hidden:
    :caption: Get Started Guides
 
-   Interactive Tutorials (Python) <../tutorials>
    ./get-started-guide/samples
 
 .. raw:: html
