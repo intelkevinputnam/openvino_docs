@@ -1,17 +1,24 @@
 .. index:: pair: page; Register Remote Target in DL Workbench
-.. _doxid-workbench_docs__workbench__d_g__add__remote__target:
+.. _workbench_remote__add_remote_target:
+
+.. meta::
+   :description: Guide on how to register a remote target in OpenVINO Deep Learning Workbench.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, remote target, 
+              register remote target, proxy
 
 
 Register Remote Target in DL Workbench
 ======================================
 
-:target:`doxid-workbench_docs__workbench__d_g__add__remote__target_1md_openvino_workbench_docs_workbench_dg_add_remote_target` :ref:`Set up your remote target <doxid-workbench_docs__workbench__d_g__setup__remote__target>`, then follow the instructions below:
+:target:`workbench_remote__add_remote_target_1md_openvino_workbench_docs_workbench_dg_add_remote_target` 
+:ref:`Set up your remote target <workbench_remote__setup>`, then follow the instructions below:
 
 **Step 1** : Go to the **Create Project** page.
 
 **Step 2** : Select **Add Remote Target** next to the **Environment** table.
 
-**Step 3** : Fill in the fields shown in the figure and table below. If you are behind a corporate proxy, select the **Use Proxy** box and provide proxy information.
+**Step 3** : Fill in the fields shown in the figure and table below. If you are behind a corporate proxy, select 
+the **Use Proxy** box and provide proxy information.
 
 .. image:: add_target-001.png
 
@@ -43,7 +50,8 @@ Register Remote Target in DL Workbench
 
 .. image:: configuring-001.png
 
-The **Configuration Status** and **Connection Status** tables show you the configuration progress. Click **Details** to review a log at each stage.
+The **Configuration Status** and **Connection Status** tables show you the configuration progress. 
+Click **Details** to review a log at each stage.
 
 .. image:: success-001.png
 
@@ -53,18 +61,18 @@ See :ref:`Troubleshooting <dl_workbench__troubleshooting>` to address a **Warnin
   
   .. image:: warning-001.png
 
-**Failure** indicates issues that prevent using the remote target. Refer to :ref:`Troubleshooting <dl_workbench__troubleshooting>` to fix an issue:
-
-.. image:: failure-001.png
+* **Failure** indicates issues that prevent using the remote target. Refer to :ref:`Troubleshooting <dl_workbench__troubleshooting>` to fix an issue:
+  
+  .. image:: failure-001.png
 
 See Also
 ~~~~~~~~
 
-* :ref:`Work with Remote Targets <doxid-workbench_docs__workbench__d_g__remote__profiling>`
+* :ref:`Work with Remote Targets <workbench_environment__remote_profiling>`
 
-* :ref:`Manipulate Remote Machines <doxid-workbench_docs__workbench__d_g__remote__machines>`
+* :ref:`Manipulate Remote Machines <workbench_remote__machines>`
 
-* :ref:`Profile on a Remote Machine <doxid-workbench_docs__workbench__d_g__profile_on__remote__machine>`
+* :ref:`Profile on a Remote Machine <workbench_remote__profile>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

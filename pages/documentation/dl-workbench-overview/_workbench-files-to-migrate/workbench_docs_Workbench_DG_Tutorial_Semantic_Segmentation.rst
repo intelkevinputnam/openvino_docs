@@ -151,9 +151,9 @@ purposes only.*
 See Also
 ~~~~~~~~
 
-* :ref:`Create Accuracy Report <doxid-workbench_docs__workbench__d_g__measure__accuracy>`
+* :ref:`Create Accuracy Report <workbench_guide__measure_accuracy>`
 
-* :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>`
+* :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

@@ -103,7 +103,7 @@ Remote Target
 ~~~~~~~~~~~~~
 
 Remote target is a machine in your local network to which you connect your local workstation to 
-:ref:`gather performance data remotely <doxid-workbench_docs__workbench__d_g__remote__profiling>`.
+:ref:`gather performance data remotely <workbench_environment__remote_profiling>`.
 
 Device
 ~~~~~~

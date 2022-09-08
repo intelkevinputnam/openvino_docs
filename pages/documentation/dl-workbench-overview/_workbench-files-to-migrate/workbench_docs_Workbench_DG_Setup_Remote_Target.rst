@@ -1,11 +1,18 @@
 .. index:: pair: page; Set Up Remote Target
-.. _doxid-workbench_docs__workbench__d_g__setup__remote__target:
+.. _workbench_remote__setup:
+
+.. meta::
+   :description: Guide on how to set up remote target in OpenVINO Deep Learning Workbench.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, remote target, set up, 
+              Linux, GPU, MYRIAD, Target Prerequisites, SSH Connection, SSH-Key, macOS, Windows, 
+              sudo privileges, root privileges
 
 
 Set Up Remote Target
 ====================
 
-:target:`doxid-workbench_docs__workbench__d_g__setup__remote__target_1md_openvino_workbench_docs_workbench_dg_setup_remote_target` To allow profiling on a remote Linux\* system, follow the steps below:
+:target:`workbench_remote__setup_1md_openvino_workbench_docs_workbench_dg_setup_remote_target` To allow profiling on 
+a remote Linux system, follow the steps below:
 
 #. Make sure your target machine meets the `requirements <#prerequisites>`__.
 
@@ -13,7 +20,7 @@ Set Up Remote Target
 
 #. If you have GPU and MYRIAD devices on the *target* machine, `configure sudo privileges without a password <#sudo>`__ to enable the DL Workbench to set up devices automatically.
 
-Then proceed to :ref:`register the remote target <doxid-workbench_docs__workbench__d_g__add__remote__target>` in the DL Workbench.
+Then proceed to :ref:`register the remote target <workbench_remote__add_remote_target>` in the DL Workbench.
 
 .. _prerequisites:
 
@@ -22,11 +29,8 @@ Target Prerequisites
 
 Your target system must meet the following requirements:
 
-.. note:: The provided combination of dependencies versions is recommended. Other combinations are not validated.
-
-
-
-
+.. note::
+   The provided combination of dependencies versions is recommended. Other combinations are not validated.
 
 .. list-table::
     :header-rows: 1
@@ -48,11 +52,9 @@ Run the commands below to install the dependencies:
 
 	sudo apt-get update
 
-.. note:: The command below installs the highest versions of the packages. To specify a package version, add ``=<version>`` after the name of a package.
-
-
-
-
+.. note::
+   The command below installs the highest versions of the packages. To specify a package version, add ``=<version>`` 
+   after the name of a package.
 
 .. ref-code-block:: cpp
 
@@ -81,16 +83,17 @@ Set Up SSH Connection Using SSH-Keys
 
 Perform all steps in this section on your *host* machine. Choose the option that works for you:
 
-* `Configure SSH Connection from Linux or macOS\* to Linux <#linux>`__
+* `Configure SSH Connection from Linux or macOS to Linux <#linux>`__
 
 * `Configure SSH Connection from Windows to Linux Using OpenSSH <#win-ssh>`__
 
 .. _linux:
 
-Configure SSH Connection from Linux or macOS\* to Linux
+Configure SSH Connection from Linux or macOS to Linux
 -------------------------------------------------------
 
-.. note:: This option assumes your *host* machine has the ``openssh-server`` package installed. If not, run the following:
+.. note::
+   This option assumes your *host* machine has the ``openssh-server`` package installed. If not, run the following:
 
 .. ref-code-block:: cpp
 
@@ -107,7 +110,8 @@ Configure SSH Connection from Linux or macOS\* to Linux
 
 Save keys to default files and **do not use a passphrase**.
 
-**Step 2** : Copy the **public** key to the target machine using the command below. Replace ``USERNAME`` with your username on the *target* machine, and ``HOSTNAME`` with the hostname or IP of the *target* machine.
+**Step 2** : Copy the **public** key to the target machine using the command below. Replace ``USERNAME`` with your 
+username on the *target* machine, and ``HOSTNAME`` with the hostname or IP of the *target* machine.
 
 .. ref-code-block:: cpp
 
@@ -115,7 +119,8 @@ Save keys to default files and **do not use a passphrase**.
 
 
 
-.. note:: On macOS, install ``ssh-copy-id`` first. Use the command below:
+.. note::
+   On macOS, install ``ssh-copy-id`` first. Use the command below:
 
 .. ref-code-block:: cpp
 
@@ -125,7 +130,9 @@ See `Ssh-copy-id on Mac <https://www.ssh.com/ssh/copy-id#ssh-copy-id-on-mac>`__ 
 
 
 
-**Step 3** : Verify that you can connect to your target machine without a password by running the command below. Replace ``USERNAME`` with your username on the *target* machine, and ``HOSTNAME`` with the hostname or IPv4 of the *target* machine.
+**Step 3** : Verify that you can connect to your target machine without a password by running the command below. 
+Replace ``USERNAME`` with your username on the *target* machine, and ``HOSTNAME`` with the hostname or IPv4 of the 
+*target* machine.
 
 .. ref-code-block:: cpp
 
@@ -133,18 +140,22 @@ See `Ssh-copy-id on Mac <https://www.ssh.com/ssh/copy-id#ssh-copy-id-on-mac>`__ 
 
 The command should connect you to the target machine **without a password**.
 
-If you have MYRIAD or GPU devices on your target, see `Configure Sudo Privileges without Password <#sudo>`__. If you do not have such devices or they are configured correctly, move on to :ref:`register a remote machine in the DL Workbench <doxid-workbench_docs__workbench__d_g__add__remote__target>`.
+If you have MYRIAD or GPU devices on your target, see `Configure Sudo Privileges without Password <#sudo>`__. If you 
+do not have such devices or they are configured correctly, move on to 
+:ref:`register a remote machine in the DL Workbench <workbench_remote__add_remote_target>`.
 
 .. _win-ssh:
 
 Configure SSH Connection from Windows to Linux Using OpenSSH
 ------------------------------------------------------------
 
-.. note:: If you do not have OpenSSH on your *host* machine, follow the `OpenSSH installation guide <https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse>`__.
+.. note::
+   If you do not have OpenSSH on your *host* machine, follow the 
+   `OpenSSH installation guide <https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse>`__.
 
 
 
-**Step 1** : In a Windows PowerShell\* terminal, generate an SSH key pair with the command below:
+**Step 1** : In a Windows PowerShell terminal, generate an SSH key pair with the command below:
 
 .. ref-code-block:: cpp
 
@@ -166,7 +177,9 @@ Save the keys to default files and do not use a passphrase. The keys will be sto
 
 #. On the *target* machine, add the key as a new line in ``authorized_keys``. The ``authorized_keys`` file is typically found in the ``.ssh`` directory for the target user. For the root user, this would be in ``/root/.ssh``. For other users, it would be in the ``/home/<username>`` directory.
 
-**Step 3** : Verify that you can connect to your target machine without a password by running the command below. Replace ``USERNAME`` with your username on the *target* machine, and ``HOSTNAME`` with the hostname or IP of the *target* machine.
+**Step 3** : Verify that you can connect to your target machine without a password by running the command below. 
+Replace ``USERNAME`` with your username on the *target* machine, and ``HOSTNAME`` with the hostname or IP of the 
+*target* machine.
 
 .. ref-code-block:: cpp
 
@@ -174,14 +187,18 @@ Save the keys to default files and do not use a passphrase. The keys will be sto
 
 The command should connect you to the target machine **without a password**.
 
-If you have MYRIAD or GPU devices on your target, see `Configure Sudo Privileges without Password <#sudo>`__. If you do not have such devices or they are configured correctly, move on to :ref:`register a remote machine in the DL Workbench <doxid-workbench_docs__workbench__d_g__add__remote__target>`.
+If you have MYRIAD or GPU devices on your target, see `Configure Sudo Privileges without Password <#sudo>`__. If you 
+do not have such devices or they are configured correctly, move on to 
+:ref:`register a remote machine in the DL Workbench <workbench_remote__add_remote_target>`.
 
 .. _sudo:
 
 Configure Sudo Privileges without Password
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DL Workbench tries to set up GPU and MYRIAD devices on the *target* machine automatically. For this, the DL Workbench needs sudo and root privileges for GPU devices and sudo privileges for MYRIAD devices. Skip this section if your devices are configured correctly or you do not have them on the target.
+DL Workbench tries to set up GPU and MYRIAD devices on the *target* machine automatically. For this, the DL Workbench 
+needs sudo and root privileges for GPU devices and sudo privileges for MYRIAD devices. Skip this section if your devices 
+are configured correctly or you do not have them on the target.
 
 Follow the steps to configure sudo privileges without a password:
 
@@ -191,9 +208,11 @@ Follow the steps to configure sudo privileges without a password:
 
 	sudo ls -la /
 
-If you are not asked for a sudo password during the execution of the command above, skip this section and proceed to :ref:`register the remote target <doxid-workbench_docs__workbench__d_g__add__remote__target>` in the DL Workbench.
+If you are not asked for a sudo password during the execution of the command above, skip this section and proceed 
+to :ref:`register the remote target <workbench_remote__add_remote_target>` in the DL Workbench.
 
-**Step 2** : If you do not have sudo permissions, add the user to the ``sudo`` group. Replace ``USERNAME`` with the username of the user you want to grant sudo permissions to and run the command below:
+**Step 2** : If you do not have sudo permissions, add the user to the ``sudo`` group. Replace ``USERNAME`` with the 
+username of the user you want to grant sudo permissions to and run the command below:
 
 .. ref-code-block:: cpp
 
@@ -215,8 +234,8 @@ If you are not asked for a sudo password during the execution of the command abo
 
 Follow the command-line instructions to exit and save the changes.
 
-.. note:: Be careful when editing the ``sudoers`` file and apply only the required changes.
-
+.. note::
+   Be careful when editing the ``sudoers`` file and apply only the required changes.
 
 
 **Step 5** : Check sudo permissions using the following command:
@@ -227,18 +246,21 @@ Follow the command-line instructions to exit and save the changes.
 
 The user ``USERNAME`` received sudo permissions if you are not asked for a sudo password during the execution of the command above.
 
-If you do not have the rights to perform these steps, contact your system administrator or set up the devices manually by following the **Steps for Intel® Processor Graphics (GPU)** and **Steps for Intel® Movidius™ Neural Compute Stick and Intel® Neural Compute Stick 2** sections of :ref:`Install Intel® Distribution of OpenVINO™ toolkit for Linux <install__linux_installer>`.
+If you do not have the rights to perform these steps, contact your system administrator or set up the devices manually 
+by following the **Steps for Intel® Processor Graphics (GPU)** and 
+**Steps for Intel® Movidius™ Neural Compute Stick and Intel® Neural Compute Stick 2** sections of 
+:ref:`Install Intel® Distribution of OpenVINO™ toolkit for Linux <install__linux_installer>`.
 
 See Also
 ~~~~~~~~
 
-* :ref:`Register a Remote Machine in the DL Workbench <doxid-workbench_docs__workbench__d_g__add__remote__target>`
+* :ref:`Register a Remote Machine in the DL Workbench <workbench_remote__add_remote_target>`
 
-* :ref:`Work with Remote Targets <doxid-workbench_docs__workbench__d_g__remote__profiling>`
+* :ref:`Work with Remote Targets <workbench_environment__remote_profiling>`
 
-* :ref:`Manipulate Remote Machines <doxid-workbench_docs__workbench__d_g__remote__machines>`
+* :ref:`Manipulate Remote Machines <workbench_remote__machines>`
 
-* :ref:`Profile on a Remote Machine <doxid-workbench_docs__workbench__d_g__profile_on__remote__machine>`
+* :ref:`Profile on a Remote Machine <workbench_remote__profile>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

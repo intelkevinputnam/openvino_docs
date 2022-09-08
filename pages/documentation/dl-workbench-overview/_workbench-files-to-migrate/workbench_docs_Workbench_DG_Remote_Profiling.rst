@@ -1,14 +1,17 @@
 .. index:: pair: page; Work with Remote Targets
-.. _doxid-workbench_docs__workbench__d_g__remote__profiling:
+.. _workbench_environment__remote_profiling:
+
+.. meta::
+   :description: OpenVINO Deep Learning Workbench can collect performance data not only on the machine on which 
+                 it runs, but also on other machines in local network.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, remote targets, performance data, 
+              collect performance data, remote machine
 
 
 Work with Remote Targets
 ========================
 
-:target:`doxid-workbench_docs__workbench__d_g__remote__profiling_1md_openvino_workbench_docs_workbench_dg_remote_profiling`
-
-
-
+:target:`workbench_environment__remote_profiling_1md_openvino_workbench_docs_workbench_dg_remote_profiling`
 
 
 .. toctree::
@@ -20,7 +23,10 @@ Work with Remote Targets
    workbench_docs_Workbench_DG_Add_Remote_Target
    workbench_docs_Workbench_DG_Remote_Machines
 
-DL Workbench can collect performance data not only on the machine on which you run it, but also on other machines in your local network. This helps when you cannot run the DL Workbench on a machine due to security or network issues or because it is impossible to install Docker. If this is the case, run the DL Workbench on another machine and collect performance data on a remote machine in your local network.
+DL Workbench can collect performance data not only on the machine on which you run it, but also on other machines in your 
+local network. This helps when you cannot run the DL Workbench on a machine due to security or network issues or because 
+it is impossible to install Docker. If this is the case, run the DL Workbench on another machine and collect performance 
+data on a remote machine in your local network.
 
 When connected to a remote machine, you can currently use a limited set of DL Workbench features:
 
@@ -42,22 +48,24 @@ When connected to a remote machine, you can currently use a limited set of DL Wo
 
 Follow the steps below to profile your model on a remote target:
 
-#. :ref:`Set up the target machine <doxid-workbench_docs__workbench__d_g__setup__remote__target>`
+#. :ref:`Set up the target machine <workbench_remote__setup>`
 
-#. :ref:`Register the remote target in the DL Workbench <doxid-workbench_docs__workbench__d_g__add__remote__target>`
+#. :ref:`Register the remote target in the DL Workbench <workbench_remote__add_remote_target>`
 
-#. :ref:`Profile on the remote machine <doxid-workbench_docs__workbench__d_g__profile_on__remote__machine>`
+#. :ref:`Profile on the remote machine <workbench_remote__profile>`
 
-.. note:: Working with machines in your local network is not available when you run the DL Workbench in the :ref:`Intel® DevCloud for the Edge <workbench_install__dev_cloud>`.
+.. note::
+   Working with machines in your local network is not available when you run the DL Workbench in the 
+   :ref:`Intel® DevCloud for the Edge <workbench_install__dev_cloud>`.
 
 See Also
 ~~~~~~~~
 
-* :ref:`Manipulate Remote Machines <doxid-workbench_docs__workbench__d_g__remote__machines>`
+* :ref:`Manipulate Remote Machines <workbench_remote__machines>`
 
 * `Set Up Remote Target <workbench_docs_Workbench_DG_Setup_Remote_Target.html>`__
 
-* :ref:`Profile on a Remote Machine <doxid-workbench_docs__workbench__d_g__profile_on__remote__machine>`
+* :ref:`Profile on a Remote Machine <workbench_remote__profile>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

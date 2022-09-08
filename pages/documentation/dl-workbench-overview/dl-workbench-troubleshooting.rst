@@ -165,7 +165,7 @@ Incompatible Model and Dataset
 
 This error appears due to model and dataset type incompatibility.
 
-* Make sure you select a correct model task in the :ref:`Accuracy Settings step <doxid-workbench_docs__workbench__d_g__configure__accuracy__settings>`.
+* Make sure you select a correct model task in the :ref:`Accuracy Settings step <workbench_accuracy__config_settings>`.
 
 .. image:: ./_assets/configurator_usage-b.png
 
@@ -252,7 +252,7 @@ Remote Target Warning: No Sudo Privileges
 If the specified user has no sudo privileges on the remote machine, only a CPU device is available for inference. 
 If you want to profile on GPU and MYRIAD devices, follow the steps described in 
 the **Configure Sudo Privileges without Password** section of 
-:ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>`.
+:ref:`Set Up Remote Target <workbench_remote__setup>`.
 
 .. _dependencies:
 
@@ -261,7 +261,7 @@ Remote Target Warning: GPU Drivers Setup Fails
 
 If the automatic setup of GPU drivers fails, install dependencies on the remote target machine manually as described 
 in the **Install Dependencies on Remote Target Manually** section of 
-:ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>`.
+:ref:`Set Up Remote Target <workbench_remote__setup>`.
 
 .. _authentication:
 
@@ -297,9 +297,9 @@ Examples:
 **SSH Key**
 
 Make sure you upload the ``id_rsa`` key generated when you 
-:ref:`set up the remote target <doxid-workbench_docs__workbench__d_g__setup__remote__target>`.
+:ref:`set up the remote target <workbench_remote__setup>`.
 
-You should upload the :ref:``id_rsa` key <doxid-workbench_docs__workbench__d_g__setup__remote__target>`, which contains 
+You should upload the :ref:`id_rsa key <workbench_remote__setup>`, which contains 
 a set of symbols surrounded by the lines shown below:
 
 .. ref-code-block:: cpp
@@ -318,7 +318,7 @@ Remote Target Failure: Python Version Is Not Supported
 --------------------------------------------------------
 
 Make sure you have Python 3.6, 3.7, or 3.8 on your target machine. See 
-:ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>` for dependencies instructions 
+:ref:`Set Up Remote Target <workbench_remote__setup>` for dependencies instructions 
 and the full list of remote target requirements.
 
 .. _pip:
@@ -327,7 +327,7 @@ Remote Target Failure: Pip Version Is Not Supported
 -----------------------------------------------------
 
 Make sure you have pip 18 on your target machine. See 
-:ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>` for dependencies instructions 
+:ref:`Set Up Remote Target <workbench_remote__setup>` for dependencies instructions 
 and the full list of remote target requirements.
 
 .. _os:
@@ -336,7 +336,7 @@ Remote Target Failure: OS Version Is Not Supported
 --------------------------------------------------
 
 Make sure you have Ubuntu 18.04 on your target machine. See 
-:ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>` for the full list of remote 
+:ref:`Set Up Remote Target <workbench_remote__setup>` for the full list of remote 
 target requirements.
 
 .. _internet:
@@ -345,9 +345,9 @@ Remote Target Failure: No Internet Connection
 ---------------------------------------------
 
 This failure may occur due to incorrectly set or missing proxy settings. Set the proxies as described 
-in :ref:`Register Remote Target in the DL Workbench <doxid-workbench_docs__workbench__d_g__add__remote__target>`. To update 
+in :ref:`Register Remote Target in the DL Workbench <workbench_remote__add_remote_target>`. To update 
 remote machine information, see 
-:ref:`Profile with Remote Machine <doxid-workbench_docs__workbench__d_g__profile_on__remote__machine>`
+:ref:`Profile with Remote Machine <workbench_remote__profile>`
 
 See Also
 ~~~~~~~~

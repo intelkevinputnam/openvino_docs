@@ -190,7 +190,7 @@ that do not exceed the maximum accuracy drop you can tolerate. If a layer is est
 calibrated and remains at the original precision.
 
 .. note::
-   See :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>` for details.
+   See :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>` for details.
 
 
 .. image:: configure_calibration_01-b.png

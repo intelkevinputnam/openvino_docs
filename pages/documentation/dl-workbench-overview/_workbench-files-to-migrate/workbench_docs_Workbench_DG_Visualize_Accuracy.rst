@@ -163,7 +163,7 @@ Compare Optimized and Parent Model Predictions
 
 You can compare Optimized model predictions with Parent model predictions used as optimal references. Find out on 
 which validation dataset images the predictions of the model became different after optimization. Learn more at the 
-:ref:`Create Accuracy Report page <doxid-workbench_docs__workbench__d_g__measure__accuracy>`.
+:ref:`Create Accuracy Report page <workbench_guide__measure_accuracy>`.
 
 .. image:: visualize_parent_od.png
 

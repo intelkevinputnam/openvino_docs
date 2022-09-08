@@ -160,7 +160,7 @@ demonstration purposes only.*
 See Also
 ~~~~~~~~
 
-* :ref:`Create Accuracy Report <doxid-workbench_docs__workbench__d_g__measure__accuracy>`
+* :ref:`Create Accuracy Report <workbench_guide__measure_accuracy>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

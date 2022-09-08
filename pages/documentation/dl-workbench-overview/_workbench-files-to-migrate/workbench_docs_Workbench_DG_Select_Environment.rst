@@ -1,14 +1,17 @@
 .. index:: pair: page; Select Environment
-.. _doxid-workbench_docs__workbench__d_g__select__environment:
+.. _workbench_guide__select_environment:
+
+.. meta::
+   :description: Guide on how too select a target and device to test your model 
+                 in OpenVINO Deep Learning Workbench.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, select environment, 
+              target, device
 
 
 Select Environment
 ==================
 
-:target:`doxid-workbench_docs__workbench__d_g__select__environment_1md_openvino_workbench_docs_workbench_dg_select_environment`
-
-
-
+:target:`workbench_guide__select_environment_1md_openvino_workbench_docs_workbench_dg_select_environment`
 
 
 .. toctree::
@@ -17,11 +20,15 @@ Select Environment
 
    workbench_docs_Workbench_DG_Remote_Profiling
 
-Target is a machine that hosts one or several accelerators. Device is a hardware accelerator on which a model is executed. The target can be your local workstation or a remote system. By default, your local target is selected. Learn more about setting up remote targets at the :ref:`Work with Remote Targets <doxid-workbench_docs__workbench__d_g__remote__profiling>` section.
+Target is a machine that hosts one or several accelerators. Device is a hardware accelerator on which a model is 
+executed. The target can be your local workstation or a remote system. By default, your local target is selected. 
+Learn more about setting up remote targets at the :ref:`Work with Remote Targets <workbench_environment__remote_profiling>` section.
 
 .. image:: select_env.png
 
-Select a target. This can be your local workstation or a remote target. If you use a remote target, see :ref:`Register Remote Machine <doxid-workbench_docs__workbench__d_g__add__remote__target>`. Select a device from a target or a platform view:
+Select a target. This can be your local workstation or a remote target. If you use a remote target, see 
+:ref:`Register Remote Machine <workbench_remote__add_remote_target>`. Select a device 
+from a target or a platform view:
 
 * **Target View**
   
@@ -33,7 +40,8 @@ Select a target. This can be your local workstation or a remote target. If you u
 
 .. image:: platform_view.png
 
-Targets with higher processor numbers within one platform go first. To sort from lowest to highest, click the arrow next to the **Processor Numbers** heading.
+Targets with higher processor numbers within one platform go first. To sort from lowest to highest, click the arrow next 
+to the **Processor Numbers** heading.
 
 Targets supported in the DL Workbench:
 
@@ -59,7 +67,7 @@ Targets supported in the DL Workbench:
 See Also
 ~~~~~~~~
 
-* :ref:`Work with Remote Targets <doxid-workbench_docs__workbench__d_g__remote__profiling>`
+* :ref:`Work with Remote Targets <workbench_environment__remote_profiling>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

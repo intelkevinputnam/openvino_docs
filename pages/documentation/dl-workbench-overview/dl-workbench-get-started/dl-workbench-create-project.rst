@@ -39,7 +39,7 @@ Select Environment
 
 Target is a machine that hosts one or several accelerators. Device is a hardware accelerator on which a model is executed. 
 By default, your Local Target is selected. If you want to learn detailed information about different environment 
-configurations, see the :ref:`Select Environment <doxid-workbench_docs__workbench__d_g__select__environment>` page. 
+configurations, see the :ref:`Select Environment <workbench_guide__select_environment>` page. 
 If you have a remote machine, you can learn how to register and work with it at the 
 `Remote Target <https://docs.openvinotoolkit.org/latest/workbench_docs_Workbench_DG_Remote_Profiling.html>`__ documentation page.
 
