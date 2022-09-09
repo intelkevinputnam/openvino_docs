@@ -1,11 +1,24 @@
 .. index:: pair: page; Set Accuracy Configuration
-.. _doxid-workbench_docs__workbench__d_g__configure__accuracy__settings:
+.. _workbench_accuracy__config_settings:
+
+.. meta::
+   :description: Guide on how to set accuracy configuration to get an adequate accuracy number in OpenVINO 
+                 Deep Learning Workbench. Accuracy parameters depend on the model task type.
+   :keywords: OpenVINO, Deep Learning Guide, DL Workbench, guide, user guide, accuracy settings, set accuracy configuration, 
+              accuracy number, accuracy parameters, accuracy model, classification, object detection, ssd, yolov2, yolotinyv2, 
+              instance segmentation, semantic segmentation, image inpainting, super-resolution, style transfer, facial landmark detection, 
+              face recognition
 
 
 Set Accuracy Configuration
 ==========================
 
-:target:`doxid-workbench_docs__workbench__d_g__configure__accuracy__settings_1md_openvino_workbench_docs_workbench_dg_configure_accuracy_settings` To get an adequate accuracy number, you need to correctly set accuracy configuration. Accuracy parameters depend on the model task type. To set accuracy configuration, click **Provide accuracy configuration** button in the **Create Accuracy Report** table or in the settings from the INT8 calibration tab before the optimization process or accuracy report creation. Once you have specified your parameters, you are directed back to your previous page, either the **Create Accuracy Report** table or the **INT8** tab.
+:target:`workbench_accuracy__config_settings_1md_openvino_workbench_docs_workbench_dg_configure_accuracy_settings` 
+To get an adequate accuracy number, you need to correctly set accuracy configuration. Accuracy parameters depend on the 
+model task type. To set accuracy configuration, click **Provide accuracy configuration** button in the 
+**Create Accuracy Report** table or in the settings from the INT8 calibration tab before the optimization process or 
+accuracy report creation. Once you have specified your parameters, you are directed back to your previous page, either 
+the **Create Accuracy Report** table or the **INT8** tab.
 
 Accuracy settings depend on the model usage. Choose the usage-specific instructions from the list below:
 
@@ -227,9 +240,8 @@ Specify **Object Detection** in the drop-down list in the **Accuracy Settings** 
 
 Then specify YOLO V2 or YOLO Tiny V2 in the **Model Type** box that opens below.
 
-.. note:: YOLO models of other versions, like YOLO V3 or YOLO V5, are not supported.
-
-
+.. note::
+   YOLO models of other versions, like YOLO V3 or YOLO V5, are not supported.
 
 
 
@@ -334,9 +346,12 @@ Annotation conversion parameters define conversion of a dataset annotation.
 Instance Segmentation
 ~~~~~~~~~~~~~~~~~~~~~
 
-DL Workbench supports only TensorFlow\* and ONNX\* instance segmentation models. ONNX instance segmentation models have different output layers for masks, boxes, predictions, and confidence scores, while TensorFlow ones have a layer for masks and a layer for boxes, predictions, and confidence scores.
+DL Workbench supports only TensorFlow and ONNX instance segmentation models. ONNX instance segmentation models have 
+different output layers for masks, boxes, predictions, and confidence scores, while TensorFlow ones have a layer for 
+masks and a layer for boxes, predictions, and confidence scores.
 
-Example of an ONNX instance segmentation model: `instance segmentation-security-0002 <https://github.com/openvinotoolkit/open_model_zoo/tree/develop/models/intel/instance-segmentation-security-0002>`__
+Example of an ONNX instance segmentation model: 
+`instance segmentation-security-0002 <https://github.com/openvinotoolkit/open_model_zoo/tree/develop/models/intel/instance-segmentation-security-0002>`__
 
 Example of a TensorFlow instance segmentation model: `Mask R-CNN <https://github.com/matterport/Mask_RCNN>`__
 
@@ -474,7 +489,8 @@ Preprocessing configuration parameters define how to process images prior to inf
 Post-Processing Configuration
 -----------------------------
 
-Post-processing parameters define how to process prediction values and/or annotation data after inference and before metric calculation.
+Post-processing parameters define how to process prediction values and/or annotation data after inference and before 
+metric calculation.
 
 .. list-table::
     :header-rows: 1
@@ -545,13 +561,16 @@ Preprocessing Configuration
 
 Preprocessing configuration parameters define how to process images prior to inference with a model.
 
-Two types of masks can be applied to your image to measure its accuracy: rectangle and free form. Based on a masking type, you have two choose different sets of preprocessing parameters.
+Two types of masks can be applied to your image to measure its accuracy: rectangle and free form. Based on a masking 
+type, you have two choose different sets of preprocessing parameters.
 
-The rectangle means that there is a rectangle of specified with and height applied to the middle of the image. Example of the rectangle masking:
+The rectangle means that there is a rectangle of specified with and height applied to the middle of the image. Example 
+of the rectangle masking:
 
 .. image:: rect_mask.png
 
-The free-form masking means separate lines of specified lengths, widths, and vertex numbers. Example of the free-form masking:
+The free-form masking means separate lines of specified lengths, widths, and vertex numbers. Example of the 
+free-form masking:
 
 .. image:: free_form_mask.png
 
@@ -745,7 +764,8 @@ Preprocessing configuration parameters define how to process images prior to inf
 Post-Processing Configuration
 -----------------------------
 
-Post-processing parameters define how to process prediction values and/or annotation data after inference and before metric calculation.
+Post-processing parameters define how to process prediction values and/or annotation data after inference 
+and before metric calculation.
 
 .. list-table::
     :header-rows: 1
@@ -827,7 +847,7 @@ Metric parameters specify rules to test inference results against reference valu
 See Also
 ~~~~~~~~
 
-* :ref:`Measure Accuracy <doxid-workbench_docs__workbench__d_g__measure__accuracy>`
+* :ref:`Measure Accuracy <workbench_guide__measure_accuracy>`
 
 * Accuracy Checker Tool
 

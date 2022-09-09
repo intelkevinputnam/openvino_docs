@@ -163,8 +163,8 @@ for a square ratio.
       mkdir nst_model
 
 #. Copy the initial and generated model files to the created directory. For 
-example, to copy the pre-trained decoder weights from the ``models`` folder to 
-the ``nst_model`` directory, run the following commands:
+   example, to copy the pre-trained decoder weights from the ``models`` folder to 
+   the ``nst_model`` directory, run the following commands:
 
    .. ref-code-block:: cpp
 

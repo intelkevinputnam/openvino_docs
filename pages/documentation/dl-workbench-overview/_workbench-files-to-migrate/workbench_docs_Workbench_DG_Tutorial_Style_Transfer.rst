@@ -65,7 +65,7 @@ Compare Optimized and Parent Model Performance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Go to the model page and check the performance of the imported and optimized models. Compare the throughput numbers and 
-click **Compare Projects**. Read about projects comparison on the :ref:`Compare Performance <doxid-workbench_docs__workbench__d_g__compare__performance_between__two__versions_of__models>` page.
+click **Compare Projects**. Read about projects comparison on the :ref:`Compare Performance <workbench_inference__compare_performance>` page.
 
 .. image:: compare_style_transfer.png
 
@@ -136,9 +136,9 @@ purposes only.*
 See Also
 ~~~~~~~~
 
-* :ref:`Create Accuracy Report <doxid-workbench_docs__workbench__d_g__measure__accuracy>`
+* :ref:`Create Accuracy Report <workbench_guide__measure_accuracy>`
 
-* :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>`
+* :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

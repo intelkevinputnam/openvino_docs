@@ -1,15 +1,23 @@
 .. index:: pair: page; Accuracy Configuration
-.. _doxid-workbench_docs__workbench__d_g__accuracy__configuration:
+.. _workbench_accuracy__configuration:
+
+.. meta::
+   :description: Guide on how to specify and set accuracy configurations for OpenVINO Deep 
+                 Learning Workbench along with list rules to help create a valid configuration file.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, user guide, guide, specify accuracy, set accuracy, 
+              accuracy configurations, rules, creat configuration file, basic accuracy settings, advanced accuracy settings
 
 
 Accuracy Configuration
 ======================
 
-:target:`doxid-workbench_docs__workbench__d_g__accuracy__configuration_1md_openvino_workbench_docs_workbench_dg_accuracy_configuration` To specify accuracy configuration, go to **Create Accuracy Report**, select the report type and click **Provide Accuracy Configuration** button.
+:target:`workbench_accuracy__configuration_1md_openvino_workbench_docs_workbench_dg_accuracy_configuration` To specify 
+accuracy configuration, go to **Create Accuracy Report**, select the report type and click **Provide Accuracy Configuration** button.
 
 .. image:: provide_accuracy_config.png
 
-The DL Workbench has two modes of accuracy settings, **Basic** and **Advanced**. In Basic mode, most configurations are predefined based on default settings. Run an accuracy check without changing any parameters in **Basic** first.
+The DL Workbench has two modes of accuracy settings, **Basic** and **Advanced**. In Basic mode, most configurations are 
+predefined based on default settings. Run an accuracy check without changing any parameters in **Basic** first.
 
 Use `Advanced mode <#advanced>`__ in the following cases:
 
@@ -22,7 +30,8 @@ Use `Advanced mode <#advanced>`__ in the following cases:
 Basic Accuracy Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Specify the settings as described in :ref:`Set Accuracy Configuration <doxid-workbench_docs__workbench__d_g__configure__accuracy__settings>`, and click **Save**.
+Specify the settings as described in 
+:ref:`Set Accuracy Configuration <workbench_accuracy__config_settings>`, and click **Save**.
 
 .. image:: accuracy_config_basic.png
 
@@ -37,11 +46,16 @@ Switch to **Advanced** under the page title:
 
 .. image:: configure_accuracy_settings_switch.png
 
-When using Advanced mode, you need to manually create a valid Accuracy Checker configuration file in the built-in code editor. The file should contain all necessary information for accuracy measurement, such as data preprocessing or metric settings. You must follow the `YAML <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`__ syntax. For examples, see `Accuracy Checker configuration files for Open Model Zoo (OMZ) models <https://github.com/openvinotoolkit/open_model_zoo/tree/master/tools/accuracy_checker/configs>`__.
+When using Advanced mode, you need to manually create a valid Accuracy Checker configuration file in the built-in code 
+editor. The file should contain all necessary information for accuracy measurement, such as data preprocessing or metric 
+settings. You must follow the `YAML <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`__ 
+syntax. For examples, see `Accuracy Checker configuration files for Open Model Zoo (OMZ) models <https://github.com/openvinotoolkit/open_model_zoo/tree/master/tools/accuracy_checker/configs>`__.
 
 Follow the steps below to edit the Accuracy Checker configuration file:
 
-**Step 1.** Find the closest model from the OMZ in terms of usage, topology, number of inputs, and type of data required. For this, open a new tab with the DL Workbench and go to the **Import Model** page. View models descriptions by clicking **Details**.
+**Step 1.** Find the closest model from the OMZ in terms of usage, topology, number of inputs, and type of data required. 
+For this, open a new tab with the DL Workbench and go to the **Import Model** page. View models descriptions by clicking 
+**Details**.
 
 .. image:: omz_details_ac.png
 
@@ -51,15 +65,20 @@ Follow the steps below to edit the Accuracy Checker configuration file:
 
 * Search for the accuracy configuration file in the `OMZ GitHub repository <https://github.com/openvinotoolkit/open_model_zoo/tree/master/tools/accuracy_checker/configs>`__.
 
-**Step 3.** Copy the contents of the OMZ model configuration and paste them into the code editor. Do not override the original content of the editor.
+**Step 3.** Copy the contents of the OMZ model configuration and paste them into the code editor. Do not override the 
+original content of the editor.
 
-In the example below, the configuration of the OMZ squeezenet1.0 model configuration is pasted on the line 26, one line after the configuration of the original squeezenet_v1.1 model (lines 1-24):
+In the example below, the configuration of the OMZ squeezenet1.0 model configuration is pasted on the line 26, one line 
+after the configuration of the original squeezenet_v1.1 model (lines 1-24):
 
 .. image:: configure_accuracy_settings_advanced01.png
 
-**Step 4.** In the *copied configuration of an OMZ model*, replace the model name, paths to the model files, and dataset information with the values you have in the *original configuration*. Adapt other parameters if needed.
+**Step 4.** In the *copied configuration of an OMZ model*, replace the model name, paths to the model files, and dataset 
+information with the values you have in the *original configuration*. Adapt other parameters if needed.
 
-In the example below, the configuration of the OMZ squeezenet1.0 model is adapted to the original squeezenet_v1.1 model by changing the model name (line 26) and paths to the model files (lines 33-34). The dataset information is not changed because the same dataset is used.
+In the example below, the configuration of the OMZ squeezenet1.0 model is adapted to the original squeezenet_v1.1 model 
+by changing the model name (line 26) and paths to the model files (lines 33-34). The dataset information is not changed 
+because the same dataset is used.
 
 .. image:: configure_accuracy_settings_advanced02.png
 
@@ -69,16 +88,21 @@ In the example below, the configuration of the OMZ squeezenet1.0 model is adapte
 
 You will be redirected to the **Create Accuracy Report** page where you can proceed by creating the report.
 
-.. tip:: A relatively low accuracy estimation can be due to incorrectly selected options in the **Advanced Configuration** form the :ref:`Set Accuracy Configuration <doxid-workbench_docs__workbench__d_g__configure__accuracy__settings>` step. To remeasure accuracy, click the **Provide Accuracy Configuration** button and fill in the form again.
+.. tip::
+   A relatively low accuracy estimation can be due to incorrectly selected options in the **Advanced Configuration** form 
+   the :ref:`Set Accuracy Configuration <workbench_accuracy__config_settings>` step. To 
+   remeasure accuracy, click the **Provide Accuracy Configuration** button and fill in the form again.
 
 Possible Issues
 ~~~~~~~~~~~~~~~
 
-The DL Workbench instantly validates the configuration inside the editor. If something is incorrect, the tool underlines the problematic area and displays the issue on the right to the editor:
+The DL Workbench instantly validates the configuration inside the editor. If something is incorrect, the tool underlines 
+the problematic area and displays the issue on the right to the editor:
 
 .. image:: configure_accuracy_settings_validation01.png
 
-When everything is correct, the tool displays the **Valid Configuration** message on the right. This means you can run the accuracy check.
+When everything is correct, the tool displays the **Valid Configuration** message on the right. This means you can run 
+the accuracy check.
 
 .. image:: configure_accuracy_settings_validation02.png
 
@@ -103,7 +127,7 @@ See Also
 
 * :ref:`Post-Training Optimization Tool <optim_perf__pot_intro>`
 
-* :ref:`Set Accuracy Configuration <doxid-workbench_docs__workbench__d_g__configure__accuracy__settings>`
+* :ref:`Set Accuracy Configuration <workbench_accuracy__config_settings>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

@@ -128,7 +128,7 @@ OpenVINO comes with a number of samples to demonstrate use of OpenVINO Runtime A
 
 * :ref:`OpenVINO Samples <get_started__samples_overview>`
 
-* Open Model Zoo Demos
+* `Open Model Zoo Demos <https://github.com/openvinotoolkit/open_model_zoo/blob/master/demos/README.md>`__
 
 Feed Input Images to the Samples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

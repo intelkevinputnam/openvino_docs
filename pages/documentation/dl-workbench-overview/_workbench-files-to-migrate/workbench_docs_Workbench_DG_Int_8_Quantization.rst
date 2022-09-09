@@ -118,13 +118,13 @@ Overall flow for converting a model from FP32 to INT8:
 
 #. `Configure INT8 calibration settings and select a calibration dataset <#8-bit-config>`__
 
-#. :ref:`Configure inference settings for a calibrated model <doxid-workbench_docs__workbench__d_g__run__single__inference>`
+#. :ref:`Configure inference settings for a calibrated model <workbench_inference__run_inference>`
 
 #. `View INT8 calibration <#review-calibration-progress>`__
 
 #. :ref:`View inference results <doxid-workbench_docs__workbench__d_g__view__inference__results>`
 
-#. :ref:`Compare the calibrated model with the original FP32 model <doxid-workbench_docs__workbench__d_g__compare__performance_between__two__versions_of__models>`
+#. :ref:`Compare the calibrated model with the original FP32 model <workbench_inference__compare_performance>`
 
 Use the links above to walk through the steps and workflow for creating a calibrated model. Topics specific *only* to 
 the INT8 calibration process (steps 4-6) are described below.
@@ -190,7 +190,7 @@ that do not exceed the maximum accuracy drop you can tolerate. If a layer is est
 calibrated and remains at the original precision.
 
 .. note::
-   See :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>` for details.
+   See :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>` for details.
 
 
 .. image:: configure_calibration_01-b.png
@@ -225,7 +225,7 @@ Optimized model project is available at the Model Page:
 .. image:: optimized_model_project.png
 
 Once the job is done, you can compare an optimized model with the original model. For more details, go to 
-:ref:`Compare Performance between Two Versions of Models <doxid-workbench_docs__workbench__d_g__compare__performance_between__two__versions_of__models>`.
+:ref:`Compare Performance between Two Versions of Models <workbench_inference__compare_performance>`.
 
 The value of the **outputPrecisions** parameter in the **Layer Name** table for layers of INT8 optimized models is 
 U8 (INT8 unsigned integer value).
@@ -266,7 +266,7 @@ for calibration and inference:
 See Also
 ~~~~~~~~
 
-* :ref:`Compare Performance between Two Versions of a Model <doxid-workbench_docs__workbench__d_g__compare__performance_between__two__versions_of__models>`
+* :ref:`Compare Performance between Two Versions of a Model <workbench_inference__compare_performance>`
 
 * :ref:`Optimization Guide <optim_perf__introduction>`
 

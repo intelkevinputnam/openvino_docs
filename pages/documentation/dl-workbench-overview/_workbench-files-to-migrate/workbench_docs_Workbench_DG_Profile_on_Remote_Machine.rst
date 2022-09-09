@@ -1,17 +1,24 @@
 .. index:: pair: page; Profile on Remote Machine
-.. _doxid-workbench_docs__workbench__d_g__profile_on__remote__machine:
+.. _workbench_remote__profile:
+
+.. meta::
+   :description: Information on how to add remote machine to project and profile on it in 
+                 OpenVINO Deep Learning Workbench.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, user guide, guide, remote machine, 
+              add remote machine, profile, remote profiling, security aspects
 
 
 Profile on Remote Machine
 =========================
 
-:target:`doxid-workbench_docs__workbench__d_g__profile_on__remote__machine_1md_openvino_workbench_docs_workbench_dg_profile_on_remote_machine` DL Workbench can collect performance data not only on the machine on which you run it, but also on other machines in your local network.
+:target:`workbench_remote__profile_1md_openvino_workbench_docs_workbench_dg_profile_on_remote_machine` DL Workbench can 
+collect performance data not only on the machine on which you run it, but also on other machines in your local network.
 
 **NOTES** :
 
 .. _security:
 
-* Learn more about :target:`doxid-workbench_docs__workbench__d_g__profile_on__remote__machine_1security` profiling on a remote machine securely.
+* Learn more about :target:`workbench_remote__profile_1security` profiling on a remote machine securely.
 
 * When using a target machine for remote profiling, make sure other users are not working on it at the same time.
 
@@ -19,21 +26,22 @@ Profile on Remote Machine
 
 To profile on a remote machine, follow the steps below:
 
-#. :ref:`Set up the remote machine <doxid-workbench_docs__workbench__d_g__setup__remote__target>`.
+#. :ref:`Set up the remote machine <workbench_remote__setup>`.
 
-#. :ref:`Register the remote machine <doxid-workbench_docs__workbench__d_g__add__remote__target>` in the DL Workbench.
+#. :ref:`Register the remote machine <workbench_remote__add_remote_target>` in the DL Workbench.
 
 #. :ref:`Add a model <workbench_guide__obtain_models>` to a project.
 
 #. `Add the remote machine <#add-target>`__ to the project.
 
-#. :ref:`Add an environment <doxid-workbench_docs__workbench__d_g__select__environment>` to the project.
+#. :ref:`Add an environment <workbench_guide__select_environment>` to the project.
 
 #. :ref:`Add a dataset <workbench_dataset__obtain_datasets>` to the project.
 
 #. :ref:`Create a project <workbench_start__create_project>`.
 
-After these steps, you can run single and group inference and compare performance between models on local and remote machines. Features like accuracy measurements are disabled for remote machines:
+After these steps, you can run single and group inference and compare performance between models on local and remote 
+machines. Features like accuracy measurements are disabled for remote machines:
 
 .. image:: disabled-optimization.png
 
@@ -42,9 +50,11 @@ After these steps, you can run single and group inference and compare performanc
 Add Remote Machine to Project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-On the **Create Project** page, :ref:`select a model <workbench_guide__obtain_models>` and move on to the **Select an Environment** tab.
+On the **Create Project** page, :ref:`select a model <workbench_guide__obtain_models>` and move on to the 
+**Select an Environment** tab.
 
-Machines registered in the DL Workbench are added to the **Select an Environment** table. You can only select a machine that indicates **Available** state:
+Machines registered in the DL Workbench are added to the **Select an Environment** table. You can only select 
+a machine that indicates **Available** state:
 
 .. image:: remote_machine_available.png
 
@@ -54,7 +64,8 @@ Machines registered in the DL Workbench are added to the **Select an Environment
 
 .. image:: connecting-001.png
 
-If the machine you want to use indicates **Configuration Failure**, click **Review** and follow the instructions in :ref:`Manipulate Remote Machines <doxid-workbench_docs__workbench__d_g__remote__machines>` :
+If the machine you want to use indicates **Configuration Failure**, click **Review** and follow the instructions 
+in :ref:`Manipulate Remote Machines <workbench_remote__machines>` :
 
 .. image:: config-failure-001.png
 
@@ -65,22 +76,26 @@ Security Aspects of Remote Profiling
 
 SSH keys are sensitive data and using them in the DL Workbench is at your own risk.
 
-DL Workbench takes control of a remote machine to perform a limited set of tasks, like installing dependencies and OpenVINO™ tools. Connect a machine at your own risk and according to the security policy of your organization.
+DL Workbench takes control of a remote machine to perform a limited set of tasks, like installing dependencies 
+and OpenVINO™ tools. Connect a machine at your own risk and according to the security policy of your organization.
 
 :ref:`Run the DL Workbench with Transport Layer Security (TLS) <workbench_security__tls>` to ensure data protection.
 
 Sensitive data is removed when you remove a machine from the DL Workbench or remove the Docker container with the DL Workbench.
 
-DL Workbench installs dependencies on a target machine and therefore takes additional space on it. DL Workbench data is stored in the ``.workbench`` folder in your user directory. To remove the new data from your target machine, remove the ``.workbench`` folder. DL Workbench transfers models and datasets to the target machine with the SSH protocol and removes them after completing experiments there.
+DL Workbench installs dependencies on a target machine and therefore takes additional space on it. DL Workbench 
+data is stored in the ``.workbench`` folder in your user directory. To remove the new data from your target machine, 
+remove the ``.workbench`` folder. DL Workbench transfers models and datasets to the target machine with the SSH protocol 
+and removes them after completing experiments there.
 
 See Also
 ~~~~~~~~
 
-* :ref:`Work with Remote Targets <doxid-workbench_docs__workbench__d_g__remote__profiling>`
+* :ref:`Work with Remote Targets <workbench_environment__remote_profiling>`
 
-* :ref:`Manipulate Remote Machines <doxid-workbench_docs__workbench__d_g__remote__machines>`
+* :ref:`Manipulate Remote Machines <workbench_remote__machines>`
 
-* :ref:`Set Up Remote Target <doxid-workbench_docs__workbench__d_g__setup__remote__target>`
+* :ref:`Set Up Remote Target <workbench_remote__setup>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

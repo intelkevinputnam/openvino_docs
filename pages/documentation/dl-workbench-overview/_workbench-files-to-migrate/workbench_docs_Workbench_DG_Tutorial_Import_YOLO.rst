@@ -414,9 +414,9 @@ Congratulations! You have completed the DL Workbench workflow for yolov4 model. 
 
 * :ref:`Learn OpenVINO CLI and API in Jupyter Notebooks <workbench_guide__jupyter_cli>`
 
-* :ref:`Explore inference configurations <doxid-workbench_docs__workbench__d_g__run__single__inference>`
+* :ref:`Explore inference configurations <workbench_inference__run_inference>`
 
 * :ref:`Write sample application with your model using OpenVINO Python or C++ API <workbench_deployment__deploy_and_integrate_performance_criteria_into_app>`
 
-* :ref:`Analyze and visualize model structure <doxid-workbench_docs__workbench__d_g__visualize__model>`
+* :ref:`Analyze and visualize model structure <workbench_inference__visualize_model>`
 

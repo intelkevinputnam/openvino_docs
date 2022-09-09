@@ -46,7 +46,7 @@ Create Accuracy Evaluation on Validation Dataset Report
 Accuracy Evaluation on Validation Dataset report provides information for evaluating model quality and allows you to 
 compare the model output and validation dataset annotations. Select the report type and click 
 **Provide Accuracy Configuration** button. Refer to the 
-:ref:`Accuracy Configurations page <doxid-workbench_docs__workbench__d_g__accuracy__configuration>` to learn about 
+:ref:`Accuracy Configurations page <workbench_accuracy__configuration>` to learn about 
 different accuracy settings.
 
 .. image:: Acc_Report_1.png
@@ -100,7 +100,7 @@ See Also
 
 * `Accuracy Checker <https://docs.openvinotoolkit.org/latest/omz_tools_accuracy_checker.html>`__
 
-* :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>`
+* :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

@@ -1,15 +1,18 @@
 .. index:: pair: page; Create Accuracy Report
-.. _doxid-workbench_docs__workbench__d_g__measure__accuracy:
+.. _workbench_guide__measure_accuracy:
+
+.. meta::
+   :description: OpenVINO Deep Learning Workbench guide on how to easure the accuracy of a model 
+                 and compare the predictions with the dataset annotations or between optimized and parent models.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, accuracy, create accuracy report, 
+              accuracy report, accuracy measurments, accuracy report types, accuracy evalution, validation dataset, 
+              dataset annotation, model predictions, optimized model predictions, parent model predictions
 
 
 Create Accuracy Report
 ======================
 
-:target:`doxid-workbench_docs__workbench__d_g__measure__accuracy_1md_openvino_workbench_docs_workbench_dg_measure_accuracy`
-
-
-
-
+:target:`workbench_guide__measure_accuracy_1md_openvino_workbench_docs_workbench_dg_measure_accuracy`
 
 .. toctree::
    :maxdepth: 1
@@ -19,11 +22,13 @@ Create Accuracy Report
    workbench_docs_Workbench_DG_Configure_Accuracy_Settings
    workbench_docs_Workbench_DG_Accuracy_Report_Results
 
-.. note:: Accuracy Measurements are not available for Natural Language Processing models.
+.. note::
+   Accuracy Measurements are not available for Natural Language Processing models.
 
 
 
-Once you select a model and a dataset and run a baseline inference, the **Projects** page appears. Go to the **Perform** tab and select **Create Accuracy Report** :
+Once you select a model and a dataset and run a baseline inference, the **Projects** page appears. Go to the **Perform** 
+tab and select **Create Accuracy Report** :
 
 .. image:: create_report.png
 
@@ -67,21 +72,33 @@ In the DL Workbench, you can create the following reports:
 Accuracy Evaluation on Validation Dataset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Accuracy Evaluation on Validation Dataset report provides information for evaluating model quality and allows you to compare the model output and validation dataset annotations. This type of report is explained in details in the :ref:`Object Detection <workbench_tutorial__object_detection>` and :ref:`Classification <workbench_tutorial__classification_squeezenet>` model tutorials.
+Accuracy Evaluation on Validation Dataset report provides information for evaluating model quality and allows you to 
+compare the model output and validation dataset annotations. This type of report is explained in details in the 
+:ref:`Object Detection <workbench_tutorial__object_detection>` and 
+:ref:`Classification <workbench_tutorial__classification_squeezenet>` model tutorials.
 
 .. _model-predictions:
 
 Comparison of Optimized and Parent Model Predictions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get other types of Accuracy Report, you need to [optimize the model](Int-8_Quantization). Comparison of Optimized and Parent Model Predictions Report allows you to find out on which validation dataset images the predictions of the model became different after optimization. This type of report is explained in details in the :ref:`Optimize Object Detection <workbench_tutorial__yolov4>` model and :ref:`Optimize Classification <workbench_tutorial__classification>` model tutorials.
+To get other types of Accuracy Report, you need to [optimize the model](Int-8_Quantization). Comparison of Optimized and 
+Parent Model Predictions Report allows you to find out on which validation dataset images the predictions of the model 
+became different after optimization. This type of report is explained in details in the 
+:ref:`Optimize Object Detection <workbench_tutorial__yolov4>` model and 
+:ref:`Optimize Classification <workbench_tutorial__classification>` model tutorials.
 
 .. _tensor-distance:
 
 Calculation of Tensor Distance to Parent Model Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tensor Distance Calculation Report allows to evaluate the mean squared error (MSE) between Optimized and Parent models output on tensor level for each image in the validation dataset. Mean Squared Error (MSE) is an average of the square of the difference between actual and estimated values. MSE evaluation enables you to identify significant differences between Parent and Optimized model predictions for a wider set of use cases besides classification and object detection. This type of report is explained in details in the :ref:`Optimize Style Transfer <workbench_tutorial__style_transfer>` model tutorial.
+Tensor Distance Calculation Report allows to evaluate the mean squared error (MSE) between Optimized and Parent models 
+output on tensor level for each image in the validation dataset. Mean Squared Error (MSE) is an average of the square 
+of the difference between actual and estimated values. MSE evaluation enables you to identify significant differences 
+between Parent and Optimized model predictions for a wider set of use cases besides classification and object detection. 
+This type of report is explained in details in the :ref:`Optimize Style Transfer <workbench_tutorial__style_transfer>` 
+model tutorial.
 
 See Also
 ~~~~~~~~
@@ -98,7 +115,7 @@ See Also
 
 * `Accuracy Checker <https://docs.openvinotoolkit.org/latest/omz_tools_accuracy_checker.html>`__
 
-* :ref:`Configure Accuracy Settings <doxid-workbench_docs__workbench__d_g__accuracy__configuration>`
+* :ref:`Configure Accuracy Settings <workbench_accuracy__configuration>`
 
 * :ref:`Troubleshooting <dl_workbench__troubleshooting>`
 

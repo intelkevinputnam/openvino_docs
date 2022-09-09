@@ -86,6 +86,6 @@ refer to the :ref:`INT8 vs FP32 Comparison on Select Networks and Platforms <opt
 Additional Resources
 ~~~~~~~~~~~~~~~~~~~~
 
-* `Performance Benchmarks <https://docs.openvino.ai/latest/openvino_docs_optim_perf__performance_benchmarks_openvino.html>`__
+* `Performance Benchmarks <https://docs.openvino.ai/latest/openvino_docs_performance_benchmarks_openvino.html>`__
 
 * `INT8 Quantization by Using Web-Based Interface of the DL Workbench <https://docs.openvino.ai/latest/workbench_docs_Workbench_DG_Int_8_Quantization.html>`__

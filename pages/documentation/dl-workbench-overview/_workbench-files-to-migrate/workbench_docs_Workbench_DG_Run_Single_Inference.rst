@@ -1,11 +1,16 @@
 .. index:: pair: page; Run Inference
-.. _doxid-workbench_docs__workbench__d_g__run__single__inference:
+.. _workbench_inference__run_inference:
+
+.. meta::
+   :description: Guide on how to run inference in OpenVINO Deep Learning Workbench.
+   :keywords: OpenVINO, Deep Learning Workbench, DL Workbench, guide, user guide, inference, 
+              run inference, run single inference, autobenchmarking, run group inference
 
 
 Run Inference
 =============
 
-:target:`doxid-workbench_docs__workbench__d_g__run__single__inference_1md_openvino_workbench_docs_workbench_dg_run_single_inference`
+:target:`workbench_inference__run_inference_1md_openvino_workbench_docs_workbench_dg_run_single_inference`
 
 Run Single Inference
 ~~~~~~~~~~~~~~~~~~~~
@@ -14,7 +19,9 @@ Run Single Inference
 
    <div id="switcher-single" class="switcher-anchor">Run Single Inference</div>
 
-To trigger more inference jobs of an existing configuration, go to the **Perform** tab on the **Projects** page and open the **Explore Inference Configurations** subtab. Select **Single Inference**, specify the number of inferences per a stream and a batch, and click **Execute** :
+To trigger more inference jobs of an existing configuration, go to the **Perform** tab on the **Projects** page and 
+open the **Explore Inference Configurations** subtab. Select **Single Inference**, specify the number of inferences 
+per a stream and a batch, and click **Execute** :
 
 .. image:: run_single_inference_1.png
 
@@ -33,14 +40,16 @@ The table now also contains a row for the inference experiment:
 Autobenchmarking
 ----------------
 
-During the baseline inference with Batch 1 Stream 1 configurations, DL Workbench runs another inference where the parameters are set automatically depending on the model topology to obtain near-optimal performance on the selected accelerator. While automatic selection typically provides near-optimal performance, experimenting with various Batch and Stream combinations might help you accelerate performance even further.
+During the baseline inference with Batch 1 Stream 1 configurations, DL Workbench runs another inference where 
+the parameters are set automatically depending on the model topology to obtain near-optimal performance on the 
+selected accelerator. While automatic selection typically provides near-optimal performance, experimenting with 
+various Batch and Stream combinations might help you accelerate performance even further.
 
 .. image:: autobenchmarking.png
 
-.. note:: For details about inference processes, see the :ref:`OpenVINO™ Runtime documentation <deploy_infer__openvino_runtime_user_guide>`.
-
-
-
+.. note::
+   For details about inference processes, see the 
+   :ref:`OpenVINO™ Runtime documentation <deploy_infer__openvino_runtime_user_guide>`.
 
 
 Run Group Inference
@@ -50,13 +59,17 @@ Run Group Inference
 
    <div id="switcher-range" class="switcher-anchor"> Run Group Inference </div>
 
-DL Workbench provides a graphical interface to find the optimal configuration of batches and parallel requests on a certain machine.
+DL Workbench provides a graphical interface to find the optimal configuration of batches and parallel requests on 
+a certain machine.
 
-To run a range of inference streams, go to the **Perform** tab on the **Projects** page and open the **Explore Inference Configurations** subtab. Select **Group Inference** and click **Configure Group Inference**.
+To run a range of inference streams, go to the **Perform** tab on the **Projects** page and open the 
+**Explore Inference Configurations** subtab. Select **Group Inference** and click **Configure Group Inference**.
 
 .. image:: group_inference.png
 
-On the **Configure Group Inference** page, select combinations of stream and batch parameters by clicking corresponding cells in the table. The cells you select are indicated with the check mark. Dark cells represent previously executed inferences. You can select them as well.
+On the **Configure Group Inference** page, select combinations of stream and batch parameters by clicking corresponding 
+cells in the table. The cells you select are indicated with the check mark. Dark cells represent previously executed 
+inferences. You can select them as well.
 
 .. image:: configure_group_inference.png
 
@@ -80,30 +93,35 @@ Once you click **Execute**, the inference starts and you cannot proceed until it
 
 .. image:: banner1-b.png
 
-Once the inference is completed, go to the **Analyze** tab. The table contains rows for each inference with a certain batch/parallel request configuration, and the graph indicates points corresponding to them:
+Once the inference is completed, go to the **Analyze** tab. The table contains rows for each inference with a certain 
+batch/parallel request configuration, and the graph indicates points corresponding to them:
 
 .. image:: group_inference_results_01.png
 
-Right above the graph, you can specify maximum latency to find the optimal configuration with the best throughput within the desired latency range. The point corresponding to this configuration turns blue:
+Right above the graph, you can specify maximum latency to find the optimal configuration with the best throughput 
+within the desired latency range. The point corresponding to this configuration turns blue:
 
 .. image:: group_inference_results_02.png
 
-To view information about latency, throughput, batch, and parallel requests of a specific job, hover your cursor over the corresponding point on the graph. Use **Expand** and **Collapse** buttons to change sizes of the chart and the table:
+To view information about latency, throughput, batch, and parallel requests of a specific job, hover your cursor 
+over the corresponding point on the graph. Use **Expand** and **Collapse** buttons to change sizes of the chart 
+and the table:
 
 .. image:: group_inference_results_03.png
 
 Autobenchmarking
 ----------------
 
-During the baseline inference with Batch 1 Stream 1 configurations, DL Workbench runs another inference where the parameters are set automatically depending on the model topology to obtain near-optimal performance on the selected accelerator. While automatic selection typically provides near-optimal performance, experimenting with various Batch and Stream combinations might help you accelerate performance even further.
+During the baseline inference with Batch 1 Stream 1 configurations, DL Workbench runs another inference where 
+the parameters are set automatically depending on the model topology to obtain near-optimal performance on the 
+selected accelerator. While automatic selection typically provides near-optimal performance, experimenting with 
+various Batch and Stream combinations might help you accelerate performance even further.
 
 .. image:: autobenchmarking.png
 
-.. note:: For details about inference processes, see the :ref:`OpenVINO™ Runtime documentation <deploy_infer__openvino_runtime_user_guide>`.
-
-
-
-
+.. note::
+   For details about inference processes, see the 
+   :ref:`OpenVINO™ Runtime documentation <deploy_infer__openvino_runtime_user_guide>`.
 
 See Also
 ~~~~~~~~

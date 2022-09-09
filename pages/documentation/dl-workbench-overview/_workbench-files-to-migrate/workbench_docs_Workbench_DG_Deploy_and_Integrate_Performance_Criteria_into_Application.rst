@@ -26,7 +26,7 @@ Discover Optimal Combination of Streams and Batches with DL Workbench
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To find an optimal combination of inference requests and batches, follow the steps described in 
-:ref:`Run Range of Inferences <doxid-workbench_docs__workbench__d_g__run__single__inference>`.
+:ref:`Run Range of Inferences <workbench_inference__run_inference>`.
 
 The optimal combination is the highest point on the **Inference Results** graph. However, you can choose to 
 limit latency values by specifying the **Latency Threshold** value and select an optimal inference among the 

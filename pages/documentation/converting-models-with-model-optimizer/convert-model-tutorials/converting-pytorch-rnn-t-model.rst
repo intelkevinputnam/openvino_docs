@@ -32,7 +32,7 @@ This guide covers conversion of RNN-T model from `MLCommons <https://github.com/
    mkdir rnnt_for_openvino
    cd rnnt_for_openvino
 
-*   tep 3**. Download pre-trained weights for PyTorch implementation from `https://zenodo.org/record/3662521#.YG21DugzZaQ <https://zenodo.org/record/3662521#.YG21DugzZaQ>`__. For UNIX-like systems, you can use ``wget`` :
+**Step 3**. Download pre-trained weights for PyTorch implementation from `https://zenodo.org/record/3662521#.YG21DugzZaQ <https://zenodo.org/record/3662521#.YG21DugzZaQ>`__. For UNIX-like systems, you can use ``wget`` :
 
 .. ref-code-block:: cpp
 
