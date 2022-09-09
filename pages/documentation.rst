@@ -58,11 +58,11 @@ Documentation
    :hidden:
    :caption: THE Ecosystem
 
-   openvino_ecosystem
-   ovms_what_is_openvino_model_server
+   documentation/openvino_ecosystem
+   documentation/ecosystem/model-server/home
    ./documentation/openvino-security-add-on
-   ovtf_integration
-   ote_documentation
+   documentation/ecosystem/openvino-tensorflow-integration
+   documentation/ecosystem/OTE_landing_page
    ./documentation/dl-workbench-overview
 
 
