@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenVINO™ Model Server Contributing Guidelines &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/contributing.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-request-checklist-a-name-merge-req-checklist-a">
+   Merge Request Checklist
+   <a name="merge-req-checklist">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-coding-style-a-name-coding-style-a">
+   C++ Coding Style
+   <a name="coding-style">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-naming-conventions-a-name-var-naming-conventions-a">
+     1. Variable Naming Conventions
+     <a name="var-naming-conventions">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#file-naming-conventions-a-name-file-naming-conventions-a">
+     2. File Naming Conventions
+     <a name="file-naming-conventions">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#headers-naming-conventions-a-name-headers-naming-conventions-a">
+     3. Headers Naming Conventions
+     <a name="headers-naming-conventions">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scoping-a-name-scoping-a">
+     4. Scoping
+     <a name="scoping">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clang-format-a-name-clang-format-a">
+   Clang Format
+   <a name="clang-format">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compiler-security-flags-a-name-flags-a">
+   Compiler Security Flags
+   <a name="flags">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker-and-python-files-check-a-name-file-check-a">
+   Docker and Python Files Check
+   <a name="file-check">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logging-policy">
+   Logging Policy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#levels">
+     Levels
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#error">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ERROR
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#warn">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         WARN
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#info">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         INFO
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#debug">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         DEBUG
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trace">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         TRACE
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     Modules
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="openvino-model-server-contributing-guidelines">
+<h1>OpenVINO™ Model Server Contributing Guidelines<a class="headerlink" href="#openvino-model-server-contributing-guidelines" title="Permalink to this headline">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This guide provides steps and coding standards to follow before sending merge requests:</p>
+<ol class="arabic simple">
+<li><p><a href="#merge-req-checklist">Merge Request Checklist</a></p></li>
+<li><p><a href="#coding-style">C++ Coding Style</a></p>
+<ul class="simple">
+<li><p><a href="#var-naming-conventions">Variable Naming Conventions</a></p></li>
+<li><p><a href="#file-naming-conventions">File Naming Conventions</a></p></li>
+<li><p><a href="#headers-naming-conventions">Headers Naming Conventions</a></p></li>
+<li><p><a href="#scoping">Scoping</a></p></li>
+<li><p><a href="#clang-format">Clang Format</a></p></li>
+</ul>
+</li>
+<li><p><a href="#flags">Compiler Security Flags</a></p></li>
+<li><p><a href="#file-check">Docker and Python Files Check</a></p></li>
+</ol>
+</section>
+<section id="merge-request-checklist-a-name-merge-req-checklist-a">
+<h2>Merge Request Checklist <a name="merge-req-checklist"></a><a class="headerlink" href="#merge-request-checklist-a-name-merge-req-checklist-a" title="Permalink to this headline">¶</a></h2>
+<p>Before sending your merge requests, make sure you followed this list.</p>
+<ul class="simple">
+<li><p>Changes are consistent with the <a href="#coding-style">Coding Style</a></p></li>
+<li><p>Each merge request should start with the corresponding Jira Ticket Number and short task description, e.g.: <code class="docutils literal notranslate"><span class="pre">CVS-3111</span> <span class="pre">Implement</span> <span class="pre">feature</span> <span class="pre">XY</span></code></p></li>
+<li><p>The branches should also correspond to Jira Task Name and start with Jira Ticket Number</p></li>
+<li><p>Write a short description of what the merge request introduces/improves</p></li>
+<li><p>Always include unit tests when contributing new features</p></li>
+<li><p>Bug fixes also generally require unit tests, because the presence of bugs usually indicates insufficient tests</p></li>
+<li><p>Include a license at the top of new files</p></li>
+</ul>
+</section>
+<section id="c-coding-style-a-name-coding-style-a">
+<h2>C++ Coding Style <a name="coding-style"></a><a class="headerlink" href="#c-coding-style-a-name-coding-style-a" title="Permalink to this headline">¶</a></h2>
+<section id="variable-naming-conventions-a-name-var-naming-conventions-a">
+<h3>1. Variable Naming Conventions <a name="var-naming-conventions"></a><a class="headerlink" href="#variable-naming-conventions-a-name-var-naming-conventions-a" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use PascalCase for classes and structs names</p></li>
+<li><p>Use camelCase for methods</p></li>
+<li><p>For member names and arguments both are acceptable: camelCase or separate by underscore’_’. However do not mix both in one class definition.</p></li>
+<li><p>Use _t suffix for new typedefs</p></li>
+<li><p>Use UPPERCASE for consts</p></li>
+</ul>
+<p>Example 1</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleClassName</span> <span class="p">{</span>
+<span class="n">private</span><span class="p">:</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">memberName</span><span class="p">;</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">firstName</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getRow</span><span class="p">(</span><span class="nb">int</span> <span class="n">rowNumber</span><span class="p">);</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getColumn</span><span class="p">(</span><span class="nb">int</span> <span class="n">colNumber</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Example 2</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleClassName</span> <span class="p">{</span>
+<span class="n">private</span><span class="p">:</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">member_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">first_name</span><span class="p">;</span>
+  
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getRow</span><span class="p">(</span><span class="nb">int</span> <span class="n">row_number</span><span class="p">);</span>
+  <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getColumn</span><span class="p">(</span><span class="nb">int</span> <span class="n">col_number</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="file-naming-conventions-a-name-file-naming-conventions-a">
+<h3>2. File Naming Conventions <a name="file-naming-conventions"></a><a class="headerlink" href="#file-naming-conventions-a-name-file-naming-conventions-a" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Filenames should be all lowercase and can include underscores (_). Use _test suffix for unit tests.</p></li>
+<li><p>Examples :</p>
+<ul>
+<li><p>modelmanagerconfig.cpp</p></li>
+<li><p>model_manager_config.cpp</p></li>
+<li><p>modelmanagerconfig_test.cpp</p></li>
+<li><p>model_manager_config_test.cpp</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note</strong> : C++ files should end in .cpp and header files should end in .hpp</p>
+</div></blockquote>
+</section>
+<section id="headers-naming-conventions-a-name-headers-naming-conventions-a">
+<h3>3. Headers Naming Conventions <a name="headers-naming-conventions"></a><a class="headerlink" href="#headers-naming-conventions-a-name-headers-naming-conventions-a" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Every <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file should have an associated <code class="docutils literal notranslate"><span class="pre">.hpp</span></code> file. The only exceptions are unit tests and file containing <code class="docutils literal notranslate"><span class="pre">main()</span></code> function.</p></li>
+<li><p>All headers files should have <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">once</span></code> guard to prevent multiple inclusion.</p></li>
+<li><p>Include headers in the following order:</p>
+<ul class="simple">
+<li><p>C system header</p></li>
+<li><p>C++ standard library headers</p></li>
+<li><p>Other libraries headers</p></li>
+<li><p>project’s headers</p></li>
+</ul>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code> for non-project libraries and <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code> for the project headers. Separate each non-empty group with one blank line.</p></li>
+<li><p>Example :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;cstdio.h&gt;</span>
+
+<span class="c1">#include &lt;map&gt;</span>
+<span class="c1">#include &lt;string&gt;</span>
+<span class="c1">#include &lt;vector&gt;</span>
+
+<span class="c1">#include &lt;grpcpp/server.h&gt;</span>
+
+<span class="c1">#include &quot;config.hpp&quot;</span>
+<span class="c1">#include &quot;status.hpp&quot;</span>
+
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="scoping-a-name-scoping-a">
+<h3>4. Scoping <a name="scoping"></a><a class="headerlink" href="#scoping-a-name-scoping-a" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Always place code in a namespace, the provide a method for preventing name conflicts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span> <span class="n">ovms</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">code</span>
+
+<span class="p">}</span> <span class="o">//</span> <span class="n">namespace</span> <span class="n">ovms</span>
+</pre></div>
+</div>
+</li>
+<li><p>Do not use a using-directive to make all names from a namespace available.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Forbidden</span> <span class="o">--</span> <span class="n">This</span> <span class="n">pollutes</span> <span class="n">the</span> <span class="n">namespace</span><span class="o">.</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">foo</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="clang-format-a-name-clang-format-a">
+<h2>Clang Format <a name="clang-format"></a><a class="headerlink" href="#clang-format-a-name-clang-format-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clang-format</span></code> command before you submit changes.</p></li>
+<li><p>Prerequisites :
+Install Clang-Format 6.0 using the command :
+<code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">clang-format-6.0</span></code></p></li>
+</ul>
+</section>
+<section id="compiler-security-flags-a-name-flags-a">
+<h2>Compiler Security Flags <a name="flags"></a><a class="headerlink" href="#compiler-security-flags-a-name-flags-a" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Run make <code class="docutils literal notranslate"><span class="pre">test-checksec</span></code> command before you submit changes.</p></li>
+<li><p>Prerequisites :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">pool</span><span class="o">/</span><span class="n">universe</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">checksec</span><span class="o">/</span><span class="n">checksec_2</span><span class="mf">.1.0</span><span class="o">-</span><span class="mi">1</span><span class="n">_all</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="docker-and-python-files-check-a-name-file-check-a">
+<h2>Docker and Python Files Check <a name="file-check"></a><a class="headerlink" href="#docker-and-python-files-check-a-name-file-check-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sdl-check</span></code> command before you submit changes.</p></li>
+<li><p>Prerequisites :
+Install Bandit Package using the command :
+<code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">bandit</span></code></p></li>
+</ul>
+</section>
+<section id="logging-policy">
+<h2>Logging Policy<a class="headerlink" href="#logging-policy" title="Permalink to this headline">¶</a></h2>
+<section id="levels">
+<h3>Levels<a class="headerlink" href="#levels" title="Permalink to this headline">¶</a></h3>
+<br>
+<section id="error">
+<h4><code class="docutils literal notranslate"><span class="pre">ERROR</span></code><a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h4>
+<p>Log at this level errors related to the internal model server state.
+</br>
+Example:</p>
+<ul class="simple">
+<li><p>exceptions thrown during accessing local files</p></li>
+<li><p>errors during models updates (failed to load/reload model)
+</br></p></li>
+</ul>
+</section>
+<section id="warn">
+<h4><code class="docutils literal notranslate"><span class="pre">WARN</span></code><a class="headerlink" href="#warn" title="Permalink to this headline">¶</a></h4>
+<p>Log at this level information about conditions that may lead to an error or behavior unwanted or unexpected by the user.
+</br>
+Example:</p>
+<ul class="simple">
+<li><p>problems with configurations</p></li>
+<li><p>version directories with an invalid name
+</br></p></li>
+</ul>
+</section>
+<section id="info">
+<h4><code class="docutils literal notranslate"><span class="pre">INFO</span></code><a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h4>
+<p>Log at this level actions that changes the state of an application.
+</br>
+Example:</p>
+<ul class="simple">
+<li><p>(re)loading config/model</p></li>
+<li><p>entry/exit points
+</br></p></li>
+</ul>
+</section>
+<section id="debug">
+<h4><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code><a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h4>
+<p>Log at this level information about what happens in the program that may help during debugging.
+</br></p>
+<p>Example:</p>
+<ul class="simple">
+<li><p>receiving/processing requests</p></li>
+<li><p>duration of specific operations (deserialization, serialization, inference etc.)
+</br></p></li>
+</ul>
+</section>
+<section id="trace">
+<h4><code class="docutils literal notranslate"><span class="pre">TRACE</span></code><a class="headerlink" href="#trace" title="Permalink to this headline">¶</a></h4>
+<p>Log at this level very specific information about what happens in the program, including code-related names. (Only for development purposes)
+</br></p>
+<p>Example:</p>
+<ul class="simple">
+<li><p>executing functions</p></li>
+<li><p>timestamps</p></li>
+<li><p>intermediate states of the objects</p></li>
+</ul>
+</section>
+</section>
+<section id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+<p>For OVMS modules, use a different logger that appends module prefix to the message. Example modules:</p>
+<ul class="simple">
+<li><p>GCS</p></li>
+<li><p>S3</p></li>
+<li><p>Azure</p></li>
+<li><p>Model Manager</p></li>
+<li><p>Ensemble</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

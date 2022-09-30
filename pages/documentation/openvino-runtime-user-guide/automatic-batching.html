@@ -1,0 +1,2154 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="The Automatic Batching Execution mode in OpenVINO Runtime performs automatic batching to improve device utilization by grouping inference requests." name="description" />
+<meta content="OpenVINO Runtime, automatic batching, Automatic Batching Execution mode, Auto-Batching, inference request, enable Automatic Batching, batch size, simultaneous inference requests, Intel GPU, GPU device, performance hint, throughput, performance mode, compile_model, set_property, AUTO_BATCH_DEVICE, inference performance, benchmark_app, disable automatic batching, optimize performance, AUTO_BATCH_DEVICE" name="keywords" />
+
+    <title>Automatic Batching &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/custom.js"></script>
+    <script src="../../../_static/js/graphs.js"></script>
+    <script src="../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/openvino-runtime-user-guide/automatic-batching.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Stateful models" href="stateful-models.html" />
+    <link rel="prev" title="High-level Performance Hints" href="performance-hints.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  API 2.0
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../api-2.0-transition.html">
+   OpenVINO™ API 2.0 Transition Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api-2.0-transition/api-2.0-deployment.html">
+     Installation &amp; Deployment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api-2.0-transition/api-2.0-inference-pipeline.html">
+     Inference Pipeline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api-2.0-transition/api-2.0-configure-devices.html">
+     Configuring Devices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api-2.0-transition/api-2.0-preprocessing.html">
+     Preprocessing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api-2.0-transition/api-2.0-model-creation.html">
+     Model Creation in OpenVINO™ Runtime
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Converting and Preparing Models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../model-processing.html">
+   Introduction to Model Processing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../converting-models-with-model-optimizer.html">
+   Converting Models with Model Optimizer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/input-shapes.html">
+     Setting Input Shapes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/cutting-model-with-model-optimizer.html">
+     Cutting Off Parts of a Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/additional-optimization-use-cases.html">
+     Embedding Preprocessing Computation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/fp16-compression-with-model-optimizer.html">
+     Compressing a Model to FP16
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-tensorflow-model-with-model-optimizer.html">
+     Converting a TensorFlow Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-onnx-model-with-model-optimizer.html">
+     Converting an ONNX Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-pytorch-model.html">
+     Converting a PyTorch Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-paddlepaddle-model-with-model-optimizer.html">
+     Converting a PaddlePaddle Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-mxnet-model-with-model-optimizer.html">
+     Converting an MXNet Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-caffe-model-with-model-optimizer.html">
+     Converting a Caffe Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/converting-kaldi-model-with-model-optimizer.html">
+     Converting a Kaldi Model
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials.html">
+     Model Conversion Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-attention-ocr-model.html">
+       Convert a TensorFlow Attention OCR Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-bert-model.html">
+       Convert a TensorFlow BERT Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-crnn-model.html">
+       Convert a TensorFlow CRNN Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-deepspeech-model.html">
+       Convert a TensorFlow DeepSpeech Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-efficientdet-model.html">
+       Convert TensorFlow EfficientDet Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-facenet-model.html">
+       Convert TensorFlow FaceNet Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-gnmt-model.html">
+       Convert a TensorFlow GNMT Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-language-model-on-billion-word-benchmark.html">
+       Convert a TensorFlow Language Model on One Billion Word Benchmark
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-ncf-model.html">
+       Convert a TensorFlow Neural Collaborative Filtering Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-object-detection-api-model.html">
+       Convert TensorFlow Object Detection API Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-retinanet-model.html">
+       Convert a TensorFlow RetinaNet Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-slim-library-models.html">
+       Convert TensorFlow Slim Image Classification Model Library Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-wide-and-deep-family-models.html">
+       Convert TensorFlow Wide and Deep Family Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-xlnet-model.html">
+       Convert a TensorFlow XLNet Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-tensorflow-yolo-models.html">
+       Convert TensorFlow YOLO Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-onnx-faster-r-cnn-model.html">
+       Convert an ONNX Faster R-CNN Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-onnx-gpt-2-model.html">
+       Convert an ONNX GPT-2 Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-onnx-mask-r-cnn-model.html">
+       Convert an ONNX Mask R-CNN Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-bert-ner-model.html">
+       Convert a PyTorch BERT-NER Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-cascade-rcn-r-101-model.html">
+       Convert a PyTorch Cascade RCNN R-101 Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-f3net-model.html">
+       Convert a PyTorch F3Net Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-quartznet-model.html">
+       Convert a PyTorch QuartzNet Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-rcan-model.html">
+       Convert a PyTorch RCAN Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-rnn-t-model.html">
+       Convert a PyTorch RNN-T Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-pytorch-yolact-model.html">
+       Convert a PyTorch YOLACT Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-mxnet-gluoncv-models.html">
+       Convert MXNet GluonCV Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-mxnet-style-transfer-model.html">
+       Convert an MXNet Style Transfer Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../converting-models-with-model-optimizer/convert-model-tutorials/converting-kaldi-aspire-chain-tdnn-model.html">
+       Convert a Kaldi ASpIRE Chain Time Delay Neural Network (TDNN) Model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../converting-models-with-model-optimizer/faq-model-optimizer.html">
+     Model Optimizer Frequently Asked Questions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization and Performance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../performance-optimization.html">
+   Introduction to Performance Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../getting-performance-numbers.html">
+   Getting Performance Numbers
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../model-optimization-guide.html">
+   Model Optimization Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization.html">
+     Optimizing models post-training
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/quantizing-model.html">
+       Quantizing Model
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/quantizing-model/default-quantization-algorithm.html">
+         DefaultQuantization Algorithm
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/accuracy-aware-quantization.html">
+       Quantizing Model with Accuracy Control
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/accuracy-aware-quantization/accuracy-aware-quantization-algorithm.html">
+         AccuracyAwareQuantization Algorithm
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/best-practices.html">
+       Post-Training Quantization Best Practices
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/best-practices/saturation-issue.html">
+         Saturation Issue
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/pot-api.html">
+       Post-training Optimization Tool API
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/command-line-interface.html">
+       POT Command-line Interface
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/command-line-interface/simplified-mode.html">
+         Optimization in Simplified Mode
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/command-line-interface/configuration-file.html">
+         Configuration File Description
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples.html">
+       Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4 has-children">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples.html">
+         POT API Examples
+        </a>
+        <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+        <label for="toctree-checkbox-11">
+         <i class="fas fa-chevron-down">
+         </i>
+        </label>
+        <ul>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-image-classification-model.html">
+           Quantizing Image Classification Model
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-with-accuracy-control.html">
+           Quantizing with Accuracy Control
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-face-detection-model.html">
+           Quantizing Face Detection Model
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-segmentation-model.html">
+           Quantizing Semantic Segmentation Model
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-3d-segmentation-model.html">
+           Quantizing 3D Segmentation Model
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/api-examples/quantizing-for-gna-device.html">
+           Quantizing for GNA Device
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/examples/command-line-example.html">
+         Command-line Interface Example
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../model-optimization-guide/post-training-model-optimization/post-training-optimization-tool-faq.html">
+       Post-training Optimization Tool FAQ
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model-optimization-guide/neural-network-compression-framework.html">
+     Neural Network Compression Framework
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model-optimization-guide/experimental-protecting-model.html">
+     Experimental: Protecting Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../runtime-inference-optimizations.html">
+   Runtime Inference Optimizations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../runtime-inference-optimizations/general-optimizations.html">
+     General Optimizations
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../runtime-inference-optimizations/optimizing-for-latency.html">
+     Optimizing for the Latency
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../runtime-inference-optimizations/optimizing-for-latency/model-caching-overview.html">
+       Model Caching Overview
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../runtime-inference-optimizations/optimizing-for-throughput.html">
+     Optimizing for Throughput
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../runtime-inference-optimizations/advanced-throughput-options.html">
+     Advanced Throughput Options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../runtime-inference-optimizations/further-low-level-implementation.html">
+     Further Low-Level Implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tuning-utilities.html">
+   Tuning Utilities
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tuning-utilities/cross-check-tool.html">
+     Cross Check Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../performance-benchmarks.html">
+   Performance Benchmarks
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../performance-benchmarks/openvino-performance-benchmarks.html">
+     Intel® Distribution of OpenVINO™ toolkit Benchmark Results
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../performance-benchmarks/openvino-performance-benchmarks/performance-benchmarks-faq.html">
+       Performance Information Frequently Asked Questions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../performance-benchmarks/openvino-performance-benchmarks/model-accuracy-for-int8-fp32.html">
+       Model Accuracy for INT8 and FP32 Precision
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../performance-benchmarks/openvino-model-server-performance-benchmarks.html">
+     OpenVINO™ Model Server Benchmark Results
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deploying Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openvino-deployment-introduction.html">
+   Introduction to OpenVINO™ Deployment
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../openvino-runtime-user-guide.html">
+   Performing Inference with OpenVINO Runtime
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="openvino-runtime-integrate-application.html">
+     Integrate OpenVINO™ with Your Application
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+    <label for="toctree-checkbox-18">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="openvino-runtime-integrate-application/model-representation.html">
+       Model Representation in OpenVINO™ Runtime
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="openvino-runtime-integrate-application/inference-request.html">
+       OpenVINO™ Inference Request
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="openvino-runtime-integrate-application/python-api-exclusives.html">
+       OpenVINO™ Python API Exclusives
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="changing-input-shapes.html">
+     Changing Input Shapes
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="working-with-devices.html">
+     Working with devices
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="working-with-devices/query-device-properties.html">
+       Query Device Properties
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="working-with-devices/inference-device-cpu.html">
+       CPU Device
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="working-with-devices/inference-device-gpu.html">
+       GPU Device
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+      <label for="toctree-checkbox-20">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="working-with-devices/inference-device-gpu/remote-tensor-gpu.html">
+         Remote Tensor API of GPU Plugin
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="working-with-devices/inference-device-vpu.html">
+       VPU Devices
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+      <label for="toctree-checkbox-21">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="working-with-devices/inference-device-vpu/myriad-device.html">
+         MYRIAD Device
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="working-with-devices/inference-device-vpu/hddl-device.html">
+         HDDL Device
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="working-with-devices/inference-device-gna.html">
+       GNA Device
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="working-with-devices/inference-device-arm-cpu.html">
+       Arm® CPU Device
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="preprocessing.html">
+     Preprocessing
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+    <label for="toctree-checkbox-22">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="preprocessing/preprocessing-api-details.html">
+       Preprocessing API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="preprocessing/layout-api-overview.html">
+       Layout API Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="preprocessing/preprocessing-use-case.html">
+       Preprocessing - Use Case
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="dynamic-shapes.html">
+     Dynamic Shapes
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+    <label for="toctree-checkbox-23">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dynamic-shapes/dynamic-shapes-not-applicable.html">
+       When Dynamic Shapes API is Not Applicable
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="automatic-device-selection.html">
+     Automatic Device Selection
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label for="toctree-checkbox-24">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="automatic-device-selection/debugging-auto-device.html">
+       Debugging Auto-Device Plugin
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multi-device-execution-mode.html">
+     Running on Multiple Devices Simultaneously
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="heterogeneous-execution-mode.html">
+     Heterogeneous execution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="performance-hints.html">
+     High-level Performance Hints
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Automatic Batching
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stateful-models.html">
+     Stateful models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../openvino-deployment-guide.html">
+   Deploying Your Applications with OpenVINO™
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-deployment-guide/deployment-manager-tool.html">
+     Deploying Your Application with Deployment Manager
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-deployment-guide/local-distribution.html">
+     Libraries for Local Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../compile-tool.html">
+   Compile Tool
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  THE Ecosystem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openvino-security-add-on.html">
+   OpenVINO™ Security Add-on
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl-workbench-overview.html">
+   OpenVINO™ Deep Learning Workbench Overview
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install.html">
+     Installation
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+    <label for="toctree-checkbox-27">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install/dl-workbench-install-prerequisites.html">
+       Prerequisites
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install/run-dl-workbench-locally.html">
+       Run the DL Workbench Locally
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+      <label for="toctree-checkbox-28">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install/run-dl-workbench-locally/dl-workbench-cofigurations.html">
+         Advanced DL Workbench Configurations
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install/run-dl-workbench-locally/dl-workbench-docker.html">
+         Work with Docker Container
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-install/run-dl-workbench-in-devcloud.html">
+       Run the DL Workbench in the Intel® DevCloud for the Edge
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../dl-workbench-overview/dl-workbench-get-started.html">
+     Get Started
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+    <label for="toctree-checkbox-29">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-get-started/dl-workbench-import-model.html">
+       Import Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-get-started/dl-workbench-create-project.html">
+       Create Project
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-get-started/dl-workbench-resources.html">
+       Educational Resources about DL Workbench
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+      <label for="toctree-checkbox-30">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/dl-workbench-get-started/dl-workbench-resources/dl-workbench-key-concepts.html">
+         DL Workbench Key Concepts
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../dl-workbench-overview/dl-workbench-tutorials.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+    <label for="toctree-checkbox-31">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Import_YOLO.html">
+       Object Detection Model (YOLOv4)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Measure_Accuracy_Object_detection.html">
+       Object Detection Model (SSD_mobilenet)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Classification.html">
+       Classification Model (mobilenet)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Measure_Accuracy_Classification.html">
+       Classification Model (squeezenet)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Instance_Segmentation.html">
+       Instance Segmentation Model (mask R-cnn)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Semantic_Segmentation.html">
+       Semantic Segmentation Model (deeplab)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Style_Transfer.html">
+       Style Transfer Model (fast-nst-onnx)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_NLP.html">
+       NLP Model (BERT)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../dl-workbench-overview/dl-workbench-user-guide.html">
+     User Guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
+    <label for="toctree-checkbox-32">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Select_Models.html">
+       Obtain Models
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/>
+      <label for="toctree-checkbox-33">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_OMZ_Models.html">
+         Import Open Model Zoo Models
+        </a>
+       </li>
+       <li class="toctree-l4 has-children">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Original_Model_Import.html">
+         Import Original Model
+        </a>
+        <input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/>
+        <label for="toctree-checkbox-34">
+         <i class="fas fa-chevron-down">
+         </i>
+        </label>
+        <ul>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Tutorial_Import_Original.html">
+           Import Original Model Recommendations
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Generate_Datasets.html">
+       Obtain Datasets
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/>
+      <label for="toctree-checkbox-35">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4 has-children">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Dataset_Types.html">
+         Dataset Types
+        </a>
+        <input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/>
+        <label for="toctree-checkbox-36">
+         <i class="fas fa-chevron-down">
+         </i>
+        </label>
+        <ul>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Download_and_Cut_Datasets.html">
+           Cut Datasets
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Select_Environment.html">
+       Select Environment
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/>
+      <label for="toctree-checkbox-37">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4 has-children">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Remote_Profiling.html">
+         Work with Remote Targets
+        </a>
+        <input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/>
+        <label for="toctree-checkbox-38">
+         <i class="fas fa-chevron-down">
+         </i>
+        </label>
+        <ul>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Profile_on_Remote_Machine.html">
+           Profile on Remote Machine
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Setup_Remote_Target.html">
+           Set Up Remote Target
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Add_Remote_Target.html">
+           Register Remote Target in DL Workbench
+          </a>
+         </li>
+         <li class="toctree-l5">
+          <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Remote_Machines.html">
+           Manipulate Remote Machines
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Int_8_Quantization.html">
+       Optimize Model Performance
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Run_Inference.html">
+       Explore Inference Configurations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/>
+      <label for="toctree-checkbox-39">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Run_Single_Inference.html">
+         Run Inference
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_View_Inference_Results.html">
+         View Inference Results
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Compare_Performance_between_Two_Versions_of_Models.html">
+         Compare Performance between Two Versions of a Model
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Visualize_Model.html">
+         Visualize Model
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Visualize_Accuracy.html">
+       Visualize Model Output
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Measure_Accuracy.html">
+       Create Accuracy Report
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/>
+      <label for="toctree-checkbox-40">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Accuracy_Configuration.html">
+         Accuracy Configuration
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Configure_Accuracy_Settings.html">
+         Set Accuracy Configuration
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Accuracy_Report_Results.html">
+         Interpret Accuracy Report Results
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Deployment_Package.html">
+       Create Deployment Package
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/>
+      <label for="toctree-checkbox-41">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Deploy_and_Integrate_Performance_Criteria_into_Application.html">
+         Deploy and Integrate Performance Criteria into Application
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Export_Project.html">
+       Export Project
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Jupyter_Notebooks_CLI.html">
+       Learn OpenVINO in DL Workbench
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/>
+      <label for="toctree-checkbox-42">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Jupyter_Notebooks.html">
+         Learn Model Inference with OpenVINO™ API in JupyterLab Environment
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Persist_Database.html">
+       Restore DL Workbench State
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_security_Workbench.html">
+       Run DL Workbench Securely
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/>
+      <label for="toctree-checkbox-43">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Authentication.html">
+         Enable Authentication in DL Workbench
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dl-workbench-overview/_workbench-files-to-migrate/workbench_docs_Workbench_DG_Configure_TLS.html">
+         Configure Transport Layer Security (TLS)
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../dl-workbench-overview/dl-workbench-troubleshooting.html">
+     Troubleshooting
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/>
+    <label for="toctree-checkbox-44">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../dl-workbench-overview/dl-workbench-troubleshooting/dl-workbench-devcloud-troubleshooting.html">
+       Troubleshooting for DL Workbench in the Intel® DevCloud for the Edge
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Media Processing and Computer Vision Libraries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intel-deep-learning-streamer.html">
+   Intel® Deep Learning Streamer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../opencv-graph-api.html">
+   Introduction to OpenCV Graph API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/>
+  <label for="toctree-checkbox-45">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../opencv-graph-api/graph-api-kernel.html">
+     Graph API Kernel API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../opencv-graph-api/face-beautification-algorithm.html">
+     Implementing a Face Beautification Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../opencv-graph-api/face-analytics-pipeline.html">
+     Building a Face Analytics Pipeline
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://docs.opencv.org/master/">
+   OpenCV Developer Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://software.intel.com/en-us/openclsdk-devguide">
+   OpenCL™ Developer Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  OpenVINO Extensibility
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../openvino-extensibility-mechanism.html">
+   OpenVINO Extensibility Mechanism
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" type="checkbox"/>
+  <label for="toctree-checkbox-46">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-extensibility-mechanism/custom-openvino-operations.html">
+     Custom OpenVINO™ Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-extensibility-mechanism/frontend-extensions.html">
+     Frontend Extensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-extensibility-mechanism/custom-operations_for_gpu.html">
+     How to Implement Custom Operations for GPU
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-extensibility-mechanism/custom-operations_for_vpu.html">
+     How to Implement Custom Operations for VPU (Intel® Neural Compute Stick 2)
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../openvino-extensibility-mechanism/model_optimizer_extensibility.html">
+     Model Optimizer Extensibility
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" type="checkbox"/>
+    <label for="toctree-checkbox-47">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../openvino-extensibility-mechanism/model_optimizer_extensibility/extending-model-optimizer-with-caffe-python-layers.html">
+       Extending Model Optimizer with Caffe Python Layers
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../openvino-transformation-api.html">
+   Overview of Transformations API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" type="checkbox"/>
+  <label for="toctree-checkbox-48">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-transformation-api/transformation-api-model-pass.html">
+     OpenVINO Model Pass
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-transformation-api/transformation-api-matcher-pass.html">
+     OpenVINO Matcher Pass
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-transformation-api/transformation-api-graph-rewrite-pass.html">
+     OpenVINO Graph Rewrite Pass
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../openvino-plugin-developer-guide.html">
+   Overview of Inference Engine Plugin Library
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" type="checkbox"/>
+  <label for="toctree-checkbox-49">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/openvino-custom-plugins.html">
+     Plugin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/executable-network-class-in-custom-plugins.html">
+     Executable Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/synchronous-inference-request.html">
+     Synchronous Inference Request
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/asynchronous-inference-request.html">
+     Asynchronous Inference Request
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/building-custom-plugins-with-cmake.html">
+     Build Plugin Using CMake
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/testing-custom-openvino-plugins.html">
+     Plugin Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/quantized_network_support.html">
+     Quantized networks compute and restrictions
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations.html">
+     OpenVINO™ Low Precision Transformations
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" type="checkbox"/>
+    <label for="toctree-checkbox-50">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes.html">
+       Low-Precision Transformation Attributes
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" type="checkbox"/>
+      <label for="toctree-checkbox-51">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/avgpoolprecisionpreserved.html">
+         AvgPoolPrecisionPreserved attribute
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/intervalsalignment.html">
+         IntervalsAlignment attribute
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/precisionpreserved.html">
+         PrecisionPreserved attribute
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/precisions.html">
+         Precisions attribute
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/quantizationalignment.html">
+         QuantizationAlignment attribute
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/low-precision-transformation-attributes/quantizationgranularity.html">
+         QuantizationGranularity attribute
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/prerequisites-transformations.html">
+       Step 1. Prerequisites Transformations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/markup-transformations.html">
+       Step 2. Markup Transformations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/main-transformations.html">
+       Step 3. Main Transformations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../openvino-plugin-developer-guide/low-precision-transformations/cleanup-transformations.html">
+       Step 4. Cleanup Transformations
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../openvino-plugin-developer-guide/custom-plugin-api-reference.html">
+     Plugin API Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" type="checkbox"/>
+    <label for="toctree-checkbox-52">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use OpenVINO™ Toolkit Securely
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openvino-security-introduction.html">
+   Introduction to OpenVINO™ Security
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openvino-dl-workbench-security.html">
+   Deep Learning Workbench Security
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../using-encrypted-models-with-openvino.html">
+   Using Encrypted Models with OpenVINO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openvino-security-add-on.html">
+   OpenVINO™ Security Add-on
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enabling-disabling-automatic-batching">
+   Enabling/Disabling Automatic Batching
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disabling-automatic-batching">
+     Disabling Automatic Batching
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-automatic-batching">
+   Configuring Automatic Batching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatic-batch-size-selection">
+   Automatic Batch Size Selection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizing-performance-by-limiting-batch-size">
+     Optimizing Performance by Limiting Batch Size
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-performance-considerations">
+   Other Performance Considerations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-performance-with-benchmark-app">
+   Testing Performance with Benchmark_app
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <span class="target" id="deploy-infer-automatic-batching"><span id="index-0"></span></span><section id="automatic-batching">
+<h1>Automatic Batching<a class="headerlink" href="#automatic-batching" title="Permalink to this headline">¶</a></h1>
+<p><span class="target" id="deploy-infer-automatic-batching-1md-openvino-docs-ov-runtime-ug-automatic-batching"></span></p>
+<p>The Automatic Batching Execution mode (or Auto-batching for short) performs automatic
+batching on-the-fly to improve device utilization by grouping inference requests
+together, with no programming effort from the user. With Automatic Batching, gathering
+the input and scattering the output from the individual inference requests required
+for the batch happen transparently, without affecting the application code.</p>
+<p>This article provides a preview of the new Automatic Batching function, including
+how it works, its configurations, and testing performance.</p>
+<section id="enabling-disabling-automatic-batching">
+<h2>Enabling/Disabling Automatic Batching<a class="headerlink" href="#enabling-disabling-automatic-batching" title="Permalink to this headline">¶</a></h2>
+<p>Auto-batching primarily targets the existing code written for inferring many
+requests, each instance with the batch size 1. To obtain corresponding performance
+improvements, the application <strong>must be running many inference requests simultaneously</strong>.
+Auto-batching can also be used via a particular <em>virtual</em> device.</p>
+<p>Batching is a straightforward way of leveraging the compute power of GPU and saving
+on communication overheads. Automatic Batching is “implicitly” triggered on the GPU
+when <code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref"><span class="pre">ov::hint::PerformanceMode::THROUGHPUT</span></span></a></code>
+is specified for the <code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref"><span class="pre">ov::hint::performance_mode</span></span></a></code>
+property for the <code class="docutils literal notranslate"><span class="pre">compile_model</span></code> or <code class="docutils literal notranslate"><span class="pre">set_property</span></code> calls.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">C++</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga461856fdfb6d7533dc53355aec9e9fad"><span class="std std-ref">model</span></a><span></span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span>
+   <a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref">ov::hint::performance_mode</span></a><span></span><span class="p">(</span><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref">ov::hint::PerformanceMode::THROUGHPUT</span></a><span></span><span class="p">));</span></pre></div></div></div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Python</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;PERFORMANCE_HINT&quot;</span><span class="o">:</span> <span class="s">&quot;THROUGHPUT&quot;</span><span class="p">}</span>
+<span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></pre></div></div></div>
+</div>
+<p>To enable Auto-batching in the legacy apps not akin to the notion of performance
+hints, you need to use the <strong>explicit</strong> device notion, such as <code class="docutils literal notranslate"><span class="pre">BATCH:GPU</span></code>.</p>
+<section id="disabling-automatic-batching">
+<h3>Disabling Automatic Batching<a class="headerlink" href="#disabling-automatic-batching" title="Permalink to this headline">¶</a></h3>
+<p>Auto-Batching can be disabled (for example, for the GPU device) to prevent being triggered by
+<code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref"><span class="pre">ov::hint::PerformanceMode::THROUGHPUT</span></span></a></code>.
+To do that, set <code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga445a111e7219955c585eb418d2f4f80d"><span class="std std-ref"><span class="pre">ov::hint::allow_auto_batching</span></span></a></code>
+to <strong>false</strong> in addition to the <code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref"><span class="pre">ov::hint::performance_mode</span></span></a></code>,
+as shown below:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">C++</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="c1">// disabling the automatic batching</span>
+<span class="c1">// leaving intact other configurations options that the device selects for the &#39;throughput&#39; hint</span>
+<span class="k">auto</span> <span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga461856fdfb6d7533dc53355aec9e9fad"><span class="std std-ref">model</span></a><span></span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span>
+   <a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref">ov::hint::performance_mode</span></a><span></span><span class="p">(</span><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref">ov::hint::PerformanceMode::THROUGHPUT</span></a><span></span><span class="p">),</span>
+   <a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga445a111e7219955c585eb418d2f4f80d"><span class="std std-ref">ov::hint::allow_auto_batching</span></a><span></span><span class="p">(</span><span class="nb">false</span><span class="p">));</span></pre></div></div></div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Python</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="cp"># disabling the automatic batching</span>
+<span class="cp"># leaving intact other configurations options that the device selects for the &#39;throughput&#39; hint</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;PERFORMANCE_HINT&quot;</span><span class="o">:</span> <span class="s">&quot;THROUGHPUT&quot;</span><span class="p">,</span>
+         <span class="s">&quot;ALLOW_AUTO_BATCHING&quot;</span><span class="o">:</span> <span class="n">False</span><span class="p">}</span>
+<span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></pre></div></div></div>
+</div>
+</section>
+</section>
+<section id="configuring-automatic-batching">
+<h2>Configuring Automatic Batching<a class="headerlink" href="#configuring-automatic-batching" title="Permalink to this headline">¶</a></h2>
+<p>Following the OpenVINO naming convention, the <em>batching</em> device is assigned the label
+of <em>BATCH</em>. The configuration options are as follows:</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 38%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Parameter description</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTO_BATCH_DEVICE</span></code></p></td>
+<td><p>The name of the device to apply Automatic batching,
+with the optional batch size value in brackets.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BATCH:GPU</span></code> triggers the automatic batch size selection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ov::auto_batch_timeout</span></code></p></td>
+<td><p>The timeout value, in ms. (1000 by default)</p></td>
+<td><p>You can reduce the timeout value to avoid performance
+penalty when the data arrives too unevenly).
+For example, set it to “100”, or the contrary, i.e.,
+make it large enough to accommodate input
+preparation (e.g. when it is a serial process).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="automatic-batch-size-selection">
+<h2>Automatic Batch Size Selection<a class="headerlink" href="#automatic-batch-size-selection" title="Permalink to this headline">¶</a></h2>
+<p>In both the THROUGHPUT hint and the explicit BATCH device cases, the optimal batch
+size is selected automatically, as the implementation queries the
+<code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga129bad2da2fc2a40a7d746d86fc9c68d"><span class="std std-ref"><span class="pre">ov::optimal_batch_size</span></span></a></code>
+property from the device and passes the model graph as the parameter. The actual
+value depends on the model and device specifics, for example, the on-device memory
+for dGPUs. The support for Auto-batching is not limited to GPU. However, if a device does
+not support <code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga129bad2da2fc2a40a7d746d86fc9c68d"><span class="std std-ref"><span class="pre">ov::optimal_batch_size</span></span></a></code>
+yet, to work with Auto-batching, an explicit batch size must be specified, e.g., <code class="docutils literal notranslate"><span class="pre">BATCH:&lt;device&gt;(16)</span></code>.</p>
+<p>This “automatic batch size selection” works on the presumption that the application queries
+<code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga087c6da667f7c3d8374aec5f6cbba027"><span class="std std-ref"><span class="pre">ov::optimal_number_of_infer_requests</span></span></a></code>
+to create the requests of the returned number and run them simultaneously:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">C++</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="c1">// when the batch size is automatically selected by the implementation</span>
+<span class="c1">// it is important to query/create and run the sufficient #requests</span>
+<span class="k">auto</span> <span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga461856fdfb6d7533dc53355aec9e9fad"><span class="std std-ref">model</span></a><span></span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span>
+   <a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref">ov::hint::performance_mode</span></a><span></span><span class="p">(</span><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref">ov::hint::PerformanceMode::THROUGHPUT</span></a><span></span><span class="p">));</span>
+<span class="k">auto</span> <span class="n">num_requests</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga087c6da667f7c3d8374aec5f6cbba027"><span class="std std-ref">ov::optimal_number_of_infer_requests</span></a><span></span><span class="p">);</span></pre></div></div></div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Python</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="cp"># when the batch size is automatically selected by the implementation</span>
+<span class="cp"># it is important to query/create and run the sufficient requests</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;PERFORMANCE_HINT&quot;</span><span class="o">:</span> <span class="s">&quot;THROUGHPUT&quot;</span><span class="p">}</span>
+<span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="n">num_requests</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="s">&quot;OPTIMAL_NUMBER_OF_INFER_REQUESTS&quot;</span><span class="p">)</span></pre></div></div></div>
+</div>
+<section id="optimizing-performance-by-limiting-batch-size">
+<h3>Optimizing Performance by Limiting Batch Size<a class="headerlink" href="#optimizing-performance-by-limiting-batch-size" title="Permalink to this headline">¶</a></h3>
+<p>If not enough inputs were collected, the <code class="docutils literal notranslate"><span class="pre">timeout</span></code> value makes the transparent
+execution fall back to the execution of individual requests. This value can be
+configured via the <code class="docutils literal notranslate"><span class="pre">AUTO_BATCH_TIMEOUT</span></code> property. The timeout, which adds itself
+to the execution time of the requests, heavily penalizes the performance. To avoid
+this, when your parallel slack is bounded, provide OpenVINO with an additional hint.</p>
+<p>For example, when the application processes only 4 video streams, there is no need
+to use a batch larger than 4. The most future-proof way to communicate the limitations
+on the parallelism is to equip the performance hint with the optional <code class="docutils literal notranslate"><span class="pre">ov::hint::num_requests</span></code>
+configuration key set to 4. This will limit the batch size for the GPU and the number
+of inference streams for the CPU, hence each device uses <code class="docutils literal notranslate"><span class="pre">ov::hint::num_requests</span></code>
+while converting the hint to the actual device configuration options:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">C++</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="c1">// limiting the available parallel slack for the &#39;throughput&#39; hint via the ov::hint::num_requests</span>
+<span class="c1">// so that certain parameters (like selected batch size) are automatically accommodated accordingly</span>
+<span class="k">auto</span> <span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga461856fdfb6d7533dc53355aec9e9fad"><span class="std std-ref">model</span></a><span></span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span>
+   <a class="reference internal" href="../../../api/groups/groupov_runtime_cpp_prop_api.html#doxid-group-ov-runtime-cpp-prop-api-1ga2691fe27acc8aa1d1700ad40b6da3ba2"><span class="std std-ref">ov::hint::performance_mode</span></a><span></span><span class="p">(</span><a class="reference internal" href="../../../api/groups/enumov_1_1hint_1_1PerformanceMode.html#doxid-group-ov-runtime-cpp-prop-api-1gga032aa530efa40760b79af14913d48d73a50f9b1f40c078d242af7ec323ace44b3"><span class="std std-ref">ov::hint::PerformanceMode::THROUGHPUT</span></a><span></span><span class="p">),</span>
+   <span class="n">ov</span><span class="o">::</span><span class="n">hint</span><span class="o">::</span><span class="n">num_requests</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span></pre></div></div></div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">Python</label><div class="tab-content docutils">
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;PERFORMANCE_HINT&quot;</span><span class="o">:</span> <span class="s">&quot;THROUGHPUT&quot;</span><span class="p">,</span>
+         <span class="s">&quot;PERFORMANCE_HINT_NUM_REQUESTS&quot;</span><span class="o">:</span> <span class="s">&quot;4&quot;</span><span class="p">}</span>
+<span class="cp"># limiting the available parallel slack for the &#39;throughput&#39;</span>
+<span class="cp"># so that certain parameters (like selected batch size) are automatically accommodated accordingly</span>
+<span class="n">compiled_model</span> <span class="o">=</span> <span class="n">core</span><span class="p">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></pre></div></div></div>
+</div>
+<p>For the <em>explicit</em> usage, you can limit the batch size by using <code class="docutils literal notranslate"><span class="pre">BATCH:GPU(4)</span></code>,
+where 4 is the number of requests running in parallel.</p>
+</section>
+</section>
+<section id="other-performance-considerations">
+<h2>Other Performance Considerations<a class="headerlink" href="#other-performance-considerations" title="Permalink to this headline">¶</a></h2>
+<p>To achieve the best performance with Automatic Batching, the application should:</p>
+<ul class="simple">
+<li><p>Operate inference requests of the number that represents the multiple of the
+batch size. In the example above, for batch size 4, the application should
+operate 4, 8, 12, 16, etc. requests.</p></li>
+<li><p>Use the requests that are grouped by the batch size together. For example,
+the first 4 requests are inferred, while the second group of the requests is
+being populated. Essentially, Automatic Batching shifts the asynchronicity
+from the individual requests to the groups of requests that constitute the batches.</p>
+<ul>
+<li><p>Balance the <code class="docutils literal notranslate"><span class="pre">timeout</span></code> value vs. the batch size. For example, in many
+cases, having a smaller <code class="docutils literal notranslate"><span class="pre">timeout</span></code> value/batch size may yield better
+performance than having a larger batch size with a <code class="docutils literal notranslate"><span class="pre">timeout</span></code> value that
+is not large enough to accommodate the full number of the required requests.</p></li>
+<li><p>When Automatic Batching is enabled, the <code class="docutils literal notranslate"><span class="pre">timeout</span></code> property of
+<code class="docutils literal notranslate"><a class="reference internal" href="../../../api/groups/classov_1_1CompiledModel.html#doxid-classov-1-1-compiled-model"><span class="std std-ref"><span class="pre">ov::CompiledModel</span></span></a></code> can be
+changed anytime, even after the loading/compilation of the model. For
+example, setting the value to 0 disables Auto-batching effectively, as the
+collection of requests would be omitted.</p></li>
+<li><p>Carefully apply Auto-batching to the pipelines. For example, in the
+conventional “video-sources -&gt; detection -&gt; classification” flow, it is
+most beneficial to do Auto-batching over the inputs to the detection stage.
+The resulting number of detections is usually fluent, which makes
+Auto-batching less applicable for the classification stage.</p></li>
+</ul>
+</li>
+</ul>
+<p>The following are limitations of the current implementations:</p>
+<ul class="simple">
+<li><p>Although it is less critical for the throughput-oriented scenarios, the load
+time with Auto-batching increases by almost double.</p>
+<ul>
+<li><p>Certain networks are not safely reshapable by the “batching” dimension
+(specified as <code class="docutils literal notranslate"><span class="pre">N</span></code> in the layout terms). Besides, if the batching
+dimension is not zeroth, Auto-batching will not be triggered “implicitly”
+by the throughput hint.</p></li>
+<li><p>The “explicit” notion, for example, <code class="docutils literal notranslate"><span class="pre">BATCH:GPU</span></code>, using the relaxed
+dimensions tracking, often makes Auto-batching possible. For example, this
+method unlocks most <strong>detection networks</strong>.</p></li>
+<li><p>When <em>forcing</em> Auto-batching via the “explicit” device notion, make sure
+that you validate the results for correctness.</p></li>
+<li><p>Performance improvements happen at the cost of the growth of memory
+footprint. However, Auto-batching queries the available memory (especially
+for dGPU) and limits the selected batch size accordingly.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="testing-performance-with-benchmark-app">
+<h2>Testing Performance with Benchmark_app<a class="headerlink" href="#testing-performance-with-benchmark-app" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">benchmark_app</span></code> sample, that has both
+<a class="reference internal" href="../../get-started-guide/samples/cpp-benchmark-tool.html#get-started-samples-cpp-benchmark"><span class="std std-ref">C++</span></a>
+and <a class="reference internal" href="../../get-started-guide/samples/python-benchmark-tool.html#get-started-samples-python-benchmark"><span class="std std-ref">Python</span></a>
+versions, is the best way to evaluate the performance of Automatic Batching:</p>
+<ul class="simple">
+<li><p>The most straightforward way is using the performance hints:</p>
+<ul>
+<li><p>benchmark_app <strong>-hint tput</strong> -d GPU -m ‘path to your favorite model’</p></li>
+</ul>
+</li>
+<li><p>You can also use the “explicit” device notion to override the strict rules of
+the implicit reshaping by the batch dimension:</p>
+<ul>
+<li><p>benchmark_app <strong>-hint none -d BATCH:GPU</strong> -m ‘path to your favorite model’</p></li>
+</ul>
+</li>
+<li><p>or override the automatically deduced batch size as well:</p>
+<ul>
+<li><p>$benchmark_app -hint none -d <strong>BATCH:GPU(16)</strong> -m ‘path to your
+favorite model’</p></li>
+<li><p>This example also applies to CPU or any other device that generally
+supports batch execution.</p></li>
+<li><p>Keep in mind that some shell versions (e.g. <code class="docutils literal notranslate"><span class="pre">bash</span></code>) may require adding
+quotes around complex device names, i.e. <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&quot;BATCH:GPU(16)&quot;</span></code> in
+this example.</p></li>
+</ul>
+</li>
+</ul>
+<p>Note that Benchmark_app performs a warm-up run of a <em>single</em> request. As Auto-Batching
+requires significantly more requests to execute in batch, this warm-up run hits the
+default timeout value (1000 ms), as reported in the following example:</p>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">INFO</span> <span class="p">]</span> <span class="n">First</span> <span class="n">inference</span> <span class="n">took</span> <span class="mf">1000.18</span><span class="n">ms</span></pre></div></div><p>This value also exposed as the final execution statistics on the <code class="docutils literal notranslate"><span class="pre">benchmark_app</span></code> exit:</p>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">INFO</span> <span class="p">]</span> <span class="nl">Latency</span><span class="p">:</span>
+<span class="p">[</span> <span class="n">INFO</span> <span class="p">]</span>  <span class="nl">Max</span><span class="p">:</span>      <span class="mf">1000.18</span> <span class="n">ms</span></pre></div></div><p>This is NOT the actual latency of the batched execution, so you are recommended to
+refer to other metrics in the same log, for example, “Median” or “Average” execution.</p>
+<section id="additional-resources">
+<h3>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../../resources/record-of-openvino-supported-devices.html#doxid-openvino-docs-o-v-u-g-supported-plugins-supported-devices"><span class="std std-ref">Supported Devices</span></a></p>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+    <a class='button bttn-sec button-size-l' id="prev-link" href="performance-hints.html" title="previous page">Prev</a>
+    <a class='button bttn-sec button-size-l' id="next-link" href="stateful-models.html" title="next page">Next</a>
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

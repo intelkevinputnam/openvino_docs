@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Performance tuning {#ovms_docs_performance_tuning} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/performance_tuning.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performance-hints">
+   Performance Hints
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#throughput">
+     THROUGHPUT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latency">
+     LATENCY
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adjusting-the-number-of-streams-in-cpu-and-gpu-target-devices">
+   Adjusting the number of streams in CPU and GPU target devices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-data-in-rest-api-calls">
+   Input data in REST API calls
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalability">
+   Scalability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cpu-power-management-settings">
+   CPU Power Management Settings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-model-server-configuration-parameters">
+   Tuning Model Server configuration parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plugin-configuration">
+   Plugin configuration
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="performance-tuning-ovms-docs-performance-tuning">
+<h1>Performance tuning {#ovms_docs_performance_tuning}<a class="headerlink" href="#performance-tuning-ovms-docs-performance-tuning" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This document gives an overview of various parameters that can be configured to achieve maximum performance efficiency.</p>
+</section>
+<section id="performance-hints">
+<h2>Performance Hints<a class="headerlink" href="#performance-hints" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PERFORMANCE_HINT</span></code> plugin config property enables you to specify a performance mode for the plugin to be more efficient for particular use cases.</p>
+<section id="throughput">
+<h3>THROUGHPUT<a class="headerlink" href="#throughput" title="Permalink to this headline">¶</a></h3>
+<p>This mode prioritizes high throughput, balancing between latency and power. It is best suited for tasks involving multiple jobs, like inference of video feeds or large numbers of images.</p>
+<p>To enable Performance Hints for your application, use the following command:
+&#64;sphinxdirective</p>
+<p>.. tab:: CPU</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    docker run --rm -d -v &lt;model_path&gt;:/opt/model -p 9001:9001 openvino/model_server:latest \
+        --model_path /opt/model --model_name my_model --port 9001 \
+        --plugin_config &#39;{&quot;PERFORMANCE_HINT&quot;: &quot;THROUGHTPUT&quot;}&#39; \
+        --target_device CPU
+</pre></div>
+</div>
+<p>.. tab:: GPU</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    docker run --rm -d --device=/dev/dri --group-add=$(stat -c &quot;%g&quot; /dev/dri/render* | head -n 1) -u $(id -u):$(id -g) \
+        -v &lt;model_path&gt;:/opt/model -p 9001:9001 openvino/model_server:latest \
+        --model_path /opt/model --model_name my_model --port 9001 \
+        --plugin_config &#39;{&quot;PERFORMANCE_HINT&quot;: &quot;THROUGHTPUT&quot;}&#39; \
+        --target_device GPU
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+</section>
+<section id="latency">
+<h3>LATENCY<a class="headerlink" href="#latency" title="Permalink to this headline">¶</a></h3>
+<p>This mode prioritizes low latency, providing short response time for each inference job. It performs best for tasks where inference is required for a single input image, like a medical analysis of an ultrasound scan image. It also fits the tasks of real-time or nearly real-time applications, such as an industrial robot’s response to actions in its environment or obstacle avoidance for autonomous vehicles.
+Note that currently the <code class="docutils literal notranslate"><span class="pre">PERFORMANCE_HINT</span></code> property is supported by CPU and GPU devices only. <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_supported_plugins_AUTO.html#performance-hints">More information</a>.</p>
+<p>To enable Performance Hints for your application, use the following command:
+&#64;sphinxdirective</p>
+<p>.. tab:: CPU</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    docker run --rm -d -v &lt;model_path&gt;:/opt/model -p 9001:9001 openvino/model_server:latest \
+        --model_path /opt/model --model_name my_model --port 9001 \
+        --plugin_config &#39;{&quot;PERFORMANCE_HINT&quot;: &quot;LATENCY&quot;}&#39; \
+        --target_device CPU
+</pre></div>
+</div>
+<p>.. tab:: GPU</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    docker run --rm -d --device=/dev/dri --group-add=$(stat -c &quot;%g&quot; /dev/dri/render* | head -n 1) -u $(id -u):$(id -g) \
+        -v &lt;model_path&gt;:/opt/model -p 9001:9001 openvino/model_server:latest \
+        --model_path /opt/model --model_name my_model --port 9001 \
+        --plugin_config &#39;{&quot;PERFORMANCE_HINT&quot;: &quot;LATENCY&quot;}&#39; \
+        --target_device GPU
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: CPU_THROUGHPUT_STREAMS and PERFORMANCE_HINT should not be used together.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="adjusting-the-number-of-streams-in-cpu-and-gpu-target-devices">
+<h2>Adjusting the number of streams in CPU and GPU target devices<a class="headerlink" href="#adjusting-the-number-of-streams-in-cpu-and-gpu-target-devices" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO™ Model Server can be tuned to a single client use case or a high concurrency. It is done via setting the number of
+execution streams. They split the available resources to perform parallel execution of multiple requests.
+It is particularly efficient for models which cannot effectively consume all CPU cores or for CPUs with high number of cores.</p>
+<p>By default, for <code class="docutils literal notranslate"><span class="pre">CPU</span></code> target device, OpenVINO Model Server sets the value CPU_THROUGHPUT_AUTO and GPU_THROUGHTPUT_AUTO for <code class="docutils literal notranslate"><span class="pre">GPU</span></code> target device. It calculates the number of streams based on number of available CPUs. It gives a compromise between the single client scenario and the high concurrency.</p>
+<p>If this default configuration is not suitable, adjust it with the <code class="docutils literal notranslate"><span class="pre">CPU_THROUGHPUT_STREAMS</span></code> parameter defined as part
+of the device plugin configuration.</p>
+<p>In a scenario where the number of parallel connections is close to 1, set the following parameter:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--plugin_config</span> <span class="pre">'{&quot;CPU_THROUGHPUT_STREAMS&quot;:</span> <span class="pre">&quot;1&quot;}'</span></code></p>
+<p>When the number of concurrent requests is higher, increase the number of streams. Make sure, however, that the number of streams is lower than the average volume of concurrent inference operations. Otherwise, the server might not be fully utilized.
+Number of streams should not exceed the number of CPU cores.</p>
+<p>For example, with ~50 clients sending the requests to the server with 48 cores, set the number of streams to 24:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--plugin_config</span> <span class="pre">'{&quot;CPU_THROUGHPUT_STREAMS&quot;:</span> <span class="pre">&quot;24&quot;}'</span></code></p>
+</section>
+<section id="input-data-in-rest-api-calls">
+<h2>Input data in REST API calls<a class="headerlink" href="#input-data-in-rest-api-calls" title="Permalink to this headline">¶</a></h2>
+<p>While using REST API, you can adjust the data format to optimize the communication and deserialization from json format.</p>
+<p>While sending the input data for inference execution, try to adjust the numerical data type to reduce the message size.</p>
+<ul class="simple">
+<li><p>reduce the numbers precisions in the json message with a command similar to <code class="docutils literal notranslate"><span class="pre">np.round(imgs.astype(np.float),decimals=2)</span></code>.</p></li>
+<li><p>use <a class="reference internal" href="binary_input.html"><span class="doc std std-doc">binary data format</span></a> encoded with base64 - sending compressed data will greatly reduce the traffic and speed up the communication.</p></li>
+<li><p>with binary input format it is the most efficient to send the images with the resolution of the configured model. It will avoid image resizing on the server to fit the model.</p></li>
+</ul>
+</section>
+<section id="scalability">
+<h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO Model Server can be scaled vertically by adding more resources or horizontally by adding more instances of the service on multiple hosts.</p>
+<p>While hosting multiple instances of OVMS with constrained CPU resources, it is optimal to ensure CPU affinity for the containers.
+It can be arranged via <a class="reference external" href="https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/">CPU manager for Kubernetes</a>.</p>
+<p>An equivalent in the docker, would be starting the containers with the option <code class="docutils literal notranslate"><span class="pre">--cpuset-cpus</span></code> instead of <code class="docutils literal notranslate"><span class="pre">--cpus</span></code>.</p>
+<p>In case of using CPU plugin to run the inference, it might be also beneficial to tune the configuration parameters like:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Parameters</p></th>
+<th class="text-left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>CPU_THREADS_NUM</p></td>
+<td class="text-left"><p>Specifies the number of threads that CPU plugin should use for inference.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>CPU_BIND_THREAD</p></td>
+<td class="text-left"><p>Binds inference threads to CPU cores.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>CPU_THROUGHPUT_STREAMS</p></td>
+<td class="text-left"><p>Specifies number of CPU “execution” streams for the throughput mode</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>NOTE:</strong> For additional information about all parameters read <a class="reference external" href="https://docs.openvino.ai/2022.1/namespaceInferenceEngine_1_1PluginConfigParams.html?#detailed-documentation">OpenVINO supported plugins</a>.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Example:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>While passing the plugin configuration, omit the <code class="docutils literal notranslate"><span class="pre">KEY_</span></code> phase.</p></li>
+<li><p>Following docker command will set <code class="docutils literal notranslate"><span class="pre">KEY_CPU_THROUGHPUT_STREAMS</span></code> parameter to a value <code class="docutils literal notranslate"><span class="pre">KEY_CPU_THROUGHPUT_NUMA</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">cpuset</span><span class="o">-</span><span class="n">cpus</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">-</span><span class="n">v</span> <span class="o">&lt;</span><span class="n">model_path</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">model</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> <span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span>\
+<span class="o">--</span><span class="n">model_path</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">model</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">my_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span> \
+<span class="o">--</span><span class="n">plugin_config</span> <span class="s1">&#39;{&quot;CPU_THROUGHPUT_STREAMS&quot;: &quot;1&quot;}&#39;</span>
+
+</pre></div>
+</div>
+</section>
+<section id="cpu-power-management-settings">
+<h2>CPU Power Management Settings<a class="headerlink" href="#cpu-power-management-settings" title="Permalink to this headline">¶</a></h2>
+<p>To save power, the OS can decrease the CPU frequency and increase a volatility of the latency values. Similarly the Intel® Turbo Boost Technology may also affect the stability of results. For best reproducibility, consider locking the frequency to the processor base frequency (refer to the https://ark.intel.com/ for your specific CPU). For example, in Linux setting the relevant values for the /sys/devices/system/cpu/cpu* entries does the trick. <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_optimization_guide_dldt_optimization_guide.html">Read more</a>. High-level commands like cpupower also exists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cpupower frequency-set --min 3.1GHz
+</pre></div>
+</div>
+</section>
+<section id="tuning-model-server-configuration-parameters">
+<h2>Tuning Model Server configuration parameters<a class="headerlink" href="#tuning-model-server-configuration-parameters" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO Model Server in C++ implementation is using scalable multithreaded gRPC and REST interface, however in some hardware configuration it might become a bottleneck for high performance backend with OpenVINO.</p>
+<ul class="simple">
+<li><p>To increase the throughput, a parameter <code class="docutils literal notranslate"><span class="pre">--grpc_workers</span></code> is introduced which increases the number of gRPC server instances. In most cases the default value of <code class="docutils literal notranslate"><span class="pre">1</span></code> will be sufficient.
+In case of particularly heavy load and many parallel connections, higher value might increase the transfer rate.</p></li>
+<li><p>Another parameter impacting the performance is <code class="docutils literal notranslate"><span class="pre">nireq</span></code>. It defines the size of the model queue for inference execution.
+It should be at least as big as the number of assigned OpenVINO streams or expected parallel clients (grpc_wokers &gt;= nireq).</p></li>
+<li><p>Parameter <code class="docutils literal notranslate"><span class="pre">file_system_poll_wait_seconds</span></code> defines how often the model server will be checking if new model version gets created in the model repository.
+The default value is 1 second which ensures prompt response to creating new model version. In some cases, it might be recommended to reduce the polling frequency
+or even disable it. For example, with cloud storage, it could cause a cost for API calls to the storage cloud provider. Detecting new versions
+can be disabled with a value <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+</section>
+<section id="plugin-configuration">
+<h2>Plugin configuration<a class="headerlink" href="#plugin-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the device employed to run the inference operation, you can tune the execution behavior with a set of parameters. Each device is handled by its OpenVINO plugin.</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: For additional information, read <a class="reference external" href="https://docs.openvino.ai/2022.1/namespaceInferenceEngine_1_1PluginConfigParams.html?#detailed-documentation">supported configuration parameters for all plugins</a>.</p>
+</div></blockquote>
+<p>Model’s plugin configuration is a dictionary of param:value pairs passed to OpenVINO Plugin on network load. It can be set with <code class="docutils literal notranslate"><span class="pre">plugin_config</span></code> parameter.</p>
+<p>Following docker command sets a parameter <code class="docutils literal notranslate"><span class="pre">KEY_CPU_THROUGHPUT_STREAMS</span></code> to a value <code class="docutils literal notranslate"><span class="pre">32</span></code> and <code class="docutils literal notranslate"><span class="pre">KEY_CPU_BIND_THREAD</span></code> to <code class="docutils literal notranslate"><span class="pre">NUMA</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">&lt;</span><span class="n">model_path</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">model</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> <span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span> \
+<span class="o">--</span><span class="n">model_path</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">model</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">my_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span> <span class="o">--</span><span class="n">grpc_workers</span> <span class="mi">8</span>  <span class="o">--</span><span class="n">nireq</span> <span class="mi">32</span> \
+<span class="o">--</span><span class="n">plugin_config</span> <span class="s1">&#39;{&quot;CPU_THROUGHPUT_STREAMS&quot;: &quot;32&quot;, &quot;CPU_BIND_THREAD&quot;: &quot;NUMA&quot;}&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

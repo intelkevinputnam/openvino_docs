@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorials &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/tabs.css" type="text/css" />
+    <script src="_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/js/custom.js"></script>
+    <script src="_static/js/graphs.js"></script>
+    <script src="_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/tutorials.html" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation of OpenVINO™ Notebooks" href="notebooks-installation.html" />
+    <link rel="prev" title="Issues &amp; Solutions for OpenVINO™ Installation &amp; Configuration" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-issues.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="pages/get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="pages/documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="pages/resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Install &amp; Config
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/install-openvino-overview.html">
+   Installing OpenVINO™
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime.html">
+     OpenVINO Runtime
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux.html">
+       Linux
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+      <label for="toctree-checkbox-3">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/installer-linux.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/install-from-apt.html">
+         From APT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/install-from-yum.html">
+         From YUM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/docker-linux.html">
+         Using Docker
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows.html">
+       Windows
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows/installer-windows.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-pypi.html">
+         From PyPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows/docker-windows.html">
+         Using Docker
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-macos.html">
+       macOS
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-macos/installer-macos.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-pypi.html">
+         From PyPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-anaconda.html">
+         From Anaconda Cloud
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-raspbian.html">
+       Raspbian OS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-dev-tools.html">
+     OpenVINO Development Tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://github.com/openvinotoolkit/openvino/wiki/BuildingCode">
+     Build from Source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-create-yocto-image.html">
+     Creating a Yocto Image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/install-additional-configurations.html">
+   Additional Configurations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-intel-gpu.html">
+     For GPU
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-ncs2.html">
+     For NCS2
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-vpu.html">
+     For VPU
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-vpu/configuration-for-iei-card.html">
+       IEI Mustang-V100-MX8-R10 Card
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-intel-gna.html">
+     For GNA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pages/get-started-guide/uninstall-openvino.html">
+   Uninstalling
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview.html">
+   Troubleshooting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-steps.html">
+     Troubleshooting Steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-issues.html">
+     Issues &amp; Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Get Started Guides
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="notebooks-installation.html">
+     Installation of OpenVINO™ Notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/samples.html">
+   Samples
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/basic-openvino-workflow.html">
+     Basic OpenVINO™ Workflow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-image-classification.html">
+     Image Classification Async C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-image-classification.html">
+     Image Classification Async Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-classification.html">
+     Hello Classification C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/c-sample-hello-classification.html">
+     Hello Classification C Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-classification.html">
+     Hello Classification Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-reshape-ssd.html">
+     Hello Reshape SSD C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-reshape-ssd.html">
+     Hello Reshape SSD Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-nv12-input-classification.html">
+     Hello NV12 Input Classification C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/c-sample-hello-nv12-input-classification.html">
+     Hello NV12 Input Classification C Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-query-device.html">
+     Hello Query Device C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-query-device.html">
+     Hello Query Device Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-model-creation.html">
+     Model Creation C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-model-creation.html">
+     Model Creation Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-automatic-speech-recognition.html">
+     Automatic Speech Recognition C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-automatic-speech-recognition.html">
+     Automatic Speech Recognition Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-benchmark-tool.html">
+     Benchmark C++ Tool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-benchmark-tool.html">
+     Benchmark Python Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorials
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started">
+   Getting Started
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-steps-with-openvino">
+     First steps with OpenVINO
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-optimize">
+     Convert &amp; Optimize
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-demos">
+     Model Demos
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-training">
+     Model Training
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#live-demos">
+     Live Demos
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommended-tutorials">
+     Recommended Tutorials
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional Resources
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributors">
+     Contributors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="tutorials">
+<span id="doxid-tutorials"></span><span id="index-0"></span><h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+<p><span class="target" id="doxid-tutorials-1md-openvino-docs-tutorials"></span></p>
+<div class="toctree-wrapper compound" id="notebook-tutorials">
+</div>
+<p>This collection of Python tutorials are written for running on Jupyter notebooks.
+The tutorials provide an introduction to the OpenVINO™ toolkit and explain how to
+use the Python API and tools for optimized deep learning inference. You can run the
+code one section at a time to see how to integrate your application with OpenVINO
+libraries.</p>
+<p>Notebooks with a <img alt="Binder button" src="https://mybinder.org/badge_logo.svg" /> button can be run without installing anything.
+Once you have found the tutorial of your interest, just click the button next to
+the name of it and <a class="reference external" href="https://mybinder.org/">Binder</a> will start it in a new tab of a browser.
+Binder is a free online service with limited resources (for more information about it,
+see the <a class="reference external" href="#-additional-resources">Additional Resources</a> section).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the best performance, more control and resources, you should run the notebooks locally.
+Follow the <a class="reference external" href="notebooks-installation.html">Installation Guide</a> in order to get information
+on how to run and manage the notebooks on your machine.</p>
+</div>
+<hr class="docutils" />
+<p><strong>Contents:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#-getting-started">Getting Started</a></p>
+<ul>
+<li><p><a class="reference external" href="#-first-steps">First steps with OpenVINO</a></p></li>
+<li><p><a class="reference external" href="#-convert--optimize">Convert &amp; Optimize</a></p></li>
+<li><p><a class="reference external" href="#-model-demos">Model Demos</a></p></li>
+<li><p><a class="reference external" href="#-model-training">Model Training</a></p></li>
+<li><p><a class="reference external" href="#-live-demos">Live Demos</a></p></li>
+<li><p><a class="reference external" href="#-recommended-tutorials">Recommended Tutorials</a></p></li>
+<li><p><a class="reference external" href="#-additional-resources">Additional Resources</a></p></li>
+<li><p><a class="reference external" href="#-contributors">Contributors</a></p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<a name='-getting-started' id='-getting-started'/></section>
+<section id="getting-started">
+<h1><a class="reference internal" href="#getting-started">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The Jupyter notebooks are categorized into four classes, select one
+related to your needs or give them all a try. Good Luck!</p>
+<a name='-first-steps' id='-first-steps' /><section id="first-steps-with-openvino">
+<h2><a class="reference internal" href="#first-steps-with-openvino">First steps with OpenVINO</a><a class="headerlink" href="#first-steps-with-openvino" title="Permalink to this headline">¶</a></h2>
+<p>Brief tutorials that demonstrate how to use Python API for inference in OpenVINO.</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/001-hello-world-with-output.html">001-hello-world</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F001-hello-world%2F001-hello-world.ipynb"><img alt="n001" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Classify an image with OpenVINO.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg"><img alt="n001-img1" src="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/002-openvino-api-with-output.html">002-openvino-api</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F002-openvino-api%2F002-openvino-api.ipynb"><img alt="n002" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Learn the OpenVINO Python API.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127787560-d8ec4d92-b4a0-411f-84aa-007e90faba98.png"><img alt="n002-img1" src="https://user-images.githubusercontent.com/15709723/127787560-d8ec4d92-b4a0-411f-84aa-007e90faba98.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/003-hello-segmentation-with-output.html">003-hello-segmentation</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F003-hello-segmentation%2F003-hello-segmentation.ipynb"><img alt="n003" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Semantic segmentation with OpenVINO.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/128290691-e2eb875c-775e-4f4d-a2f4-15134044b4bb.png"><img alt="n003-img1" src="https://user-images.githubusercontent.com/15709723/128290691-e2eb875c-775e-4f4d-a2f4-15134044b4bb.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/004-hello-detection-with-output.html">004-hello-detection</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F004-hello-detection%2F004-hello-detection.ipynb"><img alt="n004" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Text detection with OpenVINO.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg"><img alt="n004-img1" src="https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<a name='-convert--optimize' id='-convert--optimize'/></section>
+<section id="convert-optimize">
+<h2><a class="reference internal" href="#convert-optimize">Convert &amp; Optimize</a><a class="headerlink" href="#convert-optimize" title="Permalink to this headline">¶</a></h2>
+<p>Tutorials that explain how to optimize and quantize models with OpenVINO tools.</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/101-tensorflow-to-openvino-with-output.html">101-tensorflow-to-openvino</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F101-tensorflow-to-openvino%2F101-tensorflow-to-openvino.ipynb"><img alt="n101" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Convert TensorFlow models to OpenVINO IR.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127779167-9d33dcc6-9001-4d74-a089-8248310092fe.png"><img alt="n101-img1" src="https://user-images.githubusercontent.com/15709723/127779167-9d33dcc6-9001-4d74-a089-8248310092fe.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/102-pytorch-onnx-to-openvino-with-output.html">102-pytorch-onnx-to-openvino</a></p></td>
+<td><p>Convert PyTorch models to OpenVINO IR.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127779246-32e7392b-2d72-4a7d-b871-e79e7bfdd2e9.png"><img alt="n102-img1" src="https://user-images.githubusercontent.com/15709723/127779246-32e7392b-2d72-4a7d-b871-e79e7bfdd2e9.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/103-paddle-onnx-to-openvino-classification-with-output.html">103-paddle-onnx-to-openvino</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F103-paddle-onnx-to-openvino-classification%2F103-paddle-onnx-to-openvino-classification.ipynb"><img alt="n103" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Convert PaddlePaddle models to OpenVINO IR.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127779326-dc14653f-a960-4877-b529-86908a6f2a61.png"><img alt="n103-img1" src="https://user-images.githubusercontent.com/15709723/127779326-dc14653f-a960-4877-b529-86908a6f2a61.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/104-model-tools-with-output.html">104-model-tools</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F104-model-tools%2F104-model-tools.ipynb"><img alt="n104" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Download, convert and benchmark models from Open Model Zoo.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/10940214/157541917-c5455105-b0d9-4adf-91a7-fbc142918015.png"><img alt="n104-img1" src="https://user-images.githubusercontent.com/10940214/157541917-c5455105-b0d9-4adf-91a7-fbc142918015.png" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Explore more notebooks here.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<table class="table">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="card-text">Notebook</p></th>
+<th class="head"><p class="card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/105-language-quantize-bert-with-output.html">105-language-quantize-bert</a></p></td>
+<td><p class="card-text">Optimize and quantize a pre-trained BERT model</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/106-auto-device-with-output.html">106-auto-device</a></p></td>
+<td><p class="card-text">Demonstrates how to use AUTO Device</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/107-speech-recognition-quantization-with-output.html">107-speech-recognition-quantization</a></p></td>
+<td><p class="card-text">Optimize and quantize a pre-trained Wav2Vec2 speech model</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/110-ct-segmentation-quantize-with-output.html">110-ct-segmentation-quantize</a></p></td>
+<td><p class="card-text">Quantize a kidney segmentation model and show live inference</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/111-detection-quantization-with-output.html">111-detection-quantization</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F111-detection-quantization%2F111-detection-quantization.ipynb"><img alt="n111" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Quantize an object detection model</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/112-pytorch-post-training-quantization-nncf-with-output.html">112-pytorch-post-training-quantization-nncf</a></p></td>
+<td><p class="card-text">Use Neural Network Compression Framework (NNCF) to quantize PyTorch model in post-training mode (without model fine-tuning)</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/113-image-classification-quantization-with-output.html">113-image-classification-quantization</a></p></td>
+<td><p class="card-text">Quantize mobilenet image classification</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/114-quantization-simplified-mode-with-output.html">114-quantization-simplified-mode</a></p></td>
+<td><p class="card-text">Quantize Image Classification Models with POT in Simplified Mode</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><a name='-model-demos' id='-model-demos'/></section>
+<section id="model-demos">
+<h2><a class="reference internal" href="#model-demos">Model Demos</a><a class="headerlink" href="#model-demos" title="Permalink to this headline">¶</a></h2>
+<p>Demos that demonstrate inference on a particular model.</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/210-ct-scan-live-inference-with-output.html">210-ct-scan-live-inference</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F210-ct-scan-live-inference%2F210-ct-scan-live-inference.ipynb"><img alt="n210" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Show live inference on segmentation of CT-scan data.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/134784204-cf8f7800-b84c-47f5-a1d8-25a9afab88f8.gif"><img alt="n210-img1" src="https://user-images.githubusercontent.com/15709723/134784204-cf8f7800-b84c-47f5-a1d8-25a9afab88f8.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/211-speech-to-text-with-output.html">211-speech-to-text</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F211-speech-to-text%2F211-speech-to-text.ipynb"><img alt="n211" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Run inference on speech-to-text recognition model.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/36741649/140987347-279de058-55d7-4772-b013-0f2b12deaa61.png"><img alt="n211-img1" src="https://user-images.githubusercontent.com/36741649/140987347-279de058-55d7-4772-b013-0f2b12deaa61.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/208-optical-character-recognition-with-output.html">208-optical-character-recognition</a></p></td>
+<td><p>Annotate text on images using text recognition resnet.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/36741649/129315292-a37266dc-dfb2-4749-bca5-2ac9c1e93d64.jpg"><img alt="n208-img1" src="https://user-images.githubusercontent.com/36741649/129315292-a37266dc-dfb2-4749-bca5-2ac9c1e93d64.jpg" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/209-handwritten-ocr-with-output.html">209-handwritten-ocr</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F209-handwritten-ocr%2F209-handwritten-ocr.ipynb"><img alt="n209" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>OCR for handwritten simplified Chinese and Japanese.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/36741649/132660640-da2211ec-c389-450e-8980-32a75ed14abb.png"><img alt="n209-img1" src="https://user-images.githubusercontent.com/36741649/132660640-da2211ec-c389-450e-8980-32a75ed14abb.png" /></a> <br /> <span style="font-size:10px">的人不一了是他有为在责新中任自之我们</span></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/218-vehicle-detection-and-recognition-with-output.html">218-vehicle-detection-and-recognition</a></p></td>
+<td><p>Use pre-trained models to detect and recognize vehicles and their attributes with OpenVINO.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/47499836/163544861-fa2ad64b-77df-4c16-b065-79183e8ed964.png"><img alt="n218-img1" src="https://user-images.githubusercontent.com/47499836/163544861-fa2ad64b-77df-4c16-b065-79183e8ed964.png" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Explore more notebooks below.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="card-text">Notebook</p></th>
+<th class="head"><p class="card-text">Description</p></th>
+<th class="head"><p class="card-text">Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/201-vision-monodepth-with-output.html">201-vision-monodepth</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F201-vision-monodepth%2F201-vision-monodepth.ipynb"><img alt="n201" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Monocular depth estimation with images and video.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127752390-f6aa371f-31b5-4846-84b9-18dd4f662406.gif"><img alt="n201-img1" src="https://user-images.githubusercontent.com/15709723/127752390-f6aa371f-31b5-4846-84b9-18dd4f662406.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/202-vision-superresolution-image-with-output.html">202-vision-superresolution-image</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F202-vision-superresolution%2F202-vision-superresolution-image.ipynb"><img alt="n202i" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Upscale raw images with a super resolution model.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/raw/main/notebooks/202-vision-superresolution/data/tower.jpg"><img alt="n202i-img1" src="https://github.com/openvinotoolkit/openvino_notebooks/raw/main/notebooks/202-vision-superresolution/data/tower.jpg" style="width: 70px;" /></a> → <a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/raw/main/notebooks/202-vision-superresolution/data/tower.jpg"><img alt="n202i-img2" src="https://github.com/openvinotoolkit/openvino_notebooks/raw/main/notebooks/202-vision-superresolution/data/tower.jpg" style="width: 130px;" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/202-vision-superresolution-video-with-output.html">202-vision-superresolution-video</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F202-vision-superresolution%2F202-vision-superresolution-video.ipynb"><img alt="n202v" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Turn 360p into 1080p video using a super resolution model.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif"><img alt="n202v-img1" src="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif" style="width: 80px;" /></a> → <a class="reference external" href="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif"><img alt="n202v-img2" src="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif" style="width: 125px;" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/204-named-entity-recognition-with-output.html">204-named-entity-recognition</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F204-named-entity-recognition%2F204-named-entity-recognition.ipynb"><img alt="n204" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Perform named entity recognition on simple text.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/33627846/169470030-0370963e-6ad8-49e3-be7a-f02a2c677733.gif"><img alt="n204-img1" src="https://user-images.githubusercontent.com/33627846/169470030-0370963e-6ad8-49e3-be7a-f02a2c677733.gif" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/205-vision-background-removal-with-output.html">205-vision-background-removal</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F205-vision-background-removal%2F205-vision-background-removal.ipynb"><img alt="n205" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Remove and replace the background in an image using salient object detection.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/15709723/125184237-f4b6cd00-e1d0-11eb-8e3b-d92c9a728372.png"><img alt="n205-img1" src="https://user-images.githubusercontent.com/15709723/125184237-f4b6cd00-e1d0-11eb-8e3b-d92c9a728372.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/206-vision-paddlegan-anime-with-output.html">206-vision-paddlegan-anime</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F206-vision-paddlegan-anime%2F206-vision-paddlegan-anime.ipynb"><img alt="n206" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Turn an image into anime using a GAN.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127788059-1f069ae1-8705-4972-b50e-6314a6f36632.jpeg"><img alt="n206-img1" src="https://user-images.githubusercontent.com/15709723/127788059-1f069ae1-8705-4972-b50e-6314a6f36632.jpeg" /></a> → <a class="reference external" href="https://user-images.githubusercontent.com/15709723/125184441-b4584e80-e1d2-11eb-8964-d8131cd97409.png"><img alt="n206-img2" src="https://user-images.githubusercontent.com/15709723/125184441-b4584e80-e1d2-11eb-8964-d8131cd97409.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/207-vision-paddlegan-superresolution-with-output.html">207-vision-paddlegan-superresolution</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F207-vision-paddlegan-superresolution%2F207-vision-paddlegan-superresolution.ipynb"><img alt="n207" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Upscale small images with superresolution using a PaddleGAN model.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg"><img alt="n207-img1" src="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg" style="width: 70px;" /></a> → <a class="reference external" href="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg"><img alt="n207-img2" src="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg" style="width: 130px;" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/212-onnx-style-transfer-with-output.html">212-onnx-style-transfer</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F212-onnx-style-transfer%2F212-onnx-style-transfer.ipynb"><img alt="n212" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Transform images to five different styles with neural style transfer.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/77325899/147358090-ff5b21f5-0efb-4aff-8444-9d07add49b92.png"><img alt="n212-img1" src="https://user-images.githubusercontent.com/77325899/147358090-ff5b21f5-0efb-4aff-8444-9d07add49b92.png" /></a> → <a class="reference external" href="https://user-images.githubusercontent.com/77325899/147358009-0cf10d51-3150-40cb-a776-074558b98da5.png"><img alt="n212-img2" src="https://user-images.githubusercontent.com/77325899/147358009-0cf10d51-3150-40cb-a776-074558b98da5.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/214-vision-paddle-classification-with-output.html">214-vision-paddle-classification</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F214-vision-paddle-classification%2F214-vision-paddle-classification.ipynb"><img alt="n214" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">PaddlePaddle Image Classification with OpenVINO.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/215-image-inpainting-with-output.html">215-image-inpainting</a></p></td>
+<td><p class="card-text">Fill missing pixels with image in-painting.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/4547501/167121084-ec58fbdb-b269-4de2-9d4c-253c5b95de1e.png"><img alt="n215-img1" src="https://user-images.githubusercontent.com/4547501/167121084-ec58fbdb-b269-4de2-9d4c-253c5b95de1e.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"><a class="reference external" href="notebooks/216-license-plate-recognition-with-output.html">216-license-plate-recognition</a></p></td>
+<td><p class="card-text">Recognize Chinese license plates in traffic.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/70456146/162759539-4a0a996f-dabe-40ea-98d6-85b4dce8511d.png"><img alt="n216-img1" src="https://user-images.githubusercontent.com/70456146/162759539-4a0a996f-dabe-40ea-98d6-85b4dce8511d.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"><a class="reference external" href="notebooks/217-vision-deblur-with-output.html">217-vision-deblur</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/ThanosM97/openvino_notebooks/217-vision-deblur?labpath=notebooks%2F217-vision-deblur%2F217-vision-deblur.ipynb"><img alt="n217" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p class="card-text">Deblur Images with DeblurGAN-v2.</p></td>
+<td><p class="card-text"><a class="reference external" href="https://user-images.githubusercontent.com/41332813/158430181-05d07f42-cdb8-4b7a-b7dc-e7f7d9391877.png"><img alt="n217-img1" src="https://user-images.githubusercontent.com/41332813/158430181-05d07f42-cdb8-4b7a-b7dc-e7f7d9391877.png" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><a name='-model-training' id='-model-training' /></section>
+<section id="model-training">
+<h2><a class="reference internal" href="#model-training">Model Training</a><a class="headerlink" href="#model-training" title="Permalink to this headline">¶</a></h2>
+<p>Tutorials that include code to train neural networks.</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/301-tensorflow-training-openvino-with-output.html">301-tensorflow-training-openvino</a></p></td>
+<td><p>Train a flower classification model from TensorFlow, then convert to OpenVINO IR.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127779607-8fa34947-1c35-4260-8d04-981c41a2a2cc.png"><img alt="n301-img1" src="https://user-images.githubusercontent.com/15709723/127779607-8fa34947-1c35-4260-8d04-981c41a2a2cc.png" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/301-tensorflow-training-openvino-pot-with-output.html">301-tensorflow-training-openvino-pot</a></p></td>
+<td><p>Use Post-training Optimization Tool (POT) to quantize the flowers model.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/302-pytorch-quantization-aware-training-with-output.html">302-pytorch-quantization-aware-training</a></p></td>
+<td><p>Use Neural Network Compression Framework (NNCF) to quantize PyTorch model.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/305-tensorflow-quantization-aware-training-with-output.html">305-tensorflow-quantization-aware-training</a></p></td>
+<td><p>Use Neural Network Compression Framework (NNCF) to quantize TensorFlow model.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<a name='-live-demos' id='-live-demos' /></section>
+<section id="live-demos">
+<h2><a class="reference internal" href="#live-demos">Live Demos</a><a class="headerlink" href="#live-demos" title="Permalink to this headline">¶</a></h2>
+<p>Live inference demos that run on a webcam or video files.</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/401-object-detection-with-output.html">401-object-detection-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F401-object-detection-webcam%2F401-object-detection.ipynb"><img alt="n401" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Object detection with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/4547501/141471665-82b28c86-cf64-4bfe-98b3-c314658f2d96.gif"><img alt="n401-img1" src="https://user-images.githubusercontent.com/4547501/141471665-82b28c86-cf64-4bfe-98b3-c314658f2d96.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/402-pose-estimation-with-output.html">402-pose-estimation-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F402-pose-estimation-webcam%2F402-pose-estimation.ipynb"><img alt="n402" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Human pose estimation with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/4547501/138267961-41d754e7-59db-49f6-b700-63c3a636fad7.gif"><img alt="n402-img1" src="https://user-images.githubusercontent.com/4547501/138267961-41d754e7-59db-49f6-b700-63c3a636fad7.gif" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/403-action-recognition-webcam-with-output.html">403-action-recognition-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F403-action-recognition-webcam%2F403-action-recognition-webcam.ipynb"><img alt="n403" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Human action recognition with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/10940214/151552326-642d6e49-f5a0-4fc1-bf14-ae3f457e1fec.gif"><img alt="n403-img1" src="https://user-images.githubusercontent.com/10940214/151552326-642d6e49-f5a0-4fc1-bf14-ae3f457e1fec.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/405-paddle-ocr-webcam-with-output.html">405-paddle-ocr-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F405-paddle-ocr-webcam%2F405-paddle-ocr-webcam.ipynb"><img alt="n405" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>OCR with a webcam or video file</p></td>
+<td><p><a class="reference external" href="https://raw.githubusercontent.com/yoyowz/classification/master/images/paddleocr.gif"><img alt="n405-img1" src="https://raw.githubusercontent.com/yoyowz/classification/master/images/paddleocr.gif" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<a name='-recommended-tutorials' id='-recommended-tutorials'/></section>
+<section id="recommended-tutorials">
+<h2><a class="reference internal" href="#recommended-tutorials">Recommended Tutorials</a><a class="headerlink" href="#recommended-tutorials" title="Permalink to this headline">¶</a></h2>
+<p>The following tutorials are guaranteed to provide a great experience with inference in OpenVINO:</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 45%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"></th>
+<th class="head"><p>Preview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/201-vision-monodepth-with-output.html">Vision-monodepth</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F201-vision-monodepth%2F201-vision-monodepth.ipynb"><img alt="n201" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Monocular depth estimation with images and video.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/127752390-f6aa371f-31b5-4846-84b9-18dd4f662406.gif"><img alt="n201-img1" src="https://user-images.githubusercontent.com/15709723/127752390-f6aa371f-31b5-4846-84b9-18dd4f662406.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/210-ct-scan-live-inference-with-output.html">CT-scan-live-inference</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F210-ct-scan-live-inference%2F210-ct-scan-live-inference.ipynb"><img alt="n210" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Show live inference on segmentation of CT-scan data.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/15709723/134784204-cf8f7800-b84c-47f5-a1d8-25a9afab88f8.gif"><img alt="n210-img1" src="https://user-images.githubusercontent.com/15709723/134784204-cf8f7800-b84c-47f5-a1d8-25a9afab88f8.gif" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/401-object-detection-with-output.html">Object-detection-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F401-object-detection-webcam%2F401-object-detection.ipynb"><img alt="n401" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Object detection with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/4547501/141471665-82b28c86-cf64-4bfe-98b3-c314658f2d96.gif"><img alt="n401-img1" src="https://user-images.githubusercontent.com/4547501/141471665-82b28c86-cf64-4bfe-98b3-c314658f2d96.gif" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="notebooks/402-pose-estimation-with-output">Pose-estimation-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F402-pose-estimation-webcam%2F402-pose-estimation.ipynb"><img alt="n402" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Human pose estimation with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/4547501/138267961-41d754e7-59db-49f6-b700-63c3a636fad7.gif"><img alt="n402-img1" src="https://user-images.githubusercontent.com/4547501/138267961-41d754e7-59db-49f6-b700-63c3a636fad7.gif" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="notebooks/403-action-recognition-webcam-with-output.html">Action-recognition-webcam</a> <br /> <a class="reference external" href="https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F403-action-recognition-webcam%2F403-action-recognition-webcam.ipynb"><img alt="n403" src="https://mybinder.org/badge_logo.svg" /></a></p></td>
+<td><p>Human action recognition with a webcam or video file.</p></td>
+<td><p><a class="reference external" href="https://user-images.githubusercontent.com/10940214/151552326-642d6e49-f5a0-4fc1-bf14-ae3f457e1fec.gif"><img alt="n403-img1" src="https://user-images.githubusercontent.com/10940214/151552326-642d6e49-f5a0-4fc1-bf14-ae3f457e1fec.gif" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there are any issues while running the notebooks, refer to the <strong>Troubleshooting</strong> and <strong>FAQ</strong> sections in the <a class="reference external" href="notebook-installation.html">Installation Guide</a> or start a GitHub
+<a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/discussions">discussion</a>.</p>
+</div>
+<a name='-additional-resources' id='-additional-resources'/></section>
+<section id="additional-resources">
+<h2><a class="reference internal" href="#additional-resources">Additional Resources</a><a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/blob/main/README.md">OpenVINO™ Notebooks - Github Repository</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.readthedocs.io/en/latest/">Binder documentation</a></p></li>
+</ul>
+<a name='-contributors' id='-contributors' /></section>
+<section id="contributors">
+<h2><a class="reference internal" href="#contributors">Contributors</a><a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/graphs/contributors"><img alt="contributors" src="https://contrib.rocks/image?repo=openvinotoolkit/openvino_notebooks" /></a></p>
+<p>Made with <a class="reference external" href="https://contrib.rocks">contributors-img</a>.</p>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+    <a class='button bttn-sec button-size-l' id="prev-link" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-issues.html" title="previous page">Prev</a>
+    <a class='button bttn-sec button-size-l' id="next-link" href="notebooks-installation.html" title="next page">Next</a>
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Troubleshooting {#ovms_docs_troubleshooting} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/troubleshooting.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-import-issues-a-name-model-import-a">
+   Model Import Issues
+   <a name="model-import">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#client-request-issues-a-name-client-request-a">
+   Client Request Issues
+   <a name="client-request">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resource-allocation-a-name-resource-allocation-a">
+   Resource Allocation
+   <a name="resource-allocation">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage-monitoring-a-name-usage-monitoring-a">
+   Usage Monitoring
+   <a name="usage-monitoring">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-aws-for-use-with-a-proxy-a-name-configure-aws-a">
+   Configuring AWS For Use With a Proxy
+   <a name="configure-aws">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-gcs-model-behind-a-proxy-a-name-gcs-a">
+   Using GCS model behind a proxy
+   <a name="gcs">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cannot-compile-model-into-target-device-can-t-protect-in-server-logs-a-name-load-network-issue-a">
+   Cannot compile model into target device:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     can't
+    </span>
+    <span class="pre">
+     protect
+    </span>
+   </code>
+   in server logs
+   <a name="load-network-issue">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-cache-issues-a-name-model-cache-a">
+   Model Cache Issues
+   <a name="model-cache">
+   </a>
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="troubleshooting-ovms-docs-troubleshooting">
+<h1>Troubleshooting {#ovms_docs_troubleshooting}<a class="headerlink" href="#troubleshooting-ovms-docs-troubleshooting" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This document gives information about troubleshooting the following issues while using the OpenVINO™ Model Server:</p>
+<ul class="simple">
+<li><p><a href="#model-import">Model Import Issues</a></p></li>
+<li><p><a href="#client-request">Client Request Issues</a></p></li>
+<li><p><a href="#resource-allocation">Resource Allocation</a></p></li>
+<li><p><a href="#usage-monitoring">Usage Monitoring</a></p></li>
+<li><p><a href="#configure-aws">Configuring AWS For Use With a Proxy</a></p></li>
+<li><p><a href="#gcs">Using GCS model behind a proxy </a></p></li>
+<li><p><a href="#load-network-issue">Unable to load network into device with: <code class="docutils literal notranslate"><span class="pre">can't</span> <span class="pre">protect</span></code> in server logs </a></p></li>
+<li><p><a href="#model-cache">Model Cache Issues </a></p></li>
+</ul>
+</section>
+<section id="model-import-issues-a-name-model-import-a">
+<h2>Model Import Issues<a name="model-import"></a><a class="headerlink" href="#model-import-issues-a-name-model-import-a" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO™ Model Server loads all defined models versions according to set <a class="reference internal" href="model_version_policy.html"><span class="doc std std-doc">version policy</span></a>. A model version is represented by a numerical directory in a model path, containing OpenVINO model files with .bin and .xml extensions.</p>
+<p>When a new model version is detected, the server loads the model files and starts serving a new model version. This operation might fail for the following reasons :</p>
+<ul class="simple">
+<li><p>There is a problem with accessing model files (due to network connectivity issues to the remote storage or insufficient permissions).</p></li>
+<li><p>Model files are malformed and can not be imported by the OpenVINO™ Runtime.</p></li>
+<li><p>Model requires a custom CPU extension.</p></li>
+</ul>
+<p>Below are examples of incorrect structure :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>models/
+├── model1
+│   ├── <span class="m">1</span>
+│   │   ├── ir_model.bin
+│   │   └── ir_model.xml
+│   └── <span class="m">2</span>
+│       ├── somefile.bin
+│       └── anotherfile.txt
+└── model2
+    ├── ir_model.bin
+    ├── ir_model.xml
+    └── mapping_config.json
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the above example, the server will detect only Directory <code class="docutils literal notranslate"><span class="pre">1</span></code> of <code class="docutils literal notranslate"><span class="pre">model1</span></code>. It will not detect Directory <code class="docutils literal notranslate"><span class="pre">2</span></code> as a valid model version because it does not contain valid OpenVINO model files.</p></li>
+<li><p>The server will not detect any version in <code class="docutils literal notranslate"><span class="pre">model2</span></code>because, although the files in <code class="docutils literal notranslate"><span class="pre">model2</span></code> are correct, they are not in a numerical directory.</p></li>
+<li><p>The root cause is reported in the server logs or the response from a call to GetModelStatus function.</p></li>
+<li><p>A model version that is detected but not loaded will not be served. It will report status <code class="docutils literal notranslate"><span class="pre">LOADING</span></code> with the error message: <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">occurred</span> <span class="pre">while</span> <span class="pre">loading</span> <span class="pre">version</span></code>.</p></li>
+<li><p>When model files become accessible or fixed, the server will try to load them again on the next version update attempt.</p></li>
+<li><p>Model import will fail if the OVMS process does not have read permissions to the model files and list permissions on the model folder and model version subfolder.</p></li>
+</ul>
+</section>
+<section id="client-request-issues-a-name-client-request-a">
+<h2>Client Request Issues<a name="client-request"></a><a class="headerlink" href="#client-request-issues-a-name-client-request-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When the model server starts successfully and all the models are imported, there could be a couple of reasons for errors in the request handling.</p></li>
+<li><p>The information about the failure reason is passed to the client in the response. It is also logged on the model server in the DEBUG mode.</p></li>
+</ul>
+<p>The possible issues could be :</p>
+<ul class="simple">
+<li><p>Incorrect shape of the input data.</p></li>
+<li><p>Incorrect input key name which does not match the tensor name or set input key name in <code class="docutils literal notranslate"><span class="pre">mapping_config.json</span></code>.</p></li>
+<li><p>Incorrectly serialized data on the client-side.</p></li>
+</ul>
+</section>
+<section id="resource-allocation-a-name-resource-allocation-a">
+<h2>Resource Allocation<a name="resource-allocation"></a><a class="headerlink" href="#resource-allocation-a-name-resource-allocation-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>RAM consumption might depend on the size and volume of the models configured for serving. It should be measured experimentally, however it can be estimated that each model will consume RAM size equal to the size of the model weights file (.bin file).</p></li>
+<li><p>Every version of the model enabled in the version policy creates a separate OpenVINO™ Runtime <code class="docutils literal notranslate"><span class="pre">ov::Model</span></code> and <code class="docutils literal notranslate"><span class="pre">ov::CompiledModel</span></code> object. By default, only the latest version is enabled.</p></li>
+<li><p>OpenVINO™ model server consumes all available CPU resources unless they are restricted by the operating system, Docker or Kubernetes capabilities.</p></li>
+</ul>
+<p><em>Note</em> When insufficient memory is allocated to the container, it might get terminated by the Docker engine <a class="reference external" href="https://docs.docker.com/config/containers/resource_constraints/">OOM Killer</a>. There will be no termination root cause
+mentioned in the OVMS logs but such a situation can be confirmed by <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">&lt;terminated_container&gt;</span></code> and reported State <code class="docutils literal notranslate"><span class="pre">&quot;OOMKilled&quot;:</span> <span class="pre">true</span></code>.
+It will be also included in the host system logs like <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">cgroup</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">memory:</span> <span class="pre">Killed</span> <span class="pre">process</span></code>.</p>
+</section>
+<section id="usage-monitoring-a-name-usage-monitoring-a">
+<h2>Usage Monitoring<a name="usage-monitoring"></a><a class="headerlink" href="#usage-monitoring-a-name-usage-monitoring-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>It is possible to track the usage of the models including processing time while DEBUG mode is enabled.</p></li>
+<li><p>With this setting model server logs will store information about all the incoming requests.</p></li>
+<li><p>You can parse the logs to analyze: the volume of requests, processing statistics, and most used models.</p></li>
+</ul>
+</section>
+<section id="configuring-aws-for-use-with-a-proxy-a-name-configure-aws-a">
+<h2>Configuring AWS For Use With a Proxy<a name="configure-aws"></a><a class="headerlink" href="#configuring-aws-for-use-with-a-proxy-a-name-configure-aws-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To use AWS behind a proxy, an environment variable should be configured. The AWS storage module is using the following format</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">user</span><span class="p">:</span><span class="n">password</span><span class="nd">@hostname</span><span class="p">:</span><span class="n">port</span>
+<span class="ow">or</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">user</span><span class="p">:</span><span class="n">password</span><span class="nd">@hostname</span><span class="p">:</span><span class="n">port</span>
+</pre></div>
+</div>
+<p>where user and password are optional. The OVMS will try to use the following environment variables :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https_proxy</span>
+<span class="n">HTTPS_PROXY</span>
+<span class="n">http_proxy</span>
+<span class="n">HTTP_proxy</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: that neither <code class="docutils literal notranslate"><span class="pre">no_proxy</span></code> or <code class="docutils literal notranslate"><span class="pre">NO_PROXY</span></code> is used.</p>
+</div></blockquote>
+</section>
+<section id="using-gcs-model-behind-a-proxy-a-name-gcs-a">
+<h2>Using GCS model behind a proxy <a name="gcs"></a><a class="headerlink" href="#using-gcs-model-behind-a-proxy-a-name-gcs-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>If your environment is required to use proxy but <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code>/<code class="docutils literal notranslate"><span class="pre">https_proxy</span></code> is not passed to the server container there will be 15 minutes timeout when accessing GCS models.</p></li>
+<li><p>During that time no logs will be captured by OVMS. Currently, there is no option to change the timeout duration for GCS.</p></li>
+</ul>
+</section>
+<section id="cannot-compile-model-into-target-device-can-t-protect-in-server-logs-a-name-load-network-issue-a">
+<h2>Cannot compile model into target device: <code class="docutils literal notranslate"><span class="pre">can't</span> <span class="pre">protect</span></code> in server logs <a name="load-network-issue"></a><a class="headerlink" href="#cannot-compile-model-into-target-device-can-t-protect-in-server-logs-a-name-load-network-issue-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Since this is known bug, please refer OpenVINO™ <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/openvino-relnotes.html">release notes</a>.</p></li>
+</ul>
+</section>
+<section id="model-cache-issues-a-name-model-cache-a">
+<h2>Model Cache Issues <a name="model-cache"></a><a class="headerlink" href="#model-cache-issues-a-name-model-cache-a" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Cache folder (by default <code class="docutils literal notranslate"><span class="pre">/opt/cache</span></code> or defined by <code class="docutils literal notranslate"><span class="pre">--cache_dir</span></code>) should be mounted into docker container with read-write access. Unless changed by the docker run command, the model server has a security context of ovms account with uid 5000.</p></li>
+<li><p>The biggest speedup in the model loading time is expected for GPU device. For CPU device the gain will depend on the model topology. In some rare cases, it is possible the load time will not be improved noticeably or it might be even slightly slower.</p></li>
+<li><p>Currently using model cache is not supported with HDDL target device. Do not enable model cache while using HDDL cards.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

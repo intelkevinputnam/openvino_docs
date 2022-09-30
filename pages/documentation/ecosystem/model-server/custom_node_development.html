@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Custom Node Development Guide {#ovms_docs_custom_node_development} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/custom_node_development.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custom-node-api">
+   Custom Node API
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customnodetensor-struct">
+     “CustomNodeTensor” struct
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customnodetensorinfo-struct">
+     CustomNodeTensorInfo struct
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customnodeparam-struct">
+     “CustomNodeParam” struct
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#execute-function">
+     “execute” function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getinputsinfo-function">
+     “getInputsInfo” function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getoutputinfo-function">
+     “getOutputInfo” function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#release-function">
+     “release” function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-function">
+     “initialize” function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deinitialize-function">
+     “deinitialize” function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-opencv">
+   Using OpenCV
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building">
+   Building
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing">
+   Testing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custom-node-examples">
+   Custom node examples
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="custom-node-development-guide-ovms-docs-custom-node-development">
+<h1>Custom Node Development Guide {#ovms_docs_custom_node_development}<a class="headerlink" href="#custom-node-development-guide-ovms-docs-custom-node-development" title="Permalink to this headline">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Custom node in OpenVINO Model Server simplifies linking deep learning models into complete pipelines even if the inputs and output
+of the sequential models do not fit. In many cases, the output of one model can not be directly passed to another one.
+The data might need to be analyzed, filtered, or converted to a different format. The operations can not be easily implemented
+in AI frameworks or are simply not supported. Custom node addresses this challenge. They allow employing a dynamic library
+developed in C++ or C to perform arbitrary data transformations.</p>
+</section>
+<section id="custom-node-api">
+<h2>Custom Node API<a class="headerlink" href="#custom-node-api" title="Permalink to this headline">¶</a></h2>
+<p>The custom node library must implement the API interface defined in <a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_node_interface.h">custom_node_interface.h</a>.
+The interface is defined in <code class="docutils literal notranslate"><span class="pre">C</span></code> to simplify compatibility with various compilers. The library could use third party components
+linked statically or dynamically. OpenCV is a built in component in OVMS which could be used to perform manipulation on the image
+data.</p>
+<p>The data structure and functions defined in the API header are explained below.</p>
+<section id="customnodetensor-struct">
+<h3>“CustomNodeTensor” struct<a class="headerlink" href="#customnodetensor-struct" title="Permalink to this headline">¶</a></h3>
+<p>The CustomNodeTensor struct consist of several fields defining the data in the output and input of the node execution.
+Custom node can generate results based on multiple inputs from one or more other nodes.
+“Execute” function has access to the pointer to multiple CustomNodeTensor objects which stores multiple inputs to be processed.
+Each input can be referenced using an index or you can search by name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputTensor0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Every CustomNodeTensor struct includes the following fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">name</span></code>  - pointer to the string representing the input name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8_t*</span> <span class="pre">data</span></code> - pointer to data buffer. Data is stored as bytes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64_t</span> <span class="pre">dataBytes</span></code> - the size of the data allocation in bytes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64_t*</span> <span class="pre">dims</span></code> - pointer to the buffer storing array shape size. Size of each dimension consumes 8 bytes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64_t</span> <span class="pre">dimsCount</span></code> - number of dimensions in the data array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CustomNodeTensorPrecision</span> <span class="pre">precision</span></code> - data precision enumeration.</p></li>
+</ul>
+</section>
+<section id="customnodetensorinfo-struct">
+<h3>CustomNodeTensorInfo struct<a class="headerlink" href="#customnodetensorinfo-struct" title="Permalink to this headline">¶</a></h3>
+<p>The fields in struct CustomNodeTensorInfo are similar to CustomNodeTensor. It holds information about
+the metadata of the custom node interfaces: inputs and outputs.</p>
+</section>
+<section id="customnodeparam-struct">
+<h3>“CustomNodeParam” struct<a class="headerlink" href="#customnodeparam-struct" title="Permalink to this headline">¶</a></h3>
+<p>Struct CustomNodeParam stores a list of pairs with pointers to the parameter and value strings.
+Each parameter in such objects can be referenced using an index which you can search by key name by iterating the structure.</p>
+</section>
+<section id="execute-function">
+<h3>“execute” function<a class="headerlink" href="#execute-function" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">execute</span><span class="p">(</span><span class="n">const</span> <span class="n">struct</span> <span class="n">CustomNodeTensor</span><span class="o">*</span> <span class="n">inputs</span><span class="p">,</span> <span class="nb">int</span> <span class="n">inputsCount</span><span class="p">,</span> <span class="n">struct</span> <span class="n">CustomNodeTensor</span><span class="o">**</span> <span class="n">outputs</span><span class="p">,</span> <span class="nb">int</span><span class="o">*</span> <span class="n">outputsCount</span><span class="p">,</span> <span class="n">const</span> <span class="n">struct</span> <span class="n">CustomNodeParam</span><span class="o">*</span> <span class="n">params</span><span class="p">,</span> <span class="nb">int</span> <span class="n">paramsCount</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This function implements the data transformation of the custom node. The input data for the function are passed in the form of
+a pointer to CustomNodeTensor struct object. It includes all the data and pointers to buffers for all custom node inputs.
+The parameter inputsCount pass info about the number of inputs passed that way.</p>
+<p>Note that the execute function should not modify the buffers storing the input data because that would alter the data
+which potentially might be used in other pipeline nodes.</p>
+<p>The behavior of the custom node execute function can depend on the node parameters set in the OVMS configuration.
+They are passed to the execute function in <code class="docutils literal notranslate"><span class="pre">params</span></code> argument. <code class="docutils literal notranslate"><span class="pre">paramsCount</span></code> passes the info about the number of parameters configured.</p>
+<p>The results of the data transformation should be returned by the outputs pointer to a pointer that stores the address of
+CustomNodeTensor struct. The number of outputs is defined during the function execution in the <code class="docutils literal notranslate"><span class="pre">outputsCount</span></code> argument.</p>
+<p>Note that during the function execution all the output data buffers need to be allocated. They will be released by OVMS after
+the request processing is completed and returned to the user. The cleanup is triggered by calling the <code class="docutils literal notranslate"><span class="pre">release</span></code> function
+which also needs to be implemented in the custom library.</p>
+<p>In some cases, dynamic allocation in <code class="docutils literal notranslate"><span class="pre">execute</span></code> call might be a performance bottleneck or cause memory fragmentation. Starting from 2022.1 release, it is possible to preallocate memory during DAG initialization and reuse it in subsequent inference requests. Refer to <code class="docutils literal notranslate"><span class="pre">initialize</span></code> and <code class="docutils literal notranslate"><span class="pre">deinitialize</span></code> functions below. Those can be used to implement preallocated memory pool. Example implementation can be seen in <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/src/custom_nodes/add_one/add_one.cpp#L141">custom node example source</a>.</p>
+<p>Execute function returns an integer value that defines the success (<code class="docutils literal notranslate"><span class="pre">0</span></code> value) or failure (other than 0). When the function
+reports error, the pipeline execution is stopped and the error is returned to the user.</p>
+</section>
+<section id="getinputsinfo-function">
+<h3>“getInputsInfo” function<a class="headerlink" href="#getinputsinfo-function" title="Permalink to this headline">¶</a></h3>
+<p>This function returns information about the metadata of the expected inputs. Returned CustomNodeTensorInfo object is used
+to create a response for getModelMetadata calls. It is also used in the user request validation and pipeline
+configuration validation.</p>
+<p>Custom nodes can generate the results which have dynamic size depending on the input data and the custom node parameters.
+In such case, function <code class="docutils literal notranslate"><span class="pre">getInputsInfo</span></code> should return value <code class="docutils literal notranslate"><span class="pre">0</span></code> on the dimension with dynamic size. It could be input with
+variable resolution or batch size.</p>
+</section>
+<section id="getoutputinfo-function">
+<h3>“getOutputInfo” function<a class="headerlink" href="#getoutputinfo-function" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the previous function but defining the metadata of the output.</p>
+</section>
+<section id="release-function">
+<h3>“release” function<a class="headerlink" href="#release-function" title="Permalink to this headline">¶</a></h3>
+<p>This function is called by OVMS at the end of the pipeline processing. It clears all memory allocations used during the
+node execution. This function should call <code class="docutils literal notranslate"><span class="pre">free</span></code> if <code class="docutils literal notranslate"><span class="pre">malloc</span></code> was used to allocate output memory in <code class="docutils literal notranslate"><span class="pre">execute</span></code> function. The function should return preallocated memory to the pool if memory pool was used. OVMS decides when to free and which buffer to free.</p>
+</section>
+<section id="initialize-function">
+<h3>“initialize” function<a class="headerlink" href="#initialize-function" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">initialize</span><span class="p">(</span><span class="n">void</span><span class="o">**</span> <span class="n">customNodeLibraryInternalManager</span><span class="p">,</span> <span class="n">const</span> <span class="n">struct</span> <span class="n">CustomNodeParam</span><span class="o">*</span> <span class="n">params</span><span class="p">,</span> <span class="nb">int</span> <span class="n">paramsCount</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This function enables creation of resources to be reused between predictions. Potential use cases include optimized temporary buffers allocation. Using <code class="docutils literal notranslate"><span class="pre">initialize</span></code> is optional and not required for custom node to work. <code class="docutils literal notranslate"><span class="pre">customNodeLibraryInternalManager</span></code> should be instantiated inside this function if initialize is used. On initialize failure, status not equal to <code class="docutils literal notranslate"><span class="pre">0</span></code> should be returned to make OVMS treat it as an error.</p>
+<p>When not used, minimal dummy implementation is required. Return <code class="docutils literal notranslate"><span class="pre">0</span></code>, meaning no error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">initialize</span><span class="p">(</span><span class="n">void</span><span class="o">**</span> <span class="n">customNodeLibraryInternalManager</span><span class="p">,</span> <span class="n">const</span> <span class="n">struct</span> <span class="n">CustomNodeParam</span><span class="o">*</span> <span class="n">params</span><span class="p">,</span> <span class="nb">int</span> <span class="n">paramsCount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="deinitialize-function">
+<h3>“deinitialize” function<a class="headerlink" href="#deinitialize-function" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">deinitialize</span><span class="p">(</span><span class="n">void</span><span class="o">*</span> <span class="n">customNodeLibraryInternalManager</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This function enables destruction of resources that were used between predictions. Using deinitialize is optional and not required for custom node to work. <code class="docutils literal notranslate"><span class="pre">customNodeLibraryInternalManager</span></code> should be destroyed here if deinitialize is used. On deinitialization failure, status not equal to <code class="docutils literal notranslate"><span class="pre">0</span></code> should be returned to make OVMS treat it as an error.</p>
+<p>When not used, minimal dummy implementation is required. Return <code class="docutils literal notranslate"><span class="pre">0</span></code>, meaning no error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">deinitialize</span><span class="p">(</span><span class="n">void</span><span class="o">*</span> <span class="n">customNodeLibraryInternalManager</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-opencv">
+<h2>Using OpenCV<a class="headerlink" href="#using-opencv" title="Permalink to this headline">¶</a></h2>
+<p>The custom node library can use any third-party dependencies which could be linked statically or dynamically.
+For simplicity OpenCV libraries included in the OVMS docker image can be used.
+Just add include statement like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;opencv2/core.hpp&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
+<p>Custom node library can be compiled using any tool. It is recommended to follow the example based
+a docker container with all build dependencies included. It is described in this <a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/east_ocr/Makefile">Makefile</a>.</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>The recommended method for testing the custom library is via OVMS execution:</p>
+<ul class="simple">
+<li><p>Compile the library using a docker container configured in the Makefile. It will be exported to <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder.</p></li>
+<li><p>Prepare a pipeline configuration with the path custom node library compiled in the previous step.</p></li>
+<li><p>Start OVMS docker container.</p></li>
+<li><p>Submit a request to OVMS endpoint using a gRPC or REST client.</p></li>
+<li><p>Analyse the logs on the OVMS server.</p></li>
+</ul>
+<p>For debugging steps, refer to the OVMS <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/docs/developer_guide.md">developer guide</a></p>
+</section>
+<section id="custom-node-examples">
+<h2>Custom node examples<a class="headerlink" href="#custom-node-examples" title="Permalink to this headline">¶</a></h2>
+<p>The best starting point for developing new custom nodes is by exploring and copying from the existing examples.</p>
+<p>Fully functional custom nodes are available here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/east_ocr">east-resnet50 OCR custom node</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/horizontal_ocr">horizontal OCR custom node</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/model_zoo_intel_object_detection">model zoo intel object detection custom node</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/image_transformation">image transformation custom node</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/add_one">add one custom node</a> - demonstrates example implementation of memory pool to avoid dynamic allocation</p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/custom_nodes/face_blur">face blur custom node</a></p></li>
+</ul>
+<p>Additional examples are included in the unit tests:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/test/custom_nodes/node_add_sub.c">node_add_sub.c</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/test/custom_nodes/node_choose_maximum.cpp">node_choose_maximum.cpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/test/custom_nodes/node_missing_implementation.c">node_missing_implementation.c</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/src/test/custom_nodes/node_perform_different_operations.cpp">node_perform_different_operations.cpp</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

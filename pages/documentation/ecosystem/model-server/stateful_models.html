@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Serving Stateful Models {#ovms_docs_stateful_models} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/stateful_models.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stateless-vs-stateful-models-a-name-stateful-models-a">
+   Stateless vs Stateful Models
+   <a name="stateful_models">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stateless-model">
+     Stateless model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stateful-model">
+     Stateful model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-serve-stateful-model-a-name-stateful-serve-a">
+   Load and Serve Stateful Model
+   <a name="stateful_serve">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-model-server-with-stateful-model-a-name-stateful-run-a">
+     Run Model Server with Stateful Model
+     <a name="stateful_run">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration-options-for-stateful-models-a-name-stateful-params-a">
+     Configuration Options for Stateful Models
+     <a name="stateful_params">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-inference-on-stateful-model-a-name-stateful-inference-a">
+   Run Inference on Stateful Model
+   <a name="stateful_inference">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#special-inputs-for-sequence-handling-a-name-stateful-inputs-a">
+     Special Inputs for Sequence Handling
+     <a name="stateful_inputs">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference-via-grpc-a-name-stateful-grpc-a">
+     Inference via gRPC
+     <a name="stateful_grpc">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference-via-http-a-name-stateful-http-a">
+     Inference via HTTP
+     <a name="stateful_http">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-codes-a-name-stateful-errors-a">
+     Error Codes
+     <a name="stateful_errors">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#idle-sequence-cleanup-a-name-stateful-cleanup-a">
+   Idle Sequence Cleanup
+   <a name="stateful_cleanup">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#known-limitations-a-name-stateful-limitations-a">
+   Known Limitations
+   <a name="stateful_limitations">
+   </a>
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="serving-stateful-models-ovms-docs-stateful-models">
+<h1>Serving Stateful Models {#ovms_docs_stateful_models}<a class="headerlink" href="#serving-stateful-models-ovms-docs-stateful-models" title="Permalink to this headline">¶</a></h1>
+<section id="stateless-vs-stateful-models-a-name-stateful-models-a">
+<h2>Stateless vs Stateful Models <a name="stateful_models"></a><a class="headerlink" href="#stateless-vs-stateful-models-a-name-stateful-models-a" title="Permalink to this headline">¶</a></h2>
+<section id="stateless-model">
+<h3>Stateless model<a class="headerlink" href="#stateless-model" title="Permalink to this headline">¶</a></h3>
+<p>A stateless model treats every inference request independently and does not recognize dependencies between consecutive inference requests. Therefore, it does not maintain a state between inference requests. Examples of stateless models could be image classification and object detection Convolutional Neural Networks (CNN).</p>
+</section>
+<section id="stateful-model">
+<h3>Stateful model<a class="headerlink" href="#stateful-model" title="Permalink to this headline">¶</a></h3>
+<p>A stateful model recognizes dependencies between consecutive inference requests. It maintains a state between inference requests so that the next inference depends on the results of previous ones. Examples of stateful models could be online speech recognition models like Long Short Term Memory (LSTM).</p>
+<hr class="docutils" />
+<p><strong>Note</strong> that in the context of the Model Server, a model is considered stateful if it maintains state between <strong>inference requests</strong>.</p>
+<p>Some models might take the whole sequence of data as an input and iterate over the elements of that sequence internally, keeping the state between iterations. Such models are considered stateless since they perform inference on the whole sequence <strong>in just one inference request</strong>.</p>
+</section>
+</section>
+<section id="load-and-serve-stateful-model-a-name-stateful-serve-a">
+<h2>Load and Serve Stateful Model <a name="stateful_serve"></a><a class="headerlink" href="#load-and-serve-stateful-model-a-name-stateful-serve-a" title="Permalink to this headline">¶</a></h2>
+<section id="run-model-server-with-stateful-model-a-name-stateful-run-a">
+<h3>Run Model Server with Stateful Model <a name="stateful_run"></a><a class="headerlink" href="#run-model-server-with-stateful-model-a-name-stateful-run-a" title="Permalink to this headline">¶</a></h3>
+<p>Serving stateful model in OpenVINO Model Server is very similar to serving stateless models. The only difference is that for stateful models you need to set <code class="docutils literal notranslate"><span class="pre">stateful</span></code> flag in the model configuration.</p>
+<ul class="simple">
+<li><p>Starting OVMS with stateful model via command line:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -d -u $(id -u):$(id -g) -v &lt;host_model_path&gt;:/models/stateful_model -p 9000:9000 openvino/model_server:latest \ 
+--port 9000 --model_path /models/stateful_model --model_name stateful_model --stateful
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Starting OVMS with stateful model via config file:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;model_config_list&quot;</span><span class="p">:[</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;stateful_model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span><span class="s2">&quot;/models/stateful_model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;stateful&quot;</span><span class="p">:</span> <span class="n">true</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -d -u $(id -u):$(id -g) -v &lt;host_model_path&gt;:/models/stateful_model -v &lt;host_config_path&gt;:/models/config.json -p 9000:9000 openvino/model_server:latest \ 
+--port 9000 --config_path /models/config.json
+</pre></div>
+</div>
+<p>Optionally, you can also set additional parameters specific for stateful models.</p>
+</section>
+<section id="configuration-options-for-stateful-models-a-name-stateful-params-a">
+<h3>Configuration Options for Stateful Models <a name="stateful_params"></a><a class="headerlink" href="#configuration-options-for-stateful-models-a-name-stateful-params-a" title="Permalink to this headline">¶</a></h3>
+<p><strong>Model configuration</strong>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Value format</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stateful</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model is loaded as stateful.</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">idle_sequence_cleanup</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model will be subject to periodic sequence cleaner scans. <br> See <span class="xref myst">idle sequence cleanup</span>.</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_sequence_number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
+<td><p>Determines how many sequences can be  handled concurrently by a model instance.</p></td>
+<td><p>500</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">low_latency_transformation</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model server will apply <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_network_state_intro.html#lowlatency_transformation">low latency transformation</a> on model load.</p></td>
+<td><p>false</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Setting <code class="docutils literal notranslate"><span class="pre">idle_sequence_cleanup</span></code>, <code class="docutils literal notranslate"><span class="pre">max_sequence_number</span></code> and <code class="docutils literal notranslate"><span class="pre">low_latency_transformation</span></code> require setting <code class="docutils literal notranslate"><span class="pre">stateful</span></code> to true.</p>
+<p><strong>Server configuration</strong>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Value format</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sequence_cleaner_poll_wait_minutes</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
+<td><p>Time interval (in minutes) between next sequence cleaner scans. Sequences of the models that are subjects to idle sequence cleanup that have been inactive since the last scan are removed. Zero value disables sequence cleaner.<br> See <span class="xref myst">idle sequence cleanup</span>.</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>See also <a class="reference internal" href="parameters.html"><span class="doc std std-doc">all server and model configuration options</span></a> to have a complete setup.</p>
+</section>
+</section>
+<section id="run-inference-on-stateful-model-a-name-stateful-inference-a">
+<h2>Run Inference on Stateful Model <a name="stateful_inference"></a><a class="headerlink" href="#run-inference-on-stateful-model-a-name-stateful-inference-a" title="Permalink to this headline">¶</a></h2>
+<section id="special-inputs-for-sequence-handling-a-name-stateful-inputs-a">
+<h3>Special Inputs for Sequence Handling <a name="stateful_inputs"></a><a class="headerlink" href="#special-inputs-for-sequence-handling-a-name-stateful-inputs-a" title="Permalink to this headline">¶</a></h3>
+<p>Stateful model works on consecutive inference requests that are associated with each other and form a <strong>sequence</strong> of requests. A single stateful model can handle multiple independent sequences at a time. When the model server receives requests for the stateful model, it maps each request to the proper sequence and its memory state. OVMS also tracks the beginning and the end of the sequence to properly manage system resources.</p>
+<p>Requests to stateful models must contain additional inputs besides the data for prediction:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> - which is a 64-bit unsigned integer identifying the sequence (unique in the scope of the model instance). Value 0 is equivalent to not providing this input at all.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> - which is 32-bit unsigned integer indicating sequence start and end. Accepted values are:</p>
+<ul>
+<li><p>0 - no control input (has no effect - equivalent to not providing this input at all)</p></li>
+<li><p>1 - indicates the beginning of the sequence</p></li>
+<li><p>2 - indicates the end of the sequence</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note</strong>: Model server also appends <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> to every response - the name and format of <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> output is the same as in <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> input.</p>
+<p><strong>Both sequence_id and sequence_control_input shall be provided as tensors with 1 element array (shape:[1]) and appropriate precision.</strong><br />
+<em>See examples for gRPC and HTTP below</em>.</p>
+<p>In order to successfully infer the sequence, perform these actions:</p>
+<ol class="arabic">
+<li><p><strong>Send the first request in the sequence and signal sequence start.</strong></p>
+<p>To start the sequence you need to add <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> with the value of 1 to your request’s inputs. You can also:</p>
+<ul class="simple">
+<li><p>add <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> with the value of your choice or</p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> with 0 or do not add <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> at all - in this case, the Model Server will provide a unique id for the sequence and since it will be appended to the outputs, you will be able to read it and use with the next requests.</p></li>
+</ul>
+<p>If the provided <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> is already occupied, OVMS will return an <span class="xref myst">error</span> to avoid conflicts.</p>
+</li>
+<li><p><strong>Send remaining requests except the last one.</strong></p>
+<p>To send requests in the middle of the sequence you need to add <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> of your sequence. In this case, <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> is mandatory and not providing this input or setting its value to 0 is not allowed.</p>
+<p>In this case <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> must be empty or 0.</p>
+</li>
+<li><p><strong>Send the last request in the sequence and signal sequence end.</strong></p>
+<p>To end the sequence you need to add <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> with the value of 2 to your request’s inputs. You also need to add <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> of your sequence. In this case, <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> is mandatory and not providing this input or setting its value to 0 is not allowed.</p>
+</li>
+</ol>
+</section>
+<section id="inference-via-grpc-a-name-stateful-grpc-a">
+<h3>Inference via gRPC <a name="stateful_grpc"></a><a class="headerlink" href="#inference-via-grpc-a-name-stateful-grpc-a" title="Permalink to this headline">¶</a></h3>
+<p>Inference on stateful models via gRPC is very similar to inference on stateless models (<em>see gRPC API for reference</em>). The difference is that requests to stateful models must containt additional inputs with information necessary for proper sequence handling.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> must be added to gRPC request inputs as <a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor.proto">TensorProtos</a>.</p>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> model server expects one value in tensor proto <a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor.proto#L85">uint64_val</a> field.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> model server expects one value in tensor proto <a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor.proto#L82">uint32_val</a> field.</p></li>
+</ul>
+<p>Both inputs must have <code class="docutils literal notranslate"><span class="pre">TensorShape</span></code> set to [1] and appropriate <code class="docutils literal notranslate"><span class="pre">DataType</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DT_UINT64</span></code> for <code class="docutils literal notranslate"><span class="pre">sequence_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DT_UINT32</span></code> for <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code></p></li>
+</ul>
+<p>Example: (<em>using Python tensorflow and tensorflow-serving-api packages</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">import</span> <span class="nn">grpc</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow_serving.apis</span> <span class="kn">import</span> <span class="n">prediction_service_pb2_grpc</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">make_tensor_proto</span><span class="p">,</span> <span class="n">make_ndarray</span><span class="p">,</span> <span class="n">expand_dims</span>
+<span class="kn">from</span> <span class="nn">tensorflow_serving.apis</span> <span class="kn">import</span> <span class="n">predict_pb2</span>
+
+<span class="o">...</span>
+
+<span class="n">SEQUENCE_START</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SEQUENCE_END</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sequence_id</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span><span class="s2">&quot;localhost:9000&quot;</span><span class="p">)</span>
+<span class="n">stub</span> <span class="o">=</span> <span class="n">prediction_service_pb2_grpc</span><span class="o">.</span><span class="n">PredictionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="n">predict_pb2</span><span class="o">.</span><span class="n">PredictRequest</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">model_spec</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;stateful_model&quot;</span>
+
+<span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">Add inputs with data to infer</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">################   Add stateful specific inputs   #################</span>
+
+<span class="c1">################ Starting sequence with custom ID #################</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+               <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">SEQUENCE_START</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint32&quot;</span><span class="p">))</span>
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+                <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">sequence_id</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint64&quot;</span><span class="p">))</span>
+
+
+<span class="c1">################   Starting sequence without ID   #################</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+               <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">SEQUENCE_START</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint32&quot;</span><span class="p">))</span>
+
+
+<span class="c1">################       Non control requests       #################</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+               <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">sequence_id</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint64&quot;</span><span class="p">))</span>
+
+
+<span class="c1">################         Ending sequence          #################</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+               <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">SEQUENCE_END</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint32&quot;</span><span class="p">))</span>
+<span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span>
+                <span class="n">make_tensor_proto</span><span class="p">([</span><span class="n">sequence_id</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint64&quot;</span><span class="p">))</span>
+
+<span class="c1">###################################################################</span>
+
+<span class="c1"># Send request to OVMS and get response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">stub</span><span class="o">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+
+<span class="c1"># response variable now contains model outputs (inference results) as well as sequence_id in response.outputs</span>
+
+<span class="c1"># Fetch sequence id from the response</span>
+<span class="n">sequence_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">uint64_val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/demos/speech_recognition_with_kaldi_model/python/grpc_stateful_client.py">grpc_stateful_client.py</a> example client for reference.</p>
+</section>
+<section id="inference-via-http-a-name-stateful-http-a">
+<h3>Inference via HTTP <a name="stateful_http"></a><a class="headerlink" href="#inference-via-http-a-name-stateful-http-a" title="Permalink to this headline">¶</a></h3>
+<p>Inference on stateful models via HTTP is very similar to inference on stateless models (<em>see REST API for reference</em>). The difference is that requests to stateful models must containt additional inputs with information necessary for proper sequence handling.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sequence_id</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_control_input</span></code> must be added to HTTP request by adding new <code class="docutils literal notranslate"><span class="pre">key:value</span></code> pair in <code class="docutils literal notranslate"><span class="pre">inputs</span></code> field of JSON body.</p>
+<p>For both inputs, the value must be a single number in a 1-dimensional array.</p>
+<p>Example: (<em>using Python requests package</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="o">...</span>
+
+<span class="n">SEQUENCE_START</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SEQUENCE_END</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sequence_id</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">Add inputs with data to infer</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">################   Add stateful specific inputs   #################</span>
+
+<span class="c1">################ Starting sequence with custom ID #################</span>
+
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">SEQUENCE_START</span><span class="p">)]</span>
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">sequence_id</span><span class="p">)]</span>
+
+
+<span class="c1">################   Starting sequence without ID   #################</span>
+
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">SEQUENCE_START</span><span class="p">)]</span>
+
+
+<span class="c1">################       Non control requests       #################</span>
+
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">sequence_id</span><span class="p">)]</span>
+
+
+<span class="c1">################         Ending sequence          #################</span>
+
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_control_input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">SEQUENCE_END</span><span class="p">)]</span>
+<span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sequence_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">sequence_id</span><span class="p">)]</span>
+
+<span class="c1">###################################################################</span>
+
+<span class="c1"># Prepare request</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="s2">&quot;serving_default&quot;</span>
+<span class="n">request_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;signature_name&quot;</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">})</span>
+
+<span class="c1"># Send request to OVMS and get response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;localhost:5555/v1/models/stateful_model:predict&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request_body</span><span class="p">)</span>
+
+<span class="c1"># Parse response</span>
+<span class="n">response_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># response_body variable now contains model outputs (inference results) as well as sequence_id in response_body[&quot;outputs&quot;]</span>
+
+<span class="c1"># Fetch sequence id from the response</span>
+<span class="n">sequence_id</span> <span class="o">=</span> <span class="n">response_body</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">][</span><span class="s2">&quot;sequence_id&quot;</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/demos/speech_recognition_with_kaldi_model/python/rest_stateful_client.py">rest_stateful_client.py</a> example client for reference.</p>
+</section>
+<section id="error-codes-a-name-stateful-errors-a">
+<h3>Error Codes <a name="stateful_errors"></a><a class="headerlink" href="#error-codes-a-name-stateful-errors-a" title="Permalink to this headline">¶</a></h3>
+<p>When a request is invalid or could not be processed, you can expect following errors specific to inference on stateful models:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>gRPC</p></th>
+<th class="head"><p>HTTP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sequence with a provided ID does not exist.</p></td>
+<td><p>NOT_FOUND</p></td>
+<td><p>404 NOT FOUND</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sequence with a provided ID already exists.</p></td>
+<td><p>ALREADY_EXISTS</p></td>
+<td><p>409 CONFLICT</p></td>
+</tr>
+<tr class="row-even"><td><p>Server received SEQUENCE START request with ID of the sequence that is set for termination, but the last request of that sequence is still being processed.</p></td>
+<td><p>FAILED_PRECONDITION</p></td>
+<td><p>412 PRECONDITION FAILED</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max sequence number has been reached. Could not create a new sequence.</p></td>
+<td><p>UNAVAILABLE</p></td>
+<td><p>503 SERVICE UNAVAILABLE</p></td>
+</tr>
+<tr class="row-even"><td><p>Sequence ID has not been provided in request inputs.</p></td>
+<td><p>INVALID_ARGUMENT</p></td>
+<td><p>400 BAD REQUEST</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unexpected value of sequence control input.</p></td>
+<td><p>INVALID_ARGUMENT</p></td>
+<td><p>400 BAD REQUEST</p></td>
+</tr>
+<tr class="row-even"><td><p>Could not find sequence id in expected tensor proto field uint64_val.</p></td>
+<td><p>INVALID_ARGUMENT</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Could not find sequence control input in expected tensor proto field uint32_val.</p></td>
+<td><p>INVALID_ARGUMENT</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>Special input proto does not contain tensor shape information.</p></td>
+<td><p>INVALID_ARGUMENT</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="idle-sequence-cleanup-a-name-stateful-cleanup-a">
+<h2>Idle Sequence Cleanup <a name="stateful_cleanup"></a><a class="headerlink" href="#idle-sequence-cleanup-a-name-stateful-cleanup-a" title="Permalink to this headline">¶</a></h2>
+<p>Once started sequence might get dropped for some reason like lost connection etc. In this case model server will not receive SEQUENCE_END signal and will not free sequence resources. To prevent keeping idle sequences indefinitely, mthe Model Server launches a sequence cleaner thread that periodically scans stateful models and checks if their sequences received any valid inference request recently. If not, such sequences are removed, their resources are freed and their ids can be reused.</p>
+<p>Two parameters regulate sequence cleanup.
+One is <code class="docutils literal notranslate"><span class="pre">sequence_cleaner_poll_wait_minutes</span></code> which holds the value of the time interval between the next scans. If there has been not a single valid request with a particular sequence id between two consecutive checks, the sequence is considered idle and gets deleted.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sequence_cleaner_poll_wait_minutes</span></code> is a server parameter and is common for all models. By default, the time between two consecutive cleaner scans is set to 5 minutes. Setting this value to 0 disables sequence cleaner.</p>
+<p>Stateful models can either be subject to idle sequence cleanup or not.
+You can set this <strong>per model</strong> with <code class="docutils literal notranslate"><span class="pre">idle_sequence_cleanup</span></code> parameter.
+If set to <code class="docutils literal notranslate"><span class="pre">true</span></code> sequence cleaner will check that model. Otherwise, sequence cleaner will skip that model, and its inactive sequences will not get removed. By default, this value is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</section>
+<section id="known-limitations-a-name-stateful-limitations-a">
+<h2>Known Limitations <a name="stateful_limitations"></a><a class="headerlink" href="#known-limitations-a-name-stateful-limitations-a" title="Permalink to this headline">¶</a></h2>
+<p>There are limitations for using stateful models with OVMS:</p>
+<ul class="simple">
+<li><p>Support inference execution only using CPU as the target device.</p></li>
+<li><p>Support Kaldi models with memory layers and non-Kaldi models with Tensor Iterator. See this <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_network_state_intro.html">docs about stateful networks</a> to learn about stateful networks representation in OpenVINO.</p></li>
+<li><p><a class="reference internal" href="shape_batch_size_and_layout.html"><span class="doc std std-doc">Auto batch size and shape</span></a> are <strong>not</strong> available in stateful models.</p></li>
+<li><p>Stateful model instances <strong>cannot</strong> be used in <a class="reference internal" href="dag_scheduler.html"><span class="doc std std-doc">DAGs</span></a>.</p></li>
+<li><p>Requests ordering is guaranteed only when a single client sends subsequent requests in a synchronous manner. Concurrent interaction with the same sequence might negatively affect the accuracy of the results.</p></li>
+<li><p>When stateful model instance gets reloaded due to change in model configuration, <strong>all ongoing sequences are dropped</strong>.</p></li>
+<li><p>Model type cannot be changed in the runtime - switching stateful flag will be rejected.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

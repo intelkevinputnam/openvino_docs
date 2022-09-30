@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Clients {#ovms_docs_clients} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/clients.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-client">
+   Python Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-the-package">
+     Install the Package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-model-status">
+     Request Model Status
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-model-metadata">
+     Request Model Metadata
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-prediction-on-a-binary-input">
+     Request Prediction on a Binary Input
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-prediction-on-a-numpy-array">
+     Request Prediction on a Numpy Array
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-client">
+   C++ Client
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#go-client">
+   Go Client
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="clients-ovms-docs-clients">
+<h1>Clients {#ovms_docs_clients}<a class="headerlink" href="#clients-ovms-docs-clients" title="Permalink to this headline">¶</a></h1>
+<section id="python-client">
+<h2>Python Client<a class="headerlink" href="#python-client" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;switcher-python&quot; class=&quot;switcher-anchor&quot;&gt;Python&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>When creating a Python-based client application, there are two packages on PyPi that can be used with OpenVINO Model Server:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/tensorflow-serving-api/">tensorflow-serving-api</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/ovmsclient/">ovmsclient</a></p></li>
+</ul>
+<section id="install-the-package">
+<h3>Install the Package<a class="headerlink" href="#install-the-package" title="Permalink to this headline">¶</a></h3>
+<p>&#64;sphinxdirective</p>
+<p>.. tab:: ovmsclient</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    pip3 install ovmsclient 
+</pre></div>
+</div>
+<p>.. tab:: tensorflow-serving-api</p>
+<p>.. code-block:: sh</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    pip3 install tensorflow-serving-api 
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+</section>
+<section id="request-model-status">
+<h3>Request Model Status<a class="headerlink" href="#request-model-status" title="Permalink to this headline">¶</a></h3>
+<p>&#64;sphinxdirective</p>
+<p>.. tab:: ovmsclient</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    from ovmsclient import make_grpc_client
+
+    client = make_grpc_client(&quot;10.20.30.40:9000&quot;)
+    model_status = client.get_model_status(model_name=&quot;my_model&quot;)
+</pre></div>
+</div>
+<p>.. tab:: tensorflow-serving-api</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    import grpc
+    from tensorflow_serving.apis import model_service_pb2_grpc, get_model_status_pb2
+    from tensorflow_serving.apis.get_model_status_pb2 import ModelVersionStatus
+
+    channel = grpc.insecure_channel(&quot;10.20.30.40:9000&quot;)
+    model_service_stub = model_service_pb2_grpc.ModelServiceStub(channel)
+
+    status_request = get_model_status_pb2.GetModelStatusRequest()
+    status_request.model_spec.name = &quot;my_model&quot;
+    status_response = model_service_stub.GetModelStatus(status_request, 10.0)
+            
+    model_status = {}
+    model_version_status = status_response.model_version_status
+    for model_version in model_version_status:
+        model_status[model_version.version] = dict([
+            (&#39;state&#39;, ModelVersionStatus.State.Name(model_version.state)),
+            (&#39;error_code&#39;, model_version.status.error_code),
+            (&#39;error_message&#39;, model_version.status.error_message),
+        ])
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+</section>
+<section id="request-model-metadata">
+<h3>Request Model Metadata<a class="headerlink" href="#request-model-metadata" title="Permalink to this headline">¶</a></h3>
+<p>&#64;sphinxdirective</p>
+<p>.. tab:: ovmsclient</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    from ovmsclient import make_grpc_client
+
+    client = make_grpc_client(&quot;10.20.30.40:9000&quot;)
+    model_metadata = client.get_model_metadata(model_name=&quot;my_model&quot;)
+</pre></div>
+</div>
+<p>.. tab:: tensorflow-serving-api</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    import grpc
+    from tensorflow_serving.apis import prediction_service_pb2_grpc, get_model_metadata_pb2
+    from tensorflow.core.framework.types_pb2 import DataType
+
+    channel = grpc.insecure_channel(&quot;10.20.30.40:9000&quot;)
+    prediction_service_stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+
+    metadata_request = get_model_metadata_pb2.GetModelMetadataRequest()
+    metadata_request.model_spec.name = &quot;my_model&quot;
+    metadata_response = prediction_service_stub.GetModelMetadata(metadata_request, 10.0)
+
+    model_metadata = {}
+
+    signature_def = metadata_response.metadata[&#39;signature_def&#39;]
+    signature_map = get_model_metadata_pb2.SignatureDefMap()
+    signature_map.ParseFromString(signature_def.value)
+    model_signature = signature_map.ListFields()[0][1][&#39;serving_default&#39;]
+
+    inputs_metadata = {}
+    for input_name, input_info in model_signature.inputs.items():
+        input_shape = [d.size for d in input_info.tensor_shape.dim]
+        inputs_metadata[input_name] = dict([
+            (&quot;shape&quot;, input_shape),
+            (&quot;dtype&quot;, DataType.Name(input_info.dtype))
+        ])
+
+    outputs_metadata = {}
+    for output_name, output_info in model_signature.outputs.items():
+        output_shape = [d.size for d in output_info.tensor_shape.dim]
+        outputs_metadata[output_name] = dict([
+            (&quot;shape&quot;, output_shape),
+            (&quot;dtype&quot;, DataType.Name(output_info.dtype))
+        ])
+
+    version = metadata_response.model_spec.version.value
+    model_metadata = dict([
+        (&quot;model_version&quot;, version),
+        (&quot;inputs&quot;, inputs_metadata),
+        (&quot;outputs&quot;, outputs_metadata)
+    ])
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+</section>
+<section id="request-prediction-on-a-binary-input">
+<h3>Request Prediction on a Binary Input<a class="headerlink" href="#request-prediction-on-a-binary-input" title="Permalink to this headline">¶</a></h3>
+<p>&#64;sphinxdirective</p>
+<p>.. tab:: ovmsclient</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    from ovmsclient import make_grpc_client
+
+    client = make_grpc_client(&quot;10.20.30.40:9000&quot;)
+    with open(&quot;img.jpeg&quot;, &quot;rb&quot;) as f:
+        data = f.read()
+    inputs = {&quot;input_name&quot;: data}    
+    results = client.predict(inputs=inputs, model_name=&quot;my_model&quot;)
+</pre></div>
+</div>
+<p>.. tab:: tensorflow-serving-api</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    import grpc
+    from tensorflow_serving.apis import prediction_service_pb2_grpc, predict_pb2
+    from tensorflow import make_tensor_proto, make_ndarray
+
+    channel = grpc.insecure_channel(&quot;10.20.30.40:9000&quot;)
+    prediction_service_stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+
+    with open(&quot;img.jpeg&quot;, &quot;rb&quot;) as f:
+        data = f.read()
+    predict_request = predict_pb2.PredictRequest()
+    predict_request.model_spec.name = &quot;my_model&quot;
+    predict_request.inputs[&quot;input_name&quot;].CopyFrom(make_tensor_proto(data))
+    predict_response = prediction_service_stub.Predict(predict_request, 10.0)
+    results = make_ndarray(predict_response.outputs[&quot;output_name&quot;])
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+</section>
+<section id="request-prediction-on-a-numpy-array">
+<h3>Request Prediction on a Numpy Array<a class="headerlink" href="#request-prediction-on-a-numpy-array" title="Permalink to this headline">¶</a></h3>
+<p>&#64;sphinxdirective</p>
+<p>.. tab:: ovmsclient</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    import numpy as np
+    from ovmsclient import make_grpc_client
+
+    client = make_grpc_client(&quot;10.20.30.40:9000&quot;)
+    data = np.array([1.0, 2.0, ..., 1000.0])
+    inputs = {&quot;input_name&quot;: data}
+    results = client.predict(inputs=inputs, model_name=&quot;my_model&quot;)
+</pre></div>
+</div>
+<p>.. tab:: tensorflow-serving-api</p>
+<p>.. code-block:: python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    import grpc
+    from tensorflow_serving.apis import prediction_service_pb2_grpc, predict_pb2
+    from tensorflow import make_tensor_proto
+
+    channel = grpc.insecure_channel(&quot;10.20.30.40:9000&quot;)
+    prediction_service_stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+
+    data = np.array([1.0, 2.0, ..., 1000.0])
+    predict_request = predict_pb2.PredictRequest()
+    predict_request.model_spec.name = &quot;my_model&quot;
+    predict_request.inputs[&quot;input_name&quot;].CopyFrom(make_tensor_proto(data))
+    predict_response = prediction_service_stub.Predict(predict_request, 10.0)
+    results = make_ndarray(predict_response.outputs[&quot;output_name&quot;])
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>For complete usage examples see <a class="reference external" href="https://github.com/openvinotoolkit/model_server/tree/releases/2022/1/client/python/ovmsclient/samples">ovmsclient samples</a>.</p>
+</section>
+</section>
+<section id="c-client">
+<h2>C++ Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;switcher-cpp&quot; class=&quot;switcher-anchor&quot;&gt;C++&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>Creating a client application in C++ follows the same principles as Python, but using C++ adds some complexity. There is no package or library available with convenient functions for interacting with OpenVINO Model Server.</p>
+<p>To successfully set up communication with the model server you need to implement the logic to communicate with endpoints specified in the <a class="reference internal" href="api_reference_guide.html"><span class="doc std std-doc">API</span></a>. For gRPC, download and compile protos, then link and use them in your application according to the <a class="reference internal" href="model_server_grpc_api.html"><span class="doc std std-doc">gRPC API specification</span></a>. For REST, prepare your data and pack it into the appropriate JSON structure according to the <a class="reference internal" href="model_server_rest_api.html"><span class="doc std std-doc">REST API specification</span></a>.</p>
+<p>See our <span class="xref myst">C++ demo</span> to learn how to build a sample C++ client application in a Docker container and get predictions via the gRPC API.</p>
+</section>
+<section id="go-client">
+<h2>Go Client<a class="headerlink" href="#go-client" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;switcher-go&quot; class=&quot;switcher-anchor&quot;&gt;Go&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>Creating a client application in <a class="reference external" href="https://go.dev/">Go </a> follows the same principals as Python, but Go adds complexity. There’s no Go package or library available with convenient functions for interacting with OpenVINO Model Server.</p>
+<p>To successfully set up communication with the model server, you need to implement the logic to communicate with endpoints specified in the <a class="reference internal" href="api_reference_guide.html"><span class="doc std std-doc">API</span></a>. For gRPC, download and compile protos, then link and use them in your application according to the <a class="reference internal" href="model_server_grpc_api.html"><span class="doc std std-doc">gRPC API specification</span></a>. For REST, prepare your data and pack it into the appropriate JSON structure according to the <a class="reference internal" href="model_server_rest_api.html"><span class="doc std std-doc">REST API specification</span></a>.</p>
+<p>See our <span class="xref myst">Go demo</span> to learn how to build a sample Go-based client application in a Docker container and get predictions via the gRPC API.</p>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

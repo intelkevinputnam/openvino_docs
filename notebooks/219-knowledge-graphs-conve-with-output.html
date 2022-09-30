@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenVINO optimizations for Knowledge graphs &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/tabs.css" type="text/css" />
+    <script src="../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/custom.js"></script>
+    <script src="../_static/js/graphs.js"></script>
+    <script src="../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/notebooks/219-knowledge-graphs-conve-with-output.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   OpenVINO optimizations for Knowledge graphs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-specific-settings">
+   Windows specific settings
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-the-packages-needed-for-successful-execution">
+   Import the packages needed for successful execution
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#settings-including-path-to-the-serialized-model-files-and-input-data-files">
+     Settings: Including path to the serialized model files and input data files
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-the-conve-model-class">
+     Defining the ConvE model class
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-the-dataloader">
+     Defining the dataloader
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-the-trained-conve-model">
+     Evaluate the trained ConvE model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction-on-the-knowledge-graph">
+     Prediction on the Knowledge graph.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-the-trained-pytorch-model-to-onnx-format-for-openvino-inference">
+     Convert the trained PyTorch model to ONNX format for OpenVINO inference
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-the-model-performance-with-openvino">
+     Evaluate the model performance with OpenVINO
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determine-the-platform-specific-speedup-obtained-through-openvino-graph-optimizations">
+     Determine the platform specific speedup obtained through OpenVINO graph optimizations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benchmark-the-converted-openvino-model-using-benchmark-app">
+     Benchmark the converted OpenVINO model using benchmark app
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusions">
+     Conclusions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="openvino-optimizations-for-knowledge-graphs">
+<h1>OpenVINO optimizations for Knowledge graphs<a class="headerlink" href="#openvino-optimizations-for-knowledge-graphs" title="Permalink to this headline">¶</a></h1>
+<p>The goal of this notebook is to showcase performance optimizations for
+the ConvE knowledge graph embeddings model using the Intel® Distribution
+of OpenVINO™ Toolkit. The optimizations process contains the following
+steps: 1. Export the trained model to a format suitable for OpenVINO
+optimizations and inference 2. Report the inference performance speedup
+obtained with the optimized OpenVINO model</p>
+<p>The ConvE model we use is an implementation of the paper Convolutional
+2D Knowledge Graph Embeddings (<a class="reference external" href="https://arxiv.org/abs/1707.01476">https://arxiv.org/abs/1707.01476</a>). The
+sample dataset was downloaded from:
+<a class="reference external" href="https://github.com/TimDettmers/ConvE/tree/master/countries/countries_S1">https://github.com/TimDettmers/ConvE/tree/master/countries/countries_S1</a></p>
+</section>
+<section id="windows-specific-settings">
+<h1>Windows specific settings<a class="headerlink" href="#windows-specific-settings" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Windows, add the directory that contains cl.exe to the PATH</span>
+<span class="c1"># to enable PyTorch to find the required C++ tools.</span>
+<span class="c1"># This code assumes that Visual Studio 2019 is installed in the default directory.</span>
+<span class="c1"># If you have a different C++ compiler, please add the correct path</span>
+<span class="c1"># to os.environ[&quot;PATH&quot;] directly.</span>
+<span class="c1"># Note that the C++ Redistributable is not enough to run this notebook.</span>
+
+<span class="c1"># Adding the path to os.environ[&quot;LIB&quot;] is not always required</span>
+<span class="c1"># - it depends on the system&#39;s configuration</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">distutils.command.build_ext</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="n">VS_INSTALL_DIR</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:/Program Files (x86)/Microsoft Visual Studio&quot;</span>
+    <span class="n">cl_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">VS_INSTALL_DIR</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/Hostx86/x64/cl.exe&quot;</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cl_paths</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Cannot find Visual Studio. This notebook requires a C++ compiler. If you installed &quot;</span>
+            <span class="s2">&quot;a C++ compiler, please add the directory that contains&quot;</span>
+            <span class="s2">&quot;cl.exe to `os.environ[&#39;PATH&#39;]`.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If multiple versions of MSVC are installed, get the most recent version</span>
+        <span class="n">cl_path</span> <span class="o">=</span> <span class="n">cl_paths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">vs_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cl_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="si">}{</span><span class="n">vs_dir</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="c1"># Code for finding the library dirs from</span>
+        <span class="c1"># https://stackoverflow.com/questions/47423246/get-pythons-lib-path</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">distutils</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Distribution</span><span class="p">()</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">distutils</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">build_ext</span><span class="o">.</span><span class="n">build_ext</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">finalize_options</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">library_dirs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added </span><span class="si">{</span><span class="n">vs_dir</span><span class="si">}</span><span class="s2"> to PATH&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="import-the-packages-needed-for-successful-execution">
+<h1>Import the packages needed for successful execution<a class="headerlink" href="#import-the-packages-needed-for-successful-execution" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">torch.nn.init</span> <span class="kn">import</span> <span class="n">xavier_normal_</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="kn">from</span> <span class="nn">openvino.runtime</span> <span class="kn">import</span> <span class="n">Core</span>
+</pre></div>
+</div>
+<section id="settings-including-path-to-the-serialized-model-files-and-input-data-files">
+<h2>Settings: Including path to the serialized model files and input data files<a class="headerlink" href="#settings-including-path-to-the-serialized-model-files-and-input-data-files" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> device&quot;</span><span class="p">)</span>
+
+<span class="c1"># Path to the trained model</span>
+<span class="n">modelpath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;models/conve.pt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Path to the file containing the entities and entity IDs</span>
+<span class="n">entdatapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/countries_S1/kg_training_entids.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Path to the file containing the relations and relation IDs</span>
+<span class="n">reldatapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/countries_S1/kg_training_relids.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Path to the test data file</span>
+<span class="n">testdatapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/countries_S1/e1rel_to_e2_ranking_test.json&#39;</span><span class="p">)</span>
+
+<span class="c1"># Entity and relation embedding dimensions</span>
+<span class="n">EMB_DIM</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="c1"># Top K vals to consider from the predictions</span>
+<span class="n">TOP_K</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Required for OpenVINO conversion</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;models&quot;</span><span class="p">)</span>
+<span class="n">base_model_name</span> <span class="o">=</span> <span class="s2">&quot;conve&quot;</span>
+
+<span class="n">output_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Paths where PyTorch, ONNX and OpenVINO IR models will be stored</span>
+<span class="n">fp32_onnx_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="p">(</span><span class="n">base_model_name</span> <span class="o">+</span> <span class="s2">&quot;_fp32&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.onnx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">cpu</span> <span class="n">device</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-conve-model-class">
+<h2>Defining the ConvE model class<a class="headerlink" href="#defining-the-conve-model-class" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model implementation reference: https://github.com/TimDettmers/ConvE</span>
+<span class="k">class</span> <span class="nc">ConvE</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_entities</span><span class="p">,</span> <span class="n">num_relations</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ConvE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Embedding tables for entity and relations with num_uniq_ent in y-dim, emb_dim in x-dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emb_e</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">num_entities</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">padding_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ent_weights_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">num_entities</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emb_rel</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">num_relations</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">padding_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ne</span> <span class="o">=</span> <span class="n">num_entities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nr</span> <span class="o">=</span> <span class="n">num_relations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inp_drop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_drop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_drop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout2d</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_entities</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16128</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initializes the model &quot;&quot;&quot;</span>
+        <span class="c1"># Xavier initialization</span>
+        <span class="n">xavier_normal_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_e</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">xavier_normal_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_rel</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">rel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Forward pass on the model.</span>
+<span class="sd">        :param e1: source entity</span>
+<span class="sd">        :param rel: relation between the source and target entities</span>
+<span class="sd">        Returns the model predictions for the target entities</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">e1_embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emb_e</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="n">rel_embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emb_rel</span><span class="p">(</span><span class="n">rel</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="n">stacked_inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">e1_embedded</span><span class="p">,</span> <span class="n">rel_embedded</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">stacked_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span><span class="p">(</span><span class="n">stacked_inputs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inp_drop</span><span class="p">(</span><span class="n">stacked_inputs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_drop</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_drop</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ln0</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emb_e</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_drop</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pred</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-dataloader">
+<h2>Defining the dataloader<a class="headerlink" href="#defining-the-dataloader" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataLoader</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DataLoader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ent_path</span> <span class="o">=</span> <span class="n">entdatapath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rel_path</span> <span class="o">=</span> <span class="n">reldatapath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_file</span> <span class="o">=</span> <span class="n">testdatapath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids2entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ent_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rel_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids2rel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rel_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_triples_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_triples</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_file</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a dictionary of data items with corresponding ids &quot;&quot;&quot;</span>
+        <span class="n">item_dict</span><span class="p">,</span> <span class="n">ids_dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">item_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="n">ids_dict</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">id</span><span class="p">)]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">item_dict</span><span class="p">,</span> <span class="n">ids_dict</span>
+
+    <span class="k">def</span> <span class="nf">convert_triples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a triple of source entity, relation and target entities&quot;&quot;&quot;</span>
+        <span class="n">triples_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">item_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">item_dict</span><span class="p">[</span><span class="s1">&#39;e1&#39;</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">item_dict</span><span class="p">[</span><span class="s1">&#39;rel&#39;</span><span class="p">]</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">item_dict</span><span class="p">[</span><span class="s1">&#39;e2_multi1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">hrt_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">hrt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_ids</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+            <span class="n">hrt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rel_ids</span><span class="p">[</span><span class="n">r</span><span class="p">])</span>
+            <span class="n">t_ents</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">t_idx</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+                <span class="n">t_ents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_ids</span><span class="p">[</span><span class="n">t_idx</span><span class="p">])</span>
+            <span class="n">hrt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t_ents</span><span class="p">)</span>
+            <span class="n">triples_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hrt_list</span><span class="p">)</span>
+        <span class="n">dp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">triples_list</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluate-the-trained-conve-model">
+<h2>Evaluate the trained ConvE model<a class="headerlink" href="#evaluate-the-trained-conve-model" title="Permalink to this headline">¶</a></h2>
+<p>We will first evaluate the model performance using PyTorch. The goal is
+to make sure there are no accuracy differences between the original
+model inference and the model converted to OpenVINO intermediate
+representation inference results. Here, we use a simple accuracy metric
+to evaluate the model performance on a test dataset. However, it is
+typical to use metrics such as Mean Reciprocal Rank, <a class="reference external" href="mailto:Hits&#37;&#52;&#48;10">Hits<span>&#64;</span>10</a> etc.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">()</span>
+<span class="n">num_entities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">entity_ids</span><span class="p">)</span>
+<span class="n">num_relations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">rel_ids</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConvE</span><span class="p">(</span><span class="n">num_entities</span><span class="o">=</span><span class="n">num_entities</span><span class="p">,</span> <span class="n">num_relations</span><span class="o">=</span><span class="n">num_relations</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="n">EMB_DIM</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">modelpath</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="n">pt_inf_times</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">triples_list</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">test_triples_list</span>
+<span class="n">num_test_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">triples_list</span><span class="p">)</span>
+<span class="n">pt_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_test_samples</span><span class="p">):</span>
+    <span class="n">test_sample</span> <span class="o">=</span> <span class="n">triples_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">test_sample</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">e1</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">rel</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">pt_inf_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+    <span class="n">score</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">TOP_K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()))</span>
+    <span class="n">pt_acc</span> <span class="o">+=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+
+<span class="n">avg_pt_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pt_inf_times</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average time taken for inference: </span><span class="si">{</span><span class="n">avg_pt_time</span><span class="si">}</span><span class="s1"> ms&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean accuracy of the model on the test dataset: </span><span class="si">{</span><span class="n">pt_acc</span><span class="o">/</span><span class="n">num_test_samples</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Average</span> <span class="n">time</span> <span class="n">taken</span> <span class="k">for</span> <span class="n">inference</span><span class="p">:</span> <span class="mf">0.7480581601460775</span> <span class="n">ms</span>
+<span class="n">Mean</span> <span class="n">accuracy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">model</span> <span class="n">on</span> <span class="n">the</span> <span class="n">test</span> <span class="n">dataset</span><span class="p">:</span> <span class="mf">0.875</span>
+</pre></div>
+</div>
+</section>
+<section id="prediction-on-the-knowledge-graph">
+<h2>Prediction on the Knowledge graph.<a class="headerlink" href="#prediction-on-the-knowledge-graph" title="Permalink to this headline">¶</a></h2>
+<p>As a sample evaluation, we perform the entity prediction task on the
+knowledge graph. We pass the source entity ‘san_marino’ and relation
+‘locatedIn’ to the knowledge graph and obtain the target entity
+predictions. We expect to see as predictions, target entities that form
+a factual triple with the entity and relation passed as inputs to the
+knowledge graph.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entitynames_dict</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ids2entities</span>
+
+<span class="n">ent</span> <span class="o">=</span> <span class="s1">&#39;san_marino&#39;</span>
+<span class="n">rel</span> <span class="o">=</span> <span class="s1">&#39;locatedin&#39;</span>
+
+<span class="n">h_idx</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">entity_ids</span><span class="p">[</span><span class="n">ent</span><span class="p">]</span>
+<span class="n">r_idx</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rel_ids</span><span class="p">[</span><span class="n">rel</span><span class="p">]</span>
+
+<span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">h_idx</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">r_idx</span><span class="p">))</span>
+<span class="n">score</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">TOP_K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()):</span>
+    <span class="n">pred_entity</span> <span class="o">=</span> <span class="n">entitynames_dict</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Source Entity: </span><span class="si">{</span><span class="n">ent</span><span class="si">}</span><span class="s1">, Relation: </span><span class="si">{</span><span class="n">rel</span><span class="si">}</span><span class="s1">, Target entity prediction: </span><span class="si">{</span><span class="n">pred_entity</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Source</span> <span class="n">Entity</span><span class="p">:</span> <span class="n">san_marino</span><span class="p">,</span> <span class="n">Relation</span><span class="p">:</span> <span class="n">locatedin</span><span class="p">,</span> <span class="n">Target</span> <span class="n">entity</span> <span class="n">prediction</span><span class="p">:</span> <span class="n">southern_europe</span>
+<span class="n">Source</span> <span class="n">Entity</span><span class="p">:</span> <span class="n">san_marino</span><span class="p">,</span> <span class="n">Relation</span><span class="p">:</span> <span class="n">locatedin</span><span class="p">,</span> <span class="n">Target</span> <span class="n">entity</span> <span class="n">prediction</span><span class="p">:</span> <span class="n">europe</span>
+</pre></div>
+</div>
+</section>
+<section id="convert-the-trained-pytorch-model-to-onnx-format-for-openvino-inference">
+<h2>Convert the trained PyTorch model to ONNX format for OpenVINO inference<a class="headerlink" href="#convert-the-trained-pytorch-model-to-onnx-format-for-openvino-inference" title="Permalink to this headline">¶</a></h2>
+<p>To evaluate performance with OpenVINO, we can either convert the trained
+PyTorch model to an intermediate representation (IR) format or to an
+ONNX representation. In this notebook, we use the ONNX format. For more
+details on model optimization, refer to:
+<a class="reference external" href="https://docs.openvino.ai/latest/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html">https://docs.openvino.ai/latest/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html</a></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Converting the trained conve model to ONNX format&#39;</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+                  <span class="n">fp32_onnx_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">opset_version</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Converting</span> <span class="n">the</span> <span class="n">trained</span> <span class="n">conve</span> <span class="n">model</span> <span class="n">to</span> <span class="n">ONNX</span> <span class="nb">format</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torch</span><span class="o">/</span><span class="n">onnx</span><span class="o">/</span><span class="n">utils</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">299</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">It</span> <span class="ow">is</span> <span class="n">recommended</span> <span class="n">that</span> <span class="n">constant</span> <span class="n">folding</span> <span class="n">be</span> <span class="n">turned</span> <span class="n">off</span> <span class="p">(</span><span class="s1">&#39;do_constant_folding=False&#39;</span><span class="p">)</span> <span class="n">when</span> <span class="n">exporting</span> <span class="n">the</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">training</span><span class="o">-</span><span class="n">amenable</span> <span class="n">mode</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="k">with</span> <span class="s1">&#39;training=TrainingMode.TRAIN&#39;</span> <span class="ow">or</span> <span class="s1">&#39;training=TrainingMode.PRESERVE&#39;</span> <span class="p">(</span><span class="n">when</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">training</span> <span class="n">mode</span><span class="p">)</span><span class="o">.</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="n">some</span> <span class="n">learnable</span> <span class="n">model</span> <span class="n">parameters</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">translate</span> <span class="n">correctly</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">exported</span> <span class="n">ONNX</span> <span class="n">model</span> <span class="n">because</span> <span class="n">constant</span> <span class="n">folding</span> <span class="n">mutates</span> <span class="n">model</span> <span class="n">parameters</span><span class="o">.</span> <span class="n">Please</span> <span class="n">consider</span> <span class="n">turning</span> <span class="n">off</span> <span class="n">constant</span> <span class="n">folding</span> <span class="ow">or</span> <span class="n">setting</span> <span class="n">the</span> <span class="n">training</span><span class="o">=</span><span class="n">TrainingMode</span><span class="o">.</span><span class="n">EVAL</span><span class="o">.</span>
+  <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;It is recommended that constant folding be turned off (&#39;do_constant_folding=False&#39;) &quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluate-the-model-performance-with-openvino">
+<h2>Evaluate the model performance with OpenVINO<a class="headerlink" href="#evaluate-the-model-performance-with-openvino" title="Permalink to this headline">¶</a></h2>
+<p>Now, we evaluate the model performance with the OpenVINO framework. In
+order to do so, we make three main API calls: 1. Initialize the
+Inference engine with Core() 2. Load the model with read_model() 3.
+Compile the model with compile_model()</p>
+<p>The model can then be inferred on using by using the
+create_infer_request() API call.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ie</span> <span class="o">=</span> <span class="n">Core</span><span class="p">()</span>
+<span class="n">ir_net</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">read_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">fp32_onnx_path</span><span class="p">)</span>
+<span class="n">compiled_model</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">ir_net</span><span class="p">)</span>
+<span class="n">input_layer_source</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s1">&#39;input.1&#39;</span><span class="p">)</span>
+<span class="n">input_layer_relation</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s1">&#39;input.2&#39;</span><span class="p">)</span>
+<span class="n">output_layer</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ov_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">ov_inf_times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_test_samples</span><span class="p">):</span>
+    <span class="n">test_sample</span> <span class="o">=</span> <span class="n">triples_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">relation</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">test_sample</span>
+    <span class="n">model_inputs</span> <span class="o">=</span> <span class="p">{</span><span class="n">input_layer_source</span><span class="p">:</span> <span class="n">source</span><span class="p">,</span> <span class="n">input_layer_relation</span><span class="p">:</span> <span class="n">relation</span><span class="p">}</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">compiled_model</span><span class="p">(</span><span class="n">model_inputs</span><span class="p">)[</span><span class="n">output_layer</span><span class="p">]</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">ov_inf_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+    <span class="n">top_k_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="n">TOP_K</span><span class="p">)[</span><span class="o">-</span><span class="n">TOP_K</span><span class="p">:])</span>
+
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">top_k_idxs</span><span class="p">))</span>
+    <span class="n">ov_acc</span> <span class="o">+=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+
+<span class="n">avg_ov_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ov_inf_times</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average time taken for inference: </span><span class="si">{</span><span class="n">avg_ov_time</span><span class="si">}</span><span class="s1"> ms&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean accuracy of the model on the test dataset: </span><span class="si">{</span><span class="n">ov_acc</span><span class="o">/</span><span class="n">num_test_samples</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Average</span> <span class="n">time</span> <span class="n">taken</span> <span class="k">for</span> <span class="n">inference</span><span class="p">:</span> <span class="mf">1.3259351253509521</span> <span class="n">ms</span>
+<span class="n">Mean</span> <span class="n">accuracy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">model</span> <span class="n">on</span> <span class="n">the</span> <span class="n">test</span> <span class="n">dataset</span><span class="p">:</span> <span class="mf">0.10416666666666667</span>
+</pre></div>
+</div>
+</section>
+<section id="determine-the-platform-specific-speedup-obtained-through-openvino-graph-optimizations">
+<h2>Determine the platform specific speedup obtained through OpenVINO graph optimizations<a class="headerlink" href="#determine-the-platform-specific-speedup-obtained-through-openvino-graph-optimizations" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Speedup with OpenVINO optimizations: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">avg_pt_time</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">avg_ov_time</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> X&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Speedup</span> <span class="k">with</span> <span class="n">OpenVINO</span> <span class="n">optimizations</span><span class="p">:</span> <span class="mf">0.56</span> <span class="n">X</span>
+</pre></div>
+</div>
+</section>
+<section id="benchmark-the-converted-openvino-model-using-benchmark-app">
+<h2>Benchmark the converted OpenVINO model using benchmark app<a class="headerlink" href="#benchmark-the-converted-openvino-model-using-benchmark-app" title="Permalink to this headline">¶</a></h2>
+<p>The OpenVINO toolkit provides a benchmarking application to gauge the
+platform specific runtime performance that can be obtained under optimal
+configuration parameters for a given model. For more details refer to:
+<a class="reference external" href="https://docs.openvino.ai/latest/openvino_inference_engine_tools_benchmark_tool_README.html">https://docs.openvino.ai/latest/openvino_inference_engine_tools_benchmark_tool_README.html</a></p>
+<p>Here, we use the benchmark application to obtain performance estimates
+under optimal configuration for the knowledge graph model inference. We
+obtain the average (AVG), minimum (MIN) as well as maximum (MAX) latency
+as well as the throughput performance (in samples/s) observed while
+running the benchmark application. The platform specific optimal
+configuration parameters determined by the benchmarking app for OpenVINO
+inference can also be obtained by looking at the benchmark app results.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Benchmark OpenVINO model using the benchmark app&#39;</span><span class="p">)</span>
+<span class="o">!</span> benchmark_app -m <span class="s2">&quot;</span><span class="nv">$fp32_onnx_path</span><span class="s2">&quot;</span> -d CPU -api async -t <span class="m">10</span> -shape <span class="s2">&quot;input.1[1],input.2[1]&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Benchmark OpenVINO model using the benchmark app
+[Step 1/11] Parsing and validating input arguments
+[ WARNING ]  -nstreams default value is determined automatically for a device. Although the automatic selection usually provides a reasonable performance, but it still may be non-optimal for some cases, for more information look at README.
+[Step 2/11] Loading OpenVINO
+[ WARNING ] PerformanceMode was not explicitly specified in command line. Device CPU performance hint will be set to THROUGHPUT.
+[ INFO ] OpenVINO:
+         API version............. 2022.1.0-7019-cdb9bec7210-releases/2022/1
+[ INFO ] Device info
+         CPU
+         openvino_intel_cpu_plugin version 2022.1
+         Build................... 2022.1.0-7019-cdb9bec7210-releases/2022/1
+
+[Step 3/11] Setting device configuration
+[ WARNING ] -nstreams default value is determined automatically for CPU device. Although the automatic selection usually provides a reasonable performance, but it still may be non-optimal for some cases, for more information look at README.
+[Step 4/11] Reading network files
+[ INFO ] Read model took 29.51 ms
+[Step 5/11] Resizing network to match image sizes and given batch
+[ INFO ] Reshaping model: &#39;input.1&#39;: {1}, &#39;input.2&#39;: {1}
+[ INFO ] Reshape model took 0.84 ms
+[ INFO ] Network batch size: 1
+[Step 6/11] Configuring input of the model
+[ INFO ] Model input &#39;input.1&#39; precision i64, dimensions ([...]): 1
+[ INFO ] Model input &#39;input.2&#39; precision i64, dimensions ([...]): 1
+[ INFO ] Model output &#39;53&#39; precision f32, dimensions ([...]): 1 271
+[Step 7/11] Loading the model to the device
+[ INFO ] Compile model took 45.85 ms
+[Step 8/11] Querying optimal runtime parameters
+[ INFO ] DEVICE: CPU
+[ INFO ]   AVAILABLE_DEVICES  , [&#39;&#39;]
+[ INFO ]   RANGE_FOR_ASYNC_INFER_REQUESTS  , (1, 1, 1)
+[ INFO ]   RANGE_FOR_STREAMS  , (1, 24)
+[ INFO ]   FULL_DEVICE_NAME  , Intel(R) Core(TM) i9-10920X CPU @ 3.50GHz
+[ INFO ]   OPTIMIZATION_CAPABILITIES  , [&#39;WINOGRAD&#39;, &#39;FP32&#39;, &#39;FP16&#39;, &#39;INT8&#39;, &#39;BIN&#39;, &#39;EXPORT_IMPORT&#39;]
+[ INFO ]   CACHE_DIR  ,
+[ INFO ]   NUM_STREAMS  , 6
+[ INFO ]   INFERENCE_NUM_THREADS  , 0
+[ INFO ]   PERF_COUNT  , False
+[ INFO ]   PERFORMANCE_HINT_NUM_REQUESTS  , 0
+[Step 9/11] Creating infer requests and preparing input data
+[ INFO ] Create 6 infer requests took 1.09 ms
+[ WARNING ] No input files were given for input &#39;input.1&#39;!. This input will be filled with random values!
+[ WARNING ] No input files were given for input &#39;input.2&#39;!. This input will be filled with random values!
+[ INFO ] Fill input &#39;input.1&#39; with random values
+[ INFO ] Fill input &#39;input.2&#39; with random values
+[Step 10/11] Measuring performance (Start inference asynchronously, 6 inference requests using 6 streams for CPU, inference only: True, limits: 10000 ms duration)
+[ INFO ] Benchmarking in inference only mode (inputs filling are not included in measurement loop).
+[ INFO ] First inference took 3.92 ms
+[Step 11/11] Dumping statistics report
+Count:          81738 iterations
+Duration:       10001.09 ms
+Latency:
+    Median:     0.64 ms
+    AVG:        0.65 ms
+    MIN:        0.41 ms
+    MAX:        3.37 ms
+Throughput: 8172.91 FPS
+</pre></div>
+</div>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we converted the trained PyTorch knowledge graph
+embeddings model to the OpenVINO format. We confirmed that there were no
+accuracy differences post conversion. We also performed a sample
+evaluation on the knowledge graph! We then determined the platform
+specific speedup in runtime performance that can be obtained through
+OpenVINO graph optimizations. To learn more about the OpenVINO
+performance optimizations, refer to:
+<a class="reference external" href="https://docs.openvino.ai/latest/openvino_docs_optimization_guide_dldt_optimization_guide.html">https://docs.openvino.ai/latest/openvino_docs_optimization_guide_dldt_optimization_guide.html</a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Convolutional 2D Knowledge Graph Embeddings, Tim Dettmers et
+al. (<a class="reference external" href="https://arxiv.org/abs/1707.01476">https://arxiv.org/abs/1707.01476</a>)</p></li>
+<li><p>Model implementation: <a class="reference external" href="https://github.com/TimDettmers/ConvE">https://github.com/TimDettmers/ConvE</a></p></li>
+</ol>
+<p>The ConvE model implementation used in this notebook licensed under the
+MIT License. The license is displayed below: MIT License</p>
+<p>Copyright (c) 2017 Tim Dettmers</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+“Software”), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

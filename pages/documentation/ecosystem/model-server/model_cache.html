@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Model Cache {#ovms_docs_model_cache} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/model_cache.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enabling-the-cache-functionality">
+   Enabling the cache functionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-case-example">
+   Use case example
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-model">
+     Prepare model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-the-service">
+     Starting the service
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="model-cache-ovms-docs-model-cache">
+<h1>Model Cache {#ovms_docs_model_cache}<a class="headerlink" href="#model-cache-ovms-docs-model-cache" title="Permalink to this headline">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Model Server can leverage a <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_Model_caching_overview.html">OpenVINO™ model cache functionality</a>, to speed up subsequent model loading on a target device.
+The cached files make the Model Server initialization usually faster.
+The boost depends on a model and a target device. The most noticable improvement will be observed with GPU devices. On other devices, like CPU, it is possible to observe no speed up effect or even slower loading process depending on used model. Test the setup before final deployment.</p>
+<p>The cache may consist of a compiled model blob in a form of <code class="docutils literal notranslate"><span class="pre">.blob</span></code> file or compiled kernels (GPU) in a form of multiple <code class="docutils literal notranslate"><span class="pre">.cl_cache</span></code> files. Cache files can be reused within the same Model Server version, target device, hardware, model and the model shape parameters.
+The Model Server, automatically detects if the cache is present and re-generates new cache files when required.</p>
+<p>Note: Model Server cache feature does not avoid downloading the model files from the remote storage. It speeds up the model loading but acceess to the original model files is still required.</p>
+<p>Note: In some cases model cache might have undesirable side effects. Special considerations are required in the following cases:</p>
+<ul class="simple">
+<li><p>custom loader library is in use - <a class="reference internal" href="custom_model_loader.html"><span class="doc std std-doc">custom loaders</span></a> might be used to import encrypted model files so using unencrypted cache might potentially lead to a security risk</p></li>
+<li><p>using the model with <code class="docutils literal notranslate"><span class="pre">auto</span></code> batch size or <code class="docutils literal notranslate"><span class="pre">auto</span></code> shape parameters - it can lead to model cache regenerating each time the model gets reloaded for new inference requests with new input shape.
+It could potentially cause disk space overloading and it will improve initialization performance only for repeated input shape.</p></li>
+</ul>
+</section>
+<section id="enabling-the-cache-functionality">
+<h2>Enabling the cache functionality<a class="headerlink" href="#enabling-the-cache-functionality" title="Permalink to this headline">¶</a></h2>
+<p>The models caching can be enabled by creating or mounting in the docker container a folder <code class="docutils literal notranslate"><span class="pre">/opt/cache</span></code>.
+Alternatively the location of the cache storage can be set using the parameter <code class="docutils literal notranslate"><span class="pre">--cache_dir</span></code>.</p>
+<p>The model server security context must have read-write access to the cache storage path.</p>
+<p>When using Model Server with configuration file, it is possible to serve more than one model. In such case, model cache is applied to all the models, with an exception to:</p>
+<ul class="simple">
+<li><p>Models with custom loader (for security reasons explained earlier)</p></li>
+<li><p>Models configured to shape <code class="docutils literal notranslate"><span class="pre">auto</span></code> or batch_size <code class="docutils literal notranslate"><span class="pre">auto</span></code></p></li>
+</ul>
+<p>In case there are valid reasons to enable the model cache also for models with auto shape or auto batch, it is possible to force enablement with <code class="docutils literal notranslate"><span class="pre">&quot;allow_cache&quot;:</span> <span class="pre">true</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;model_config_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;face_detection&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/models/face-detection-retail-0004/&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;allow_cache&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">}},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>IMPORTANT: Models imported via the custom loaders never create or use any cache.</p>
+</div></blockquote>
+<blockquote>
+<div><p>IMPORTANT: Model cache can’t be used with HDDL devices.</p>
+</div></blockquote>
+</section>
+<section id="use-case-example">
+<h2>Use case example<a class="headerlink" href="#use-case-example" title="Permalink to this headline">¶</a></h2>
+<section id="prepare-model">
+<h3>Prepare model<a class="headerlink" href="#prepare-model" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl --create-dirs https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/face-detection-retail-0004/FP32/face-detection-retail-0004.bin https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -o model/fdsample/1/face-detection-retail-0004.bin -o model/fdsample/1/face-detection-retail-0004.xml
+</pre></div>
+</div>
+</section>
+<section id="starting-the-service">
+<h3>Starting the service<a class="headerlink" href="#starting-the-service" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir cache
+$ docker run -p 9000:9000 -d -u $(id -u):$(id -g) --device /dev/dri --group-add=$(stat -c &quot;%g&quot; /dev/dri/render* | head -n 1)  -v ${PWD}/model/fdsample:/model:ro -v ${PWD}/cache:/opt/cache:rw openvino/model_server --model_name model --model_path /model/ --target_device GPU --port 9000
+</pre></div>
+</div>
+<p>Expected message in the logs <code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">cache</span> <span class="pre">is</span> <span class="pre">enabled:</span> <span class="pre">/opt/cache</span></code>.</p>
+<p>The first time the model server container is started, it will populate the cache folder. The next time the container starts, the initialization will be faster, especially for the GPU target device.</p>
+<p>Logs from the first initialization - model loading takes ~3.5s</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">43.325</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">558</span><span class="p">]</span> <span class="n">Loading</span> <span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="kn">from</span> <span class="nn">path</span><span class="p">:</span> <span class="o">/</span><span class="n">model</span><span class="o">//</span><span class="mi">1</span><span class="p">,</span> <span class="k">with</span> <span class="n">target</span> <span class="n">device</span><span class="p">:</span> <span class="n">GPU</span> <span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">43.325</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;START&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">43.325</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;LOADING&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">43.342</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">175</span><span class="p">]</span> <span class="n">Final</span> <span class="n">network</span> <span class="n">inputs</span><span class="p">:</span>
+<span class="n">Input</span> <span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">;</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="p">;</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span> <span class="n">effective</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span> <span class="n">precision</span><span class="p">:</span> <span class="n">FP32</span><span class="p">;</span> <span class="n">layout</span><span class="p">:</span> <span class="n">N</span><span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">43.342</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">209</span><span class="p">]</span> <span class="n">Output</span> <span class="n">name</span><span class="p">:</span> <span class="n">detection_out</span><span class="p">;</span> <span class="n">mapping</span> <span class="n">name</span><span class="p">:</span> <span class="p">;</span> <span class="n">shape</span><span class="p">:</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">200</span> <span class="mi">7</span> <span class="p">;</span> <span class="n">effective</span> <span class="n">shape</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">200</span> <span class="mi">7</span> <span class="p">;</span> <span class="n">precision</span><span class="p">:</span> <span class="n">FP32</span><span class="p">;</span> <span class="n">layout</span><span class="p">:</span> <span class="n">N</span><span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">46.905</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">modelmanager</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">394</span><span class="p">]</span> <span class="n">Plugin</span> <span class="n">config</span> <span class="k">for</span> <span class="n">device</span> <span class="n">GPU</span><span class="p">:</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">46.905</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">modelmanager</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">398</span><span class="p">]</span> <span class="n">OVMS</span> <span class="nb">set</span> <span class="n">plugin</span> <span class="n">settings</span> <span class="n">key</span><span class="p">:</span><span class="n">GPU_THROUGHPUT_STREAMS</span><span class="p">;</span> <span class="n">value</span><span class="p">:</span><span class="n">GPU_THROUGHPUT_AUTO</span><span class="p">;</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">46.911</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">477</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">model</span> <span class="n">model</span><span class="p">;</span> <span class="n">version</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">batch</span> <span class="n">size</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">No</span> <span class="n">of</span> <span class="n">InferRequests</span><span class="p">:</span> <span class="mi">4</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">46.911</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;AVAILABLE&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Sequential model server initialization is faster. Based on logs below, it is ~400ms.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.377</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">558</span><span class="p">]</span> <span class="n">Loading</span> <span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="kn">from</span> <span class="nn">path</span><span class="p">:</span> <span class="o">/</span><span class="n">model</span><span class="o">//</span><span class="mi">1</span><span class="p">,</span> <span class="k">with</span> <span class="n">target</span> <span class="n">device</span><span class="p">:</span> <span class="n">GPU</span> <span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.377</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;START&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.377</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;LOADING&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.384</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">175</span><span class="p">]</span> <span class="n">Final</span> <span class="n">network</span> <span class="n">inputs</span><span class="p">:</span>
+<span class="n">Input</span> <span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">;</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="p">;</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span> <span class="n">effective</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span> <span class="n">precision</span><span class="p">:</span> <span class="n">FP32</span><span class="p">;</span> <span class="n">layout</span><span class="p">:</span> <span class="n">N</span><span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.384</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">209</span><span class="p">]</span> <span class="n">Output</span> <span class="n">name</span><span class="p">:</span> <span class="n">detection_out</span><span class="p">;</span> <span class="n">mapping</span> <span class="n">name</span><span class="p">:</span> <span class="p">;</span> <span class="n">shape</span><span class="p">:</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">200</span> <span class="mi">7</span> <span class="p">;</span> <span class="n">effective</span> <span class="n">shape</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">200</span> <span class="mi">7</span> <span class="p">;</span> <span class="n">precision</span><span class="p">:</span> <span class="n">FP32</span><span class="p">;</span> <span class="n">layout</span><span class="p">:</span> <span class="n">N</span><span class="o">...</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.783</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">modelmanager</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">394</span><span class="p">]</span> <span class="n">Plugin</span> <span class="n">config</span> <span class="k">for</span> <span class="n">device</span> <span class="n">GPU</span><span class="p">:</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.783</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">modelmanager</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">398</span><span class="p">]</span> <span class="n">OVMS</span> <span class="nb">set</span> <span class="n">plugin</span> <span class="n">settings</span> <span class="n">key</span><span class="p">:</span><span class="n">GPU_THROUGHPUT_STREAMS</span><span class="p">;</span> <span class="n">value</span><span class="p">:</span><span class="n">GPU_THROUGHPUT_AUTO</span><span class="p">;</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.790</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelinstance</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">477</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">model</span> <span class="n">model</span><span class="p">;</span> <span class="n">version</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">batch</span> <span class="n">size</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">No</span> <span class="n">of</span> <span class="n">InferRequests</span><span class="p">:</span> <span class="mi">4</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span> <span class="mi">16</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mf">08.790</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">serving</span><span class="p">][</span><span class="n">info</span><span class="p">][</span><span class="n">modelversionstatus</span><span class="o">.</span><span class="n">hpp</span><span class="p">:</span><span class="mi">155</span><span class="p">]</span> <span class="n">STATUS</span> <span class="n">CHANGE</span><span class="p">:</span> <span class="n">Version</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">model</span> <span class="n">model</span> <span class="n">status</span> <span class="n">change</span><span class="o">.</span> <span class="n">New</span> <span class="n">status</span><span class="p">:</span> <span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;AVAILABLE&quot;</span><span class="p">,</span> <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Optical Character Recognition (OCR) with OpenVINO &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/tabs.css" type="text/css" />
+    <script src="../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/custom.js"></script>
+    <script src="../_static/js/graphs.js"></script>
+    <script src="../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/notebooks/208-optical-character-recognition-with-output.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../pages/resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings">
+   Settings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#download-models">
+   Download Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convert-models">
+   Convert Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-models">
+   Copy Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-detection">
+   Object Detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-detection-model">
+     Load Detection Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-an-image">
+     Load an Image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#do-inference">
+     Do Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-detection-results">
+     Get Detection Results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#text-recogntion">
+   Text Recogntion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-text-recognition-model">
+     Load Text Recognition Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Do Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#show-results">
+   Show Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#show-detected-text-boxes-and-ocr-results-for-the-image">
+     Show Detected Text Boxes and OCR Results for the Image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#show-the-ocr-result-per-bounding-box">
+     Show the OCR Result per Bounding Box
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-annotations-in-plain-text-format">
+     Print Annotations in Plain Text Format
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="optical-character-recognition-ocr-with-openvino">
+<h1>Optical Character Recognition (OCR) with OpenVINO<a class="headerlink" href="#optical-character-recognition-ocr-with-openvino" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial demonstrates how to perform optical character recognition
+(OCR) with OpenVINO models. It is a continuation of the
+<a class="reference external" href="004-hello-detection-with-output.html">004-hello-detection</a>
+tutorial, which shows only text detection.</p>
+<p>The
+<a class="reference external" href="https://docs.openvino.ai/latest/omz_models_model_horizontal_text_detection_0001.html">horizontal-text-detection-0001</a>
+and
+<a class="reference external" href="https://docs.openvino.ai/latest/omz_models_model_text_recognition_resnet_fc.html">text-recognition-resnet</a>
+models are used together for text detection and then text recognition.</p>
+<p>In this tutorial, Open Model Zoo tools including Model Downloader, Model
+Converter and Info Dumper are used to download and convert the models
+from the <a class="reference external" href="https://github.com/openvinotoolkit/open_model_zoo">Open Model
+Zoo</a>. See the
+<a class="reference external" href="104-model-tools-with-output.html">104-model-tools</a> tutorial
+for more information about these tools.</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">openvino.runtime</span> <span class="kn">import</span> <span class="n">Core</span>
+<span class="kn">from</span> <span class="nn">yaspin</span> <span class="kn">import</span> <span class="n">yaspin</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../utils&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">notebook_utils</span> <span class="kn">import</span> <span class="n">load_image</span>
+</pre></div>
+</div>
+</section>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ie</span> <span class="o">=</span> <span class="n">Core</span><span class="p">()</span>
+
+<span class="n">model_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="s2">&quot;FP16&quot;</span>
+<span class="n">detection_model</span> <span class="o">=</span> <span class="s2">&quot;horizontal-text-detection-0001&quot;</span>
+<span class="n">recognition_model</span> <span class="o">=</span> <span class="s2">&quot;text-recognition-resnet-fc&quot;</span>
+<span class="n">base_model_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;~/open_model_zoo_models&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="n">omz_cache_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;~/open_model_zoo_cache&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+
+<span class="n">model_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="download-models">
+<h2>Download Models<a class="headerlink" href="#download-models" title="Permalink to this headline">¶</a></h2>
+<p>The next cells will run Open Model Zoo’s Model Downloader to download
+the detection and recognition models. If the models have been downloaded
+before, they will not be downloaded again.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">download_command</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;omz_downloader --name </span><span class="si">{</span><span class="n">detection_model</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s2"> --output_dir </span><span class="si">{</span><span class="n">base_model_dir</span><span class="si">}</span><span class="s2"> --cache_dir </span><span class="si">{</span><span class="n">omz_cache_dir</span><span class="si">}</span><span class="s2"> --precision </span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Download command: `</span><span class="si">{</span><span class="n">download_command</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">yaspin</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">detection_model</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sp</span><span class="p">:</span>
+    <span class="n">download_result</span> <span class="o">=</span> <span class="o">!</span><span class="nv">$download_command</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">download_result</span><span class="p">)</span>
+    <span class="n">sp</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Finished downloading </span><span class="si">{</span><span class="n">detection_model</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">sp</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;✔&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Download command:
+<code class="docutils literal notranslate"><span class="pre">omz_downloader</span> <span class="pre">--name</span> <span class="pre">horizontal-text-detection-0001,text-recognition-resnet-fc</span> <span class="pre">--output_dir</span> <span class="pre">/opt/home/k8sworker/open_model_zoo_models</span> <span class="pre">--cache_dir</span> <span class="pre">/opt/home/k8sworker/open_model_zoo_cache</span> <span class="pre">--precision</span> <span class="pre">FP16</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⠸[0m Downloading horizontal-text-detection-0001, text-recognition-resnet-fc[K[&#39;################|| Downloading horizontal-text-detection-0001 ||################&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/intel/horizontal-text-detection-0001/FP16/horizontal-text-detection-0001.xml from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/intel/horizontal-text-detection-0001/FP16/horizontal-text-detection-0001.bin from the cache&#39;, &#39;&#39;, &#39;################|| Downloading text-recognition-resnet-fc ||################&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/model.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/weight_init.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/heads/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/heads/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/heads/fc_head.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/heads/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/body.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/component.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/sequences/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/sequences/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/sequences/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/bricks/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/bricks/bricks.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/bricks/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/bricks/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/backbones/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/backbones/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/backbones/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/backbones/resnet.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/enhance_modules/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/enhance_modules/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/enhance_modules/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/builder.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/conv_module.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/fc_module.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/norm.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/__init__.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/common.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/registry.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/configs/resnet_fc.py from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/ckpt/resnet_fc.pth from the cache&#39;, &#39;&#39;, &#39;========== Retrieving /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/addict-2.4.0-py3-none-any.whl from the cache&#39;, &#39;&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/heads/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/sequences/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/component.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/decoders/bricks/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/backbones/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/bodies/feature_extractors/encoders/enhance_modules/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/models/utils/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/__init__.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py&#39;, &#39;========== Replacing text in /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/utils/config.py&#39;, &#39;========== Unpacking /opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/addict-2.4.0-py3-none-any.whl&#39;, &#39;&#39;]
+[K✔[0m Finished downloading horizontal-text-detection-0001, text-recognition-resnet-fc
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### The text-recognition-resnet-fc model consists of many files. All filenames are printed in</span>
+<span class="c1">### Model Downloader&#39;s output. Uncomment the next two lines to show this output</span>
+
+<span class="c1"># for line in download_result:</span>
+<span class="c1">#    print(line)</span>
+</pre></div>
+</div>
+</section>
+<section id="convert-models">
+<h2>Convert Models<a class="headerlink" href="#convert-models" title="Permalink to this headline">¶</a></h2>
+<p>The downloaded detection model is an Intel model, which is already in
+OpenVINO’s Intermediate Representation (IR) format. The text recognition
+model is a public model which needs to be converted to IR. Since this
+model was downloaded from Open Model Zoo we can use Model Converter to
+convert the model to IR format.</p>
+<p>Model Converter output will be displayed. Conversion was succesful if
+the last lines of output include
+<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">SUCCESS</span> <span class="pre">]</span> <span class="pre">Generated</span> <span class="pre">IR</span> <span class="pre">version</span> <span class="pre">11</span> <span class="pre">model.</span></code></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convert_command</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;omz_converter --name </span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s2"> --precisions </span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2"> --download_dir </span><span class="si">{</span><span class="n">base_model_dir</span><span class="si">}</span><span class="s2"> --output_dir </span><span class="si">{</span><span class="n">base_model_dir</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Convert command: `</span><span class="si">{</span><span class="n">convert_command</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Converting </span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">))</span>
+<span class="o">!</span> <span class="nv">$convert_command</span>
+</pre></div>
+</div>
+<p>Convert command:
+<code class="docutils literal notranslate"><span class="pre">omz_converter</span> <span class="pre">--name</span> <span class="pre">text-recognition-resnet-fc</span> <span class="pre">--precisions</span> <span class="pre">FP16</span> <span class="pre">--download_dir</span> <span class="pre">/opt/home/k8sworker/open_model_zoo_models</span> <span class="pre">--output_dir</span> <span class="pre">/opt/home/k8sworker/open_model_zoo_models</span></code></p>
+<p>Converting text-recognition-resnet-fc…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==========</span> <span class="n">Converting</span> <span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span> <span class="n">to</span> <span class="n">ONNX</span>
+<span class="n">Conversion</span> <span class="n">to</span> <span class="n">ONNX</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">--</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">openvino</span><span class="o">/</span><span class="n">model_zoo</span><span class="o">/</span><span class="n">internal_scripts</span><span class="o">/</span><span class="n">pytorch_to_onnx</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">path</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">openvino</span><span class="o">/</span><span class="n">model_zoo</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">path</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">get_model</span> <span class="o">--</span><span class="n">import</span><span class="o">-</span><span class="n">module</span><span class="o">=</span><span class="n">model</span> <span class="s1">&#39;--model-param=file_config=r&quot;/opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/configs/resnet_fc.py&quot;&#39;</span> <span class="s1">&#39;--model-param=weights=r&quot;/opt/home/k8sworker/open_model_zoo_models/public/text-recognition-resnet-fc/vedastr/ckpt/resnet_fc.pth&quot;&#39;</span> <span class="o">--</span><span class="nb">input</span><span class="o">-</span><span class="n">shape</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">100</span> <span class="o">--</span><span class="nb">input</span><span class="o">-</span><span class="n">names</span><span class="o">=</span><span class="nb">input</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">names</span><span class="o">=</span><span class="n">output</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">resnet_fc</span><span class="o">.</span><span class="n">onnx</span>
+
+<span class="n">ONNX</span> <span class="n">check</span> <span class="n">passed</span> <span class="n">successfully</span><span class="o">.</span>
+
+<span class="o">==========</span> <span class="n">Converting</span> <span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span> <span class="n">to</span> <span class="n">IR</span> <span class="p">(</span><span class="n">FP16</span><span class="p">)</span>
+<span class="n">Conversion</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">--</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mo</span> <span class="o">--</span><span class="n">framework</span><span class="o">=</span><span class="n">onnx</span> <span class="o">--</span><span class="n">data_type</span><span class="o">=</span><span class="n">FP16</span> <span class="o">--</span><span class="n">output_dir</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">FP16</span> <span class="o">--</span><span class="n">model_name</span><span class="o">=</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span> <span class="o">--</span><span class="nb">input</span><span class="o">=</span><span class="nb">input</span> <span class="s1">&#39;--mean_values=input[127.5]&#39;</span> <span class="s1">&#39;--scale_values=input[127.5]&#39;</span> <span class="o">--</span><span class="n">output</span><span class="o">=</span><span class="n">output</span> <span class="o">--</span><span class="n">input_model</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">resnet_fc</span><span class="o">.</span><span class="n">onnx</span> <span class="s1">&#39;--layout=input(NCHW)&#39;</span> <span class="s1">&#39;--input_shape=[1, 1, 32, 100]&#39;</span>
+
+<span class="n">Model</span> <span class="n">Optimizer</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="n">Common</span> <span class="n">parameters</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">Path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Input</span> <span class="n">Model</span><span class="p">:</span>  <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">resnet_fc</span><span class="o">.</span><span class="n">onnx</span>
+    <span class="o">-</span> <span class="n">Path</span> <span class="k">for</span> <span class="n">generated</span> <span class="n">IR</span><span class="p">:</span>    <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">FP16</span>
+    <span class="o">-</span> <span class="n">IR</span> <span class="n">output</span> <span class="n">name</span><span class="p">:</span>   <span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span>
+    <span class="o">-</span> <span class="n">Log</span> <span class="n">level</span><span class="p">:</span>    <span class="n">ERROR</span>
+    <span class="o">-</span> <span class="n">Batch</span><span class="p">:</span>    <span class="n">Not</span> <span class="n">specified</span><span class="p">,</span> <span class="n">inherited</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">model</span>
+    <span class="o">-</span> <span class="n">Input</span> <span class="n">layers</span><span class="p">:</span>     <span class="nb">input</span>
+    <span class="o">-</span> <span class="n">Output</span> <span class="n">layers</span><span class="p">:</span>    <span class="n">output</span>
+    <span class="o">-</span> <span class="n">Input</span> <span class="n">shapes</span><span class="p">:</span>     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="o">-</span> <span class="n">Source</span> <span class="n">layout</span><span class="p">:</span>    <span class="n">Not</span> <span class="n">specified</span>
+    <span class="o">-</span> <span class="n">Target</span> <span class="n">layout</span><span class="p">:</span>    <span class="n">Not</span> <span class="n">specified</span>
+    <span class="o">-</span> <span class="n">Layout</span><span class="p">:</span>   <span class="nb">input</span><span class="p">(</span><span class="n">NCHW</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">Mean</span> <span class="n">values</span><span class="p">:</span>  <span class="nb">input</span><span class="p">[</span><span class="mf">127.5</span><span class="p">]</span>
+    <span class="o">-</span> <span class="n">Scale</span> <span class="n">values</span><span class="p">:</span>     <span class="nb">input</span><span class="p">[</span><span class="mf">127.5</span><span class="p">]</span>
+    <span class="o">-</span> <span class="n">Scale</span> <span class="n">factor</span><span class="p">:</span>     <span class="n">Not</span> <span class="n">specified</span>
+    <span class="o">-</span> <span class="n">Precision</span> <span class="n">of</span> <span class="n">IR</span><span class="p">:</span>  <span class="n">FP16</span>
+    <span class="o">-</span> <span class="n">Enable</span> <span class="n">fusing</span><span class="p">:</span>    <span class="kc">True</span>
+    <span class="o">-</span> <span class="n">User</span> <span class="n">transformations</span><span class="p">:</span>     <span class="n">Not</span> <span class="n">specified</span>
+    <span class="o">-</span> <span class="n">Reverse</span> <span class="nb">input</span> <span class="n">channels</span><span class="p">:</span>   <span class="kc">False</span>
+    <span class="o">-</span> <span class="n">Enable</span> <span class="n">IR</span> <span class="n">generation</span> <span class="k">for</span> <span class="n">fixed</span> <span class="nb">input</span> <span class="n">shape</span><span class="p">:</span>   <span class="kc">False</span>
+    <span class="o">-</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">transformations</span> <span class="n">config</span> <span class="n">file</span><span class="p">:</span>  <span class="kc">None</span>
+<span class="n">Advanced</span> <span class="n">parameters</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">Force</span> <span class="n">the</span> <span class="n">usage</span> <span class="n">of</span> <span class="n">legacy</span> <span class="n">Frontend</span> <span class="n">of</span> <span class="n">Model</span> <span class="n">Optimizer</span> <span class="k">for</span> <span class="n">model</span> <span class="n">conversion</span> <span class="n">into</span> <span class="n">IR</span><span class="p">:</span>   <span class="kc">False</span>
+    <span class="o">-</span> <span class="n">Force</span> <span class="n">the</span> <span class="n">usage</span> <span class="n">of</span> <span class="n">new</span> <span class="n">Frontend</span> <span class="n">of</span> <span class="n">Model</span> <span class="n">Optimizer</span> <span class="k">for</span> <span class="n">model</span> <span class="n">conversion</span> <span class="n">into</span> <span class="n">IR</span><span class="p">:</span>  <span class="kc">False</span>
+<span class="n">OpenVINO</span> <span class="n">runtime</span> <span class="n">found</span> <span class="ow">in</span><span class="p">:</span>  <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">cibuilds</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/</span><span class="n">OVNotebookOps</span><span class="o">-</span><span class="mi">188</span><span class="o">/.</span><span class="n">workspace</span><span class="o">/</span><span class="n">scm</span><span class="o">/</span><span class="n">ov</span><span class="o">-</span><span class="n">notebook</span><span class="o">/.</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">openvino</span>
+<span class="n">OpenVINO</span> <span class="n">runtime</span> <span class="n">version</span><span class="p">:</span>   <span class="mf">2022.1.0</span><span class="o">-</span><span class="mi">7019</span><span class="o">-</span><span class="n">cdb9bec7210</span><span class="o">-</span><span class="n">releases</span><span class="o">/</span><span class="mi">2022</span><span class="o">/</span><span class="mi">1</span>
+<span class="n">Model</span> <span class="n">Optimizer</span> <span class="n">version</span><span class="p">:</span>    <span class="mf">2022.1.0</span><span class="o">-</span><span class="mi">7019</span><span class="o">-</span><span class="n">cdb9bec7210</span><span class="o">-</span><span class="n">releases</span><span class="o">/</span><span class="mi">2022</span><span class="o">/</span><span class="mi">1</span>
+<span class="p">[</span> <span class="n">SUCCESS</span> <span class="p">]</span> <span class="n">Generated</span> <span class="n">IR</span> <span class="n">version</span> <span class="mi">11</span> <span class="n">model</span><span class="o">.</span>
+<span class="p">[</span> <span class="n">SUCCESS</span> <span class="p">]</span> <span class="n">XML</span> <span class="n">file</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">FP16</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">.</span><span class="n">xml</span>
+<span class="p">[</span> <span class="n">SUCCESS</span> <span class="p">]</span> <span class="n">BIN</span> <span class="n">file</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">FP16</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">.</span><span class="n">bin</span>
+<span class="p">[</span> <span class="n">SUCCESS</span> <span class="p">]</span> <span class="n">Total</span> <span class="n">execution</span> <span class="n">time</span><span class="p">:</span> <span class="mf">3.69</span> <span class="n">seconds</span><span class="o">.</span>
+<span class="p">[</span> <span class="n">SUCCESS</span> <span class="p">]</span> <span class="n">Memory</span> <span class="n">consumed</span><span class="p">:</span> <span class="mi">1443</span> <span class="n">MB</span><span class="o">.</span>
+<span class="n">It</span><span class="s1">&#39;s been a while, check for a new version of Intel(R) Distribution of OpenVINO(TM) toolkit here https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit/download.html?cid=other&amp;source=prod&amp;campid=ww_2022_bu_IOTG_OpenVINO-2022-1&amp;content=upg_all&amp;medium=organic or on the GitHub*</span>
+<span class="p">[</span> <span class="n">INFO</span> <span class="p">]</span> <span class="n">The</span> <span class="n">model</span> <span class="n">was</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">IR</span> <span class="n">v11</span><span class="p">,</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">model</span> <span class="nb">format</span> <span class="n">that</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">the</span> <span class="n">source</span> <span class="n">DL</span> <span class="n">framework</span> <span class="nb">input</span><span class="o">/</span><span class="n">output</span> <span class="nb">format</span><span class="o">.</span> <span class="n">While</span> <span class="n">IR</span> <span class="n">v11</span> <span class="ow">is</span> <span class="n">backwards</span> <span class="n">compatible</span> <span class="k">with</span> <span class="n">OpenVINO</span> <span class="n">Inference</span> <span class="n">Engine</span> <span class="n">API</span> <span class="n">v1</span><span class="mf">.0</span><span class="p">,</span> <span class="n">please</span> <span class="n">use</span> <span class="n">API</span> <span class="n">v2</span><span class="mf">.0</span> <span class="p">(</span><span class="k">as</span> <span class="n">of</span> <span class="mf">2022.1</span><span class="p">)</span> <span class="n">to</span> <span class="n">take</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">improvements</span> <span class="ow">in</span> <span class="n">IR</span> <span class="n">v11</span><span class="o">.</span>
+<span class="n">Find</span> <span class="n">more</span> <span class="n">information</span> <span class="n">about</span> <span class="n">API</span> <span class="n">v2</span><span class="mf">.0</span> <span class="ow">and</span> <span class="n">IR</span> <span class="n">v11</span> <span class="n">at</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">openvino</span><span class="o">.</span><span class="n">ai</span>
+</pre></div>
+</div>
+</section>
+<section id="copy-models">
+<h2>Copy Models<a class="headerlink" href="#copy-models" title="Permalink to this headline">¶</a></h2>
+<p>To make it easier to work with the models, we copy the models from the
+Open Model Zoo tree to the <em>model</em> subdirectory relative to this Jupyter
+notebook. We get the path to the Open Model Zoo model directory from
+Open Model Zoo’s <code class="docutils literal notranslate"><span class="pre">omz_info_dumper</span></code> tool.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models_info_output</span> <span class="o">=</span> <span class="o">%</span><span class="k">sx</span> omz_info_dumper --name <span class="nv">$detection_model</span>,<span class="nv">$recognition_model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sx omz_info_dumper --name </span><span class="si">{</span><span class="n">detection_model</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">recognition_model</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">detection_model_info</span><span class="p">,</span> <span class="n">recognition_model_info</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;horizontal-text-detection-0001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;composite_model_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Horizontal text detector based on FCOS with light MobileNetV2 backbone&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;framework&quot;</span><span class="p">:</span> <span class="s2">&quot;dldt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;license_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/openvinotoolkit/open_model_zoo/master/LICENSE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;precisions&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;FP16&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;FP16-INT8&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;FP32&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;quantization_output_precisions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;subdirectory&quot;</span><span class="p">:</span> <span class="s2">&quot;intel/horizontal-text-detection-0001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_type&quot;</span><span class="p">:</span> <span class="s2">&quot;detection&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;text-recognition-resnet-fc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;composite_model_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">text-recognition-resnet-fc</span><span class="se">\&quot;</span><span class="s2"> is a simple and preformant scene text recognition model based on ResNet with Fully Connected text recognition head. Source implementation on a PyTorch* framework could be found here &lt;https://github.com/Media-Smart/vedastr&gt;. Model is able to recognize alphanumeric text.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;framework&quot;</span><span class="p">:</span> <span class="s2">&quot;pytorch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;license_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/Media-Smart/vedastr/0fd2a0bd7819ae4daa2a161501e9f1c2ac67e96a/LICENSE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;precisions&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;FP16&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;FP32&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;quantization_output_precisions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;subdirectory&quot;</span><span class="p">:</span> <span class="s2">&quot;public/text-recognition-resnet-fc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_type&quot;</span><span class="p">:</span> <span class="s2">&quot;optical_character_recognition&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">model_info</span> <span class="ow">in</span> <span class="p">(</span><span class="n">detection_model_info</span><span class="p">,</span> <span class="n">recognition_model_info</span><span class="p">):</span>
+    <span class="n">omz_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;subdirectory&quot;</span><span class="p">])</span>
+    <span class="n">omz_model_dir</span> <span class="o">=</span> <span class="n">base_model_dir</span> <span class="o">/</span> <span class="n">omz_dir</span> <span class="o">/</span> <span class="n">precision</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">omz_model_dir</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_file</span> <span class="ow">in</span> <span class="n">omz_model_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">model_file</span><span class="p">,</span> <span class="n">model_dir</span> <span class="o">/</span> <span class="n">model_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileExistsError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+<span class="n">detection_model_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_dir</span> <span class="o">/</span> <span class="n">detection_model</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.xml&quot;</span><span class="p">)</span>
+<span class="n">recognition_model_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_dir</span> <span class="o">/</span> <span class="n">recognition_model</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sx</span> <span class="n">omz_info_dumper</span> <span class="o">--</span><span class="n">name</span> <span class="n">horizontal</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">detection</span><span class="o">-</span><span class="mi">0001</span><span class="p">,</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">horizontal</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">detection</span><span class="o">-</span><span class="mi">0001</span><span class="o">/</span><span class="n">FP16</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k8sworker</span><span class="o">/</span><span class="n">open_model_zoo_models</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">text</span><span class="o">-</span><span class="n">recognition</span><span class="o">-</span><span class="n">resnet</span><span class="o">-</span><span class="n">fc</span><span class="o">/</span><span class="n">FP16</span>
+</pre></div>
+</div>
+</section>
+<section id="object-detection">
+<h2>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h2>
+<p>Load the detection model, load an image, do inference and get the
+detection inference result.</p>
+<section id="load-detection-model">
+<h3>Load Detection Model<a class="headerlink" href="#load-detection-model" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detection_model</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">read_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">detection_model_path</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">detection_model_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.bin&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">detection_compiled_model</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">detection_model</span><span class="p">,</span> <span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;CPU&quot;</span><span class="p">)</span>
+
+<span class="n">detection_input_layer</span> <span class="o">=</span> <span class="n">detection_compiled_model</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-an-image">
+<h3>Load an Image<a class="headerlink" href="#load-an-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># image_file can point to a URL or local image</span>
+<span class="n">image_file</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/openvinotoolkit/openvino_notebooks/raw/main/notebooks/004-hello-detection/data/intel_rnb.jpg&quot;</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
+
+<span class="c1"># N,C,H,W = batch size, number of channels, height, width</span>
+<span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">detection_input_layer</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="c1"># Resize image to meet network expected input sizes</span>
+<span class="n">resized_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">))</span>
+
+<span class="c1"># Reshape to network input shape</span>
+<span class="n">input_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">resized_image</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">));</span>
+</pre></div>
+</div>
+<img alt="../_images/208-optical-character-recognition-with-output_15_0.png" src="../_images/208-optical-character-recognition-with-output_15_0.png" />
+</section>
+<section id="do-inference">
+<h3>Do Inference<a class="headerlink" href="#do-inference" title="Permalink to this headline">¶</a></h3>
+<p>Text boxes are detected in the images and returned as blobs of data in
+the shape of <code class="docutils literal notranslate"><span class="pre">[100,</span> <span class="pre">5]</span></code>. Each detection description has the format
+<code class="docutils literal notranslate"><span class="pre">[x_min,</span> <span class="pre">y_min,</span> <span class="pre">x_max,</span> <span class="pre">y_max,</span> <span class="pre">conf]</span></code>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_key</span> <span class="o">=</span> <span class="n">detection_compiled_model</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;boxes&quot;</span><span class="p">)</span>
+<span class="n">boxes</span> <span class="o">=</span> <span class="n">detection_compiled_model</span><span class="p">([</span><span class="n">input_image</span><span class="p">])[</span><span class="n">output_key</span><span class="p">]</span>
+
+<span class="c1"># Remove zero only boxes</span>
+<span class="n">boxes</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">boxes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+<section id="get-detection-results">
+<h3>Get Detection Results<a class="headerlink" href="#get-detection-results" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply_by_ratio</span><span class="p">(</span><span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="nb">max</span><span class="p">(</span><span class="n">shape</span> <span class="o">*</span> <span class="n">ratio_y</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">shape</span> <span class="o">*</span> <span class="n">ratio_x</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">shape</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">box</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">run_preprocesing_on_crop</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">net_shape</span><span class="p">):</span>
+    <span class="n">temp_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">net_shape</span><span class="p">)</span>
+    <span class="n">temp_img</span> <span class="o">=</span> <span class="n">temp_img</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">temp_img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">temp_img</span>
+
+
+<span class="k">def</span> <span class="nf">convert_result_to_image</span><span class="p">(</span><span class="n">bgr_image</span><span class="p">,</span> <span class="n">resized_image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">conf_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Define colors for boxes and descriptions</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)}</span>
+
+    <span class="c1"># Fetch image shapes to calculate ratio</span>
+    <span class="p">(</span><span class="n">real_y</span><span class="p">,</span> <span class="n">real_x</span><span class="p">),</span> <span class="p">(</span><span class="n">resized_y</span><span class="p">,</span> <span class="n">resized_x</span><span class="p">)</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">resized_image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span> <span class="o">=</span> <span class="n">real_x</span> <span class="o">/</span> <span class="n">resized_x</span><span class="p">,</span> <span class="n">real_y</span> <span class="o">/</span> <span class="n">resized_y</span>
+
+    <span class="c1"># Convert base image from bgr to rgb format</span>
+    <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">bgr_image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+    <span class="c1"># Iterate through non-zero boxes</span>
+    <span class="k">for</span> <span class="n">box</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">:</span>
+        <span class="c1"># Pick confidence factor from last place in array</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">conf</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="c1"># Convert float to int and multiply position of each box by x and y ratio</span>
+            <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">multiply_by_ratio</span><span class="p">(</span><span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span><span class="p">,</span> <span class="n">box</span><span class="p">))</span>
+
+            <span class="c1"># Draw box based on position, parameters in rectangle function are: image, start_point, end_point, color, thickness</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">,</span> <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">),</span> <span class="p">(</span><span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">),</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+
+            <span class="c1"># Add text to image based on position and confidence, parameters in putText function are: image, text, bottomleft_corner_textfield, font, font_scale, color, thickness, line_type</span>
+            <span class="k">if</span> <span class="n">conf_labels</span><span class="p">:</span>
+                <span class="c1"># Create background box based on annotation length</span>
+                <span class="p">(</span><span class="n">text_w</span><span class="p">,</span> <span class="n">text_h</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTextSize</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">annotation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_TRIPLEX</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span>
+                <span class="p">)</span>
+                <span class="n">image_copy</span> <span class="o">=</span> <span class="n">rgb_image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+                    <span class="n">image_copy</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">-</span> <span class="n">text_h</span> <span class="o">-</span> <span class="mi">10</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">x_min</span> <span class="o">+</span> <span class="n">text_w</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">-</span> <span class="mi">10</span><span class="p">),</span>
+                    <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">],</span>
+                    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="c1"># Add weighted image copy with white boxes under text</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">addWeighted</span><span class="p">(</span><span class="n">image_copy</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">rgb_image</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rgb_image</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span>
+                    <span class="n">rgb_image</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">annotation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">-</span> <span class="mi">10</span><span class="p">),</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+                    <span class="mf">0.8</span><span class="p">,</span>
+                    <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">],</span>
+                    <span class="mi">1</span><span class="p">,</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">,</span>
+                <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rgb_image</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="text-recogntion">
+<h2>Text Recogntion<a class="headerlink" href="#text-recogntion" title="Permalink to this headline">¶</a></h2>
+<p>Load the text recognition model and do inference on the detected boxes
+from the detection model.</p>
+<section id="load-text-recognition-model">
+<h3>Load Text Recognition Model<a class="headerlink" href="#load-text-recognition-model" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recognition_model</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">read_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">recognition_model_path</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">recognition_model_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.bin&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">recognition_compiled_model</span> <span class="o">=</span> <span class="n">ie</span><span class="o">.</span><span class="n">compile_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">recognition_model</span><span class="p">,</span> <span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;CPU&quot;</span><span class="p">)</span>
+
+<span class="n">recognition_output_layer</span> <span class="o">=</span> <span class="n">recognition_compiled_model</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">recognition_input_layer</span> <span class="o">=</span> <span class="n">recognition_compiled_model</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Get height and width of input layer</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">recognition_input_layer</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Do Inference<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate scale for image resizing</span>
+<span class="p">(</span><span class="n">real_y</span><span class="p">,</span> <span class="n">real_x</span><span class="p">),</span> <span class="p">(</span><span class="n">resized_y</span><span class="p">,</span> <span class="n">resized_x</span><span class="p">)</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">resized_image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span> <span class="o">=</span> <span class="n">real_x</span> <span class="o">/</span> <span class="n">resized_x</span><span class="p">,</span> <span class="n">real_y</span> <span class="o">/</span> <span class="n">resized_y</span>
+
+<span class="c1"># Convert image to grayscale for text recognition model</span>
+<span class="n">grayscale_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+
+<span class="c1"># Get dictionary to encode output, based on model documentation</span>
+<span class="n">letters</span> <span class="o">=</span> <span class="s2">&quot;~0123456789abcdefghijklmnopqrstuvwxyz&quot;</span>
+
+<span class="c1"># Prepare empty list for annotations</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">cropped_images</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="c1"># fig, ax = plt.subplots(len(boxes), 1, figsize=(5,15), sharex=True, sharey=True)</span>
+<span class="c1"># For each crop, based on boxes given by detection model we want to get annotations</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">crop</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+    <span class="c1"># Get coordinates on corners of crop</span>
+    <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">multiply_by_ratio</span><span class="p">(</span><span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span><span class="p">,</span> <span class="n">crop</span><span class="p">))</span>
+    <span class="n">image_crop</span> <span class="o">=</span> <span class="n">run_preprocesing_on_crop</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">],</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">))</span>
+
+    <span class="c1"># Run inference with recognition model</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">recognition_compiled_model</span><span class="p">([</span><span class="n">image_crop</span><span class="p">])[</span><span class="n">recognition_output_layer</span><span class="p">]</span>
+
+    <span class="c1"># Squeeze output to remove unnececery dimension</span>
+    <span class="n">recognition_results_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="c1"># Read annotation based on probabilities from output layer</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">recognition_results_test</span><span class="p">:</span>
+        <span class="n">parsed_letter</span> <span class="o">=</span> <span class="n">letters</span><span class="p">[</span><span class="n">letter</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+
+        <span class="c1"># Returning 0 index from argmax signalises end of string</span>
+        <span class="k">if</span> <span class="n">parsed_letter</span> <span class="o">==</span> <span class="n">letters</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_letter</span><span class="p">)</span>
+    <span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">annotation</span><span class="p">))</span>
+    <span class="n">cropped_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">])</span>
+    <span class="n">cropped_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cropped_image</span><span class="p">)</span>
+
+<span class="n">boxes_with_annotations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">annotations</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="show-results">
+<h2>Show Results<a class="headerlink" href="#show-results" title="Permalink to this headline">¶</a></h2>
+<section id="show-detected-text-boxes-and-ocr-results-for-the-image">
+<h3>Show Detected Text Boxes and OCR Results for the Image<a class="headerlink" href="#show-detected-text-boxes-and-ocr-results-for-the-image" title="Permalink to this headline">¶</a></h3>
+<p>Visualize the result by drawing boxes around recognized text and showing
+the OCR result from the text recognition model</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">convert_result_to_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">resized_image</span><span class="p">,</span> <span class="n">boxes_with_annotations</span><span class="p">,</span> <span class="n">conf_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">));</span>
+</pre></div>
+</div>
+<img alt="../_images/208-optical-character-recognition-with-output_25_0.png" src="../_images/208-optical-character-recognition-with-output_25_0.png" />
+</section>
+<section id="show-the-ocr-result-per-bounding-box">
+<h3>Show the OCR Result per Bounding Box<a class="headerlink" href="#show-the-ocr-result-per-bounding-box" title="Permalink to this headline">¶</a></h3>
+<p>Depending on the image, the OCR result may not be readable in the image
+with boxes as displayed in the cell above. In the next cell, we show the
+extracted boxes, and the OCR result per box.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cropped_image</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cropped_images</span><span class="p">,</span> <span class="n">annotations</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">cropped_image</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">annotation</span><span class="p">)))</span>
+</pre></div>
+</div>
+<img alt="../_images/208-optical-character-recognition-with-output_27_0.png" src="../_images/208-optical-character-recognition-with-output_27_0.png" />
+<p>building</p>
+<img alt="../_images/208-optical-character-recognition-with-output_27_2.png" src="../_images/208-optical-character-recognition-with-output_27_2.png" />
+<p>noyce</p>
+<img alt="../_images/208-optical-character-recognition-with-output_27_4.png" src="../_images/208-optical-character-recognition-with-output_27_4.png" />
+<p>2200</p>
+<img alt="../_images/208-optical-character-recognition-with-output_27_6.png" src="../_images/208-optical-character-recognition-with-output_27_6.png" />
+<p>n</p>
+<img alt="../_images/208-optical-character-recognition-with-output_27_8.png" src="../_images/208-optical-character-recognition-with-output_27_8.png" />
+<p>center</p>
+<img alt="../_images/208-optical-character-recognition-with-output_27_10.png" src="../_images/208-optical-character-recognition-with-output_27_10.png" />
+<p>robert</p>
+</section>
+<section id="print-annotations-in-plain-text-format">
+<h3>Print Annotations in Plain Text Format<a class="headerlink" href="#print-annotations-in-plain-text-format" title="Permalink to this headline">¶</a></h3>
+<p>Print annotations for detected text based on their position in the input
+image starting from the upper left corner.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="n">annotation</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">annotations</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;robert&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;noyce&#39;</span><span class="p">,</span> <span class="s1">&#39;building&#39;</span><span class="p">,</span> <span class="s1">&#39;2200&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

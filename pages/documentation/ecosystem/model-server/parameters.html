@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Model Server Parameters {#ovms_docs_parameters} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/parameters.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-configuration-options">
+   Model Configuration Options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server-configuration-options">
+   Server configuration options
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="model-server-parameters-ovms-docs-parameters">
+<h1>Model Server Parameters {#ovms_docs_parameters}<a class="headerlink" href="#model-server-parameters-ovms-docs-parameters" title="Permalink to this headline">¶</a></h1>
+<section id="model-configuration-options">
+<h2>Model Configuration Options<a class="headerlink" href="#model-configuration-options" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Value format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;model_name&quot;/&quot;name&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Model name exposed over gRPC and REST API.(use <code class="docutils literal notranslate"><span class="pre">model_name</span></code> in command line, <code class="docutils literal notranslate"><span class="pre">name</span></code> in json config)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;model_path&quot;/&quot;base_path&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>If using a Google Cloud Storage, Azure Storage or S3 path, see <a class="reference internal" href="using_cloud_storage.html"><span class="doc std std-doc">cloud storage guide</span></a>. The path may look as follows:<br><code class="docutils literal notranslate"><span class="pre">&quot;/opt/ml/models/model&quot;</span></code><br><code class="docutils literal notranslate"><span class="pre">&quot;gs://bucket/models/model&quot;</span></code><br><code class="docutils literal notranslate"><span class="pre">&quot;s3://bucket/models/model&quot;</span></code><br><code class="docutils literal notranslate"><span class="pre">&quot;azure://bucket/models/model&quot;</span></code><br>(use <code class="docutils literal notranslate"><span class="pre">model_path</span></code> in command line, <code class="docutils literal notranslate"><span class="pre">base_path</span></code> in json config)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;shape&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tuple/json/&quot;auto&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shape</span></code> is optional and takes precedence over <code class="docutils literal notranslate"><span class="pre">batch_size</span></code>. The <code class="docutils literal notranslate"><span class="pre">shape</span></code> argument changes the model that is enabled in the model server to fit the parameters. <code class="docutils literal notranslate"><span class="pre">shape</span></code> accepts three forms of the values: * <code class="docutils literal notranslate"><span class="pre">auto</span></code> - The model server reloads the model with the shape that matches the input data matrix. * a tuple, such as <code class="docutils literal notranslate"><span class="pre">(1,3,224,224)</span></code> - The tuple defines the shape to use for all incoming requests for models with a single input. * A dictionary of shapes, such as <code class="docutils literal notranslate"><span class="pre">{&quot;input1&quot;:&quot;(1,3,224,224)&quot;,&quot;input2&quot;:&quot;(1,3,50,50)&quot;,</span> <span class="pre">&quot;input3&quot;:&quot;auto&quot;}</span></code> - This option defines the shape of every included input in the model.Some models don’t support the reshape operation.If the model can’t be reshaped, it remains in the original parameters and all requests with incompatible input format result in an error. See the logs for more information about specific errors.Learn more about supported model graph layers including all limitations at <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_ShapeInference.html">Shape Inference Document</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;batch_size&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer/&quot;auto&quot;</span></code></p></td>
+<td><p>Optional. By default, the batch size is derived from the model, defined through the OpenVINO Model Optimizer. <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> is useful for sequential inference requests of the same batch size.Some models, such as object detection, don’t work correctly with the <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> parameter. With these models, the output’s first dimension doesn’t represent the batch size. You can set the batch size for these models by using network reshaping and setting the <code class="docutils literal notranslate"><span class="pre">shape</span></code> parameter appropriately.The default option of using the Model Optimizer to determine the batch size uses the size of the first dimension in the first input for the size. For example, if the input shape is <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">3,</span> <span class="pre">225,</span> <span class="pre">225)</span></code>, the batch size is set to <code class="docutils literal notranslate"><span class="pre">1</span></code>. If you set <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> to a numerical value, the model batch size is changed when the service starts.<code class="docutils literal notranslate"><span class="pre">batch_size</span></code> also accepts a value of <code class="docutils literal notranslate"><span class="pre">auto</span></code>. If you use <code class="docutils literal notranslate"><span class="pre">auto</span></code>, then the served model batch size is set according to the incoming data at run time. The model is reloaded each time the input data changes the batch size. You might see a delayed response upon the first request.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;layout&quot;</span> </code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json/string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">layout</span></code> is optional argument which allows to define or change the layout of model input and output tensors. To change the layout (add the transposition step), specify <code class="docutils literal notranslate"><span class="pre">&lt;target</span> <span class="pre">layout&gt;:&lt;source</span> <span class="pre">layout&gt;</span></code>. Example: <code class="docutils literal notranslate"><span class="pre">NHWC:NCHW</span></code> means that user will send input data in <code class="docutils literal notranslate"><span class="pre">NHWC</span></code> layout while the model is in <code class="docutils literal notranslate"><span class="pre">NCHW</span></code> layout.<br><br>When specified without colon separator, it doesn’t add a transposition but can determine the batch dimension. E.g. <code class="docutils literal notranslate"><span class="pre">--layout</span> <span class="pre">CN</span></code> makes prediction service treat second dimension as batch size.<br><br>When the model has multiple inputs or the output layout has to be changed, use a json format. Set the mapping, such as: <code class="docutils literal notranslate"><span class="pre">{&quot;input1&quot;:&quot;NHWC:NCHW&quot;,&quot;input2&quot;:&quot;HWN:NHW&quot;,&quot;output1&quot;:&quot;CN:NC&quot;}</span></code>.<br><br>If not specified, layout is inherited from model.<br><br><span class="xref myst">Read more</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;model_version_policy&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json/string</span></code></p></td>
+<td><p>Optional.The model version policy lets you decide which versions of a model that the OpenVINO Model Server is to serve. By default, the server serves the latest version. One reason to use this argument is to control the server memory consumption.The accepted format is in json or string. Examples: <br> <code class="docutils literal notranslate"><span class="pre">{&quot;latest&quot;:</span> <span class="pre">{</span> <span class="pre">&quot;num_versions&quot;:2</span> <span class="pre">}</span></code> <br> <code class="docutils literal notranslate"><span class="pre">{&quot;specific&quot;:</span> <span class="pre">{</span> <span class="pre">&quot;versions&quot;:[1,</span> <span class="pre">3]</span> <span class="pre">}</span> <span class="pre">}</span></code> <br> <code class="docutils literal notranslate"><span class="pre">{&quot;all&quot;:</span> <span class="pre">{}</span> <span class="pre">}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;plugin_config&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json/string</span></code></p></td>
+<td><p>List of device plugin parameters. For full list refer to <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_supported_plugins_Supported_Devices.html">OpenVINO documentation</a> and <a class="reference internal" href="performance_tuning.html"><span class="doc std std-doc">performance tuning guide</span></a>. Example: <br> <code class="docutils literal notranslate"><span class="pre">{&quot;CPU_THROUGHPUT_STREAMS&quot;:</span> <span class="pre">&quot;CPU_THROUGHPUT_AUTO&quot;}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;nireq&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>The size of internal request queue. When set to 0 or no value is set value is calculated automatically based on available resources.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;target_device&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Device name to be used to execute inference operations. Accepted values are: <code class="docutils literal notranslate"><span class="pre">&quot;CPU&quot;/&quot;HDDL&quot;/&quot;GPU&quot;/&quot;MYRIAD&quot;/&quot;MULTI&quot;/&quot;HETERO&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;stateful&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model is loaded as stateful.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;idle_sequence_cleanup&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model will be subject to periodic sequence cleaner scans.  See <a class="reference internal" href="stateful_models.html"><span class="doc std std-doc">idle sequence cleanup</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;max_sequence_number&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
+<td><p>Determines how many sequences can be handled concurrently by a model instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;low_latency_transformation&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If set to true, model server will apply <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_IE_DG_supported_plugins_Supported_Devices.html">low latency transformation</a> on model load.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="server-configuration-options">
+<h2>Server configuration options<a class="headerlink" href="#server-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>Configuration options for the server are defined only via command-line options and determine configuration common for all served models.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Value format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">port</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Number of the port used by gRPC sever.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rest_port</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Number of the port used by HTTP server (if not provided or set to 0, HTTP server will not be launched).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grpc_bind_address</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Network interface address or a hostname, to which gRPC server will bind to. Default: all interfaces: 0.0.0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rest_bind_address</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Network interface address or a hostname, to which REST server will bind to. Default: all interfaces: 0.0.0.0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grpc_workers</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Number of the gRPC server instances (must be from 1 to CPU core count). Default value is 1 and it’s optimal for most use cases. Consider setting higher value while expecting heavy load.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rest_workers</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Number of HTTP server threads. Effective when <code class="docutils literal notranslate"><span class="pre">rest_port</span></code> &gt; 0. Default value is set based on the number of CPUs.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">file_system_poll_wait_seconds</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Time interval between config and model versions changes detection in seconds. Default value is 1. Zero value disables changes monitoring.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sequence_cleaner_poll_wait_minutes</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Time interval (in minutes) between next sequence cleaner scans. Sequences of the models that are subjects to idle sequence cleanup that have been inactive since the last scan are removed. Zero value disables sequence cleaner. See <a class="reference internal" href="stateful_models.html"><span class="doc std std-doc">idle sequence cleanup</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">custom_node_resources_cleaner_interval</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Time interval (in seconds) between two consecutive resources cleanup scans. Default is 1. Must be greater than 0. See <a class="reference internal" href="custom_node_development.html"><span class="doc std std-doc">custom node development</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cpu_extension</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Optional path to a library with <a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_Extensibility_UG_Intro.html">custom layers implementation</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">log_level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;DEBUG&quot;/&quot;INFO&quot;/&quot;ERROR&quot;</span></code></p></td>
+<td><p>Serving logging level</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">log_path</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Optional path to the log file.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache_dir</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>Path to the model cache storage. Caching will be enabled if this parameter is defined or the default path /opt/cache exists</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

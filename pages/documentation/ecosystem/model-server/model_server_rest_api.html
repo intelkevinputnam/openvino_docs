@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>RESTful API {#ovms_docs_rest_api} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/model_server_rest_api.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-status-api-a-name-model-status-a">
+   Model Status API
+   <a name="model-status">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-metadata-api-a-name-model-metadata-a">
+   Model Metadata API
+   <a name="model-metadata">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predict-api-a-name-predict-a">
+   Predict API
+   <a name="predict">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#config-reload-api-a-name-config-reload-a">
+   Config Reload API
+   <a name="config-reload">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#config-status-api-a-name-config-status-a">
+   Config Status API
+   <a name="config-status">
+   </a>
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="restful-api-ovms-docs-rest-api">
+<h1>RESTful API {#ovms_docs_rest_api}<a class="headerlink" href="#restful-api-ovms-docs-rest-api" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In addition with <a class="reference internal" href="model_server_grpc_api.html"><span class="doc std std-doc">gRPC APIs</span></a> OpenVINO™ model server also supports RESTful APIs which follows the documentation from <a class="reference external" href="https://www.tensorflow.org/tfx/serving/api_rest">tensorflow serving REST API</a>. Both row and column formats of the request are implemented in these APIs. REST API is recommended when the primary goal is in reducing the number of client-side python dependencies and simpler application code.</p>
+<blockquote>
+<div><p><strong>Note</strong> : Only numerical data type is supported.</p>
+</div></blockquote>
+<p>This document covers the following API:</p>
+<ul class="simple">
+<li><p><a href="#model-status">Model Status API</a></p></li>
+<li><p><a href="#model-metadata">Model MetaData API </a></p></li>
+<li><p><a href="#predict">Predict API </a></p></li>
+<li><p><a href="#config-reload">Config Reload API </a></p></li>
+<li><p><a href="#config-status">Config Status API </a></p></li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE</strong> : The implementations for Predict, GetModelMetadata and GetModelStatus function calls are currently available. These are the most generic function calls and should address most of the usage scenarios.</p>
+</div></blockquote>
+</section>
+<section id="model-status-api-a-name-model-status-a">
+<h2>Model Status API <a name="model-status"></a><a class="headerlink" href="#model-status-api-a-name-model-status-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Get information about the status of served models.</p>
+<p><strong>URL</strong></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>GET http://<span class="si">${</span><span class="nv">REST_URL</span><span class="si">}</span>:<span class="si">${</span><span class="nv">REST_PORT</span><span class="si">}</span>/v1/models/<span class="si">${</span><span class="nv">MODEL_NAME</span><span class="si">}</span>/versions/<span class="si">${</span><span class="nv">MODEL_VERSION</span><span class="si">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong> : Including /versions/${MODEL_VERSION} is optional. If omitted status for all versions is returned in the response.</p>
+</div></blockquote>
+<p><strong>Response format</strong></p>
+<p>If successful, returns a JSON of following format :</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+  <span class="s1">&#39;model_version_status&#39;</span>:<span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s1">&#39;version&#39;</span>: &lt;model version&gt;<span class="p">|</span>&lt;string&gt;,
+      <span class="s1">&#39;state&#39;</span>: &lt;model state&gt;<span class="p">|</span>&lt;string&gt;,
+      <span class="s1">&#39;status&#39;</span>: <span class="o">{</span>
+        <span class="s1">&#39;error_code&#39;</span>: &lt;error code&gt;<span class="p">|</span>&lt;string&gt;,
+        <span class="s1">&#39;error_message&#39;</span>: &lt;error message&gt;<span class="p">|</span>&lt;string&gt;
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Usage Example</strong></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8001/v1/models/person-detection/versions/1
+<span class="o">{</span>
+  <span class="s1">&#39;model_version_status&#39;</span>:<span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s1">&#39;version&#39;</span>: <span class="s1">&#39;1&#39;</span>, 
+      <span class="s1">&#39;state&#39;</span>: <span class="s1">&#39;AVAILABLE&#39;</span>, 
+      <span class="s1">&#39;status&#39;</span>: <span class="o">{</span>
+        <span class="s1">&#39;error_code&#39;</span>: <span class="s1">&#39;OK&#39;</span>, 
+        <span class="s1">&#39;error_message&#39;</span>: <span class="s1">&#39;&#39;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Read more about <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/client/python/tensorflow-serving-api/samples/README.md#model-status-api-1">Get Model Status API usage</a></p>
+</section>
+<section id="model-metadata-api-a-name-model-metadata-a">
+<h2>Model Metadata API <a name="model-metadata"></a><a class="headerlink" href="#model-metadata-api-a-name-model-metadata-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Get the metadata of a model in the model server.</p>
+<p><strong>URL</strong></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>GET http://<span class="si">${</span><span class="nv">REST_URL</span><span class="si">}</span>:<span class="si">${</span><span class="nv">REST_PORT</span><span class="si">}</span>/v1/models/<span class="si">${</span><span class="nv">MODEL_NAME</span><span class="si">}</span>/versions/<span class="si">${</span><span class="nv">MODEL_VERSION</span><span class="si">}</span>/metadata
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong> :Including ${MODEL_VERSION} is optional. If omitted the model metadata for the latest version is returned in the response.</p>
+</div></blockquote>
+<p><strong>Response format</strong></p>
+<p>If successful, returns a JSON representation of <a class="reference external" href="https://github.com/tensorflow/serving/blob/5369880e9143aa00d586ee536c12b04e945a977c/tensorflow_serving/apis/get_model_metadata.proto#L23">GetModelMetadataResponse</a> protobuf.</p>
+<p><strong>Usage example</strong></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8001/v1/models/person-detection/versions/1/metadata
+<span class="o">{</span>
+  <span class="s2">&quot;modelSpec&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;person-detection&quot;</span>,
+    <span class="s2">&quot;version&quot;</span>: <span class="s2">&quot;1&quot;</span>
+  <span class="o">}</span>,
+  <span class="s2">&quot;metadata&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;signature_def&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;@type&quot;</span>: <span class="s2">&quot;type.googleapis.com/tensorflow.serving.SignatureDefMap&quot;</span>,
+      <span class="s2">&quot;signatureDef&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;serving_default&quot;</span>: <span class="o">{</span>
+          <span class="s2">&quot;inputs&quot;</span>: <span class="o">{</span>
+            <span class="s2">&quot;data&quot;</span>: <span class="o">{</span>
+              <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;data_2:0&quot;</span>,
+              <span class="s2">&quot;dtype&quot;</span>: <span class="s2">&quot;DT_FLOAT&quot;</span>,
+              <span class="s2">&quot;tensorShape&quot;</span>: <span class="o">{</span>
+                <span class="s2">&quot;dim&quot;</span>: <span class="o">[</span>
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;1&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;3&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;400&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;600&quot;</span>
+                  <span class="o">}</span>
+                <span class="o">]</span>
+              <span class="o">}</span>
+            <span class="o">}</span>
+          <span class="o">}</span>,
+          <span class="s2">&quot;outputs&quot;</span>: <span class="o">{</span>
+            <span class="s2">&quot;detection_out&quot;</span>: <span class="o">{</span>
+              <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;detection_out_2:0&quot;</span>,
+              <span class="s2">&quot;dtype&quot;</span>: <span class="s2">&quot;DT_FLOAT&quot;</span>,
+              <span class="s2">&quot;tensorShape&quot;</span>: <span class="o">{</span>
+                <span class="s2">&quot;dim&quot;</span>: <span class="o">[</span>
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;1&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;1&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;200&quot;</span>
+                  <span class="o">}</span>,
+                  <span class="o">{</span>
+                    <span class="s2">&quot;size&quot;</span>: <span class="s2">&quot;7&quot;</span>
+                  <span class="o">}</span>
+                <span class="o">]</span>
+              <span class="o">}</span>
+            <span class="o">}</span>
+          <span class="o">}</span>,
+          <span class="s2">&quot;methodName&quot;</span>: <span class="s2">&quot;tensorflow/serving/predict&quot;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Read more about <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/client/python/tensorflow-serving-api/samples/README.md#model-metadata-api-1">Get Model Metadata API usage</a></p>
+</section>
+<section id="predict-api-a-name-predict-a">
+<h2>Predict API <a name="predict"></a><a class="headerlink" href="#predict-api-a-name-predict-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Endpoint for running an inference with loaded models or <a class="reference internal" href="demultiplexing.html"><span class="doc std std-doc">DAGs</span></a>.</p>
+<p><strong>URL</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>POST http://${REST_URL}:${REST_PORT}/v1/models/${MODEL_NAME}/versions/${MODEL_VERSION}:predict
+</pre></div>
+</div>
+<p><strong>Request Header</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="o">//</span> <span class="p">(</span><span class="n">Optional</span><span class="p">)</span> <span class="n">Serving</span> <span class="n">signature</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">If</span> <span class="n">unspecifed</span> <span class="n">default</span> <span class="n">serving</span> <span class="n">signature</span> <span class="ow">is</span> <span class="n">used</span><span class="o">.</span>
+  <span class="s2">&quot;signature_name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+
+  <span class="o">//</span> <span class="n">Input</span> <span class="n">Tensors</span> <span class="ow">in</span> <span class="n">row</span> <span class="p">(</span><span class="s2">&quot;instances&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">columnar</span> <span class="p">(</span><span class="s2">&quot;inputs&quot;</span><span class="p">)</span> <span class="nb">format</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">A</span> <span class="n">request</span> <span class="n">can</span> <span class="n">have</span> <span class="n">either</span> <span class="n">of</span> <span class="n">them</span> <span class="n">but</span> <span class="n">NOT</span> <span class="n">both</span><span class="o">.</span>
+  <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;|&lt;</span><span class="p">(</span><span class="n">nested</span><span class="p">)</span><span class="nb">list</span><span class="o">&gt;|&lt;</span><span class="nb">list</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">objects</span><span class="o">&gt;</span>
+  <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;|&lt;</span><span class="p">(</span><span class="n">nested</span><span class="p">)</span><span class="nb">list</span><span class="o">&gt;|&lt;</span><span class="nb">object</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Read <a class="reference external" href="https://www.tensorflow.org/tfx/serving/api_rest#specifying_input_tensors_in_row_format">How to specify input tensors in row format</a> and <a class="reference external" href="https://www.tensorflow.org/tfx/serving/api_rest#specifying_input_tensors_in_column_format">How to specify input tensors in column format</a> for more details.</p>
+<p><strong>Response</strong></p>
+<p>A request in <a class="reference external" href="https://www.tensorflow.org/tfx/serving/api_rest#specifying_input_tensors_in_row_format">row format</a> has response formatted as follows :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;|&lt;</span><span class="p">(</span><span class="n">nested</span><span class="p">)</span><span class="nb">list</span><span class="o">&gt;|&lt;</span><span class="nb">list</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">objects</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A request in <a class="reference external" href="https://www.tensorflow.org/tfx/serving/api_rest#specifying_input_tensors_in_column_format">column format</a> has response formatted as follows :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;|&lt;</span><span class="p">(</span><span class="n">nested</span><span class="p">)</span><span class="nb">list</span><span class="o">&gt;|&lt;</span><span class="nb">object</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Besides numerical values, it is possible to pass binary inputs. They must be Base64 encoded in passed in <code class="docutils literal notranslate"><span class="pre">b64</span></code> key like below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;b64&quot;</span><span class="p">:</span> <span class="s2">&quot;aW1hZ2UgYnl0ZXM=&quot;</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;b64&quot;</span><span class="p">:</span> <span class="s2">&quot;YXdlc29tZSBpbWFnZSBieXRlcw==&quot;</span> <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check <a class="reference internal" href="binary_input.html"><span class="doc std std-doc">how binary data is handled in OpenVINO Model Server</span></a></p>
+<p>Read more about <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/client/python/tensorflow-serving-api/samples/README.md#predict-api-1">Predict API usage</a></p>
+</section>
+<section id="config-reload-api-a-name-config-reload-a">
+<h2>Config Reload API <a name="config-reload"></a><a class="headerlink" href="#config-reload-api-a-name-config-reload-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Sends requests via RESTful API to trigger config reloading and gets models and <a class="reference internal" href="dag_scheduler.html"><span class="doc std std-doc">DAGs</span></a> statuses as a response. This endpoint can be used with disabled automatic config reload to ensure configuration changes are applied in a specific time and also to get confirmation about reload operation status. Typically this option is to be used when OVMS is started with a parameter <code class="docutils literal notranslate"><span class="pre">--file_system_poll_wait_seconds</span> <span class="pre">0</span></code>.
+Reload operation does not pass new configuration to OVMS server. The configuration file changes need to be applied by the OVMS administrator. The REST API call just initiate applying the configuration file which is already present.</p>
+<p><strong>URL</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>POST http://${REST_URL}:${REST_PORT}/v1/config/reload
+</pre></div>
+</div>
+<p><strong>Flow</strong></p>
+<p>Flow after receiving the request:</p>
+<ol class="arabic simple">
+<li><p>If config file was changed - reload config.</p></li>
+<li><p>If any model version directory was changed or a new version was added - reload this model.</p></li>
+<li><p>If any model that is part of a DAG was changed or a new version was added - reload this pipeline.</p></li>
+<li><p>In case there are no errors in the reload operation, the response includes the status of all models and DAGs, otherwise the error message is returned.</p></li>
+</ol>
+<p><strong>Request</strong></p>
+<p>To trigger reload, an HTTP POST request with the empty body should be sent on the given URL. Example <code class="docutils literal notranslate"><span class="pre">curl</span></code> command:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>curl --request POST http://<span class="si">${</span><span class="nv">REST_URL</span><span class="si">}</span>:<span class="si">${</span><span class="nv">REST_PORT</span><span class="si">}</span>/v1/config/reload
+</pre></div>
+</div>
+<p><strong>Response</strong></p>
+<p>In case of config reload success, the response contains JSON with aggregation of getModelStatus responses for all models and DAGs after reload is finished, along with operation status:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{ 
+&quot;&lt;model name&gt;&quot;: 
+{ 
+  &quot;model_version_status&quot;: [     
+  { 
+     &quot;version&quot;: &lt;model version&gt;|&lt;string&gt;,
+     &quot;state&quot;: &lt;model state&gt;|&lt;string&gt;, 
+     &quot;status&quot;:
+      { 
+        &quot;error_code&quot;: &lt;error code&gt;|&lt;string&gt;, 
+        &quot;error_message&quot;: &lt;error message&gt;|&lt;string&gt;       
+      } 
+  }, 
+  ...  
+  ] 
+}, 
+... 
+} 
+</pre></div>
+</div>
+<p>In case of any failure during execution:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{ 
+  &quot;error&quot;: &lt;error message&gt;|&lt;string&gt; 
+} 
+</pre></div>
+</div>
+<p>When an operation succeeds HTTP response status code is</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">201</span></code> when config(config file or model version) was reloaded</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">200</span></code> when reload was not required, already applied or OVMS was started in single model mode</p></li>
+</ul>
+<p>When an operation fails another status code is returned.
+Possible messages returned on error:</p>
+<ul class="simple">
+<li><p>obtaining config file change time failed (file is not existing or cannot be accessed):</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Config file not found or cannot open.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>config file was changed and config reloading failed (file content is not a valid JSON, any of model or DAG config is incorrect):</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Reloading config file failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>config file was not changed and model versions reloading failed (model directory was removed):</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Reloading models versions failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>retrieving the status of one of the models failed:</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieving all model statuses failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>converting model status responses to JSON failed:</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Serializing model statuses to JSON failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Even if one of models reload failed other may be working properly. To check state of loaded models use <span class="xref myst">Config Status API</span>. To detect exact cause of errors described above analyzing sever logs may be necessary.</p>
+</section>
+<section id="config-status-api-a-name-config-status-a">
+<h2>Config Status API <a name="config-status"></a><a class="headerlink" href="#config-status-api-a-name-config-status-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Sends requests via RESTful API to get a response that contains an aggregation of getModelStatus responses for all models and <a class="reference internal" href="dag_scheduler.html"><span class="doc std std-doc">DAGs</span></a>.</p>
+<p><strong>URL</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET http://${REST_URL}:${REST_PORT}/v1/config
+</pre></div>
+</div>
+<p><strong>Request</strong><br />
+To trigger this API HTTP GET request should be sent on a given URL. Example <code class="docutils literal notranslate"><span class="pre">curl</span></code> command:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>curl --request GET http://<span class="si">${</span><span class="nv">REST_URL</span><span class="si">}</span>:<span class="si">${</span><span class="nv">REST_PORT</span><span class="si">}</span>/v1/config
+</pre></div>
+</div>
+<p><strong>Response</strong><br />
+In case of success, the response contains JSON with aggregation of getModelStatus responses for all models and DAGs, along with operation status:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{ 
+&quot;&lt;model name&gt;&quot;: 
+{ 
+  &quot;model_version_status&quot;: [     
+  { 
+     &quot;version&quot;: &lt;model version&gt;|&lt;string&gt;,
+     &quot;state&quot;: &lt;model state&gt;|&lt;string&gt;, 
+     &quot;status&quot;:
+      { 
+        &quot;error_code&quot;: &lt;error code&gt;|&lt;string&gt;, 
+        &quot;error_message&quot;: &lt;error message&gt;|&lt;string&gt;       
+      } 
+  }, 
+  ...  
+  ] 
+}, 
+... 
+} 
+</pre></div>
+</div>
+<p>In case of any failure during execution:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{ 
+  &quot;error&quot;: &lt;error message&gt;|&lt;string&gt; 
+} 
+</pre></div>
+</div>
+<p>When operation succeeded HTTP response status code is 200, otherwise, another code is returned.
+Possible messages returned on error:</p>
+<ul class="simple">
+<li><p>retrieving the status of one of the models failed:</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieving all model statuses failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>converting model status responses to JSON failed:</p></li>
+</ul>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Serializing model statuses to json failed. Check server logs for more info.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

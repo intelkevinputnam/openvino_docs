@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Demultiplexing in DAG {#ovms_docs_demuliplexing} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/demultiplexing.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pipeline-branching">
+   Pipeline Branching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-demultiplexer-example-and-metadata-explanation">
+   Basic demultiplexer example and metadata explanation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-demultiply-count-parameter">
+   Dynamic demultiply_count parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-demultiplexers">
+   Multiple demultiplexers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configurable-gathering-step">
+   Configurable gathering step
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-batch-handling-with-demultiplexing">
+   Dynamic batch handling with demultiplexing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pipeline-configuration-rules">
+   Pipeline configuration rules
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="demultiplexing-in-dag-ovms-docs-demuliplexing">
+<h1>Demultiplexing in DAG {#ovms_docs_demuliplexing}<a class="headerlink" href="#demultiplexing-in-dag-ovms-docs-demuliplexing" title="Permalink to this headline">¶</a></h1>
+<section id="pipeline-branching">
+<h2>Pipeline Branching<a class="headerlink" href="#pipeline-branching" title="Permalink to this headline">¶</a></h2>
+<p>Directed Acyclic Graph (DAG) Scheduler enables creating pipelines with optional parameter <code class="docutils literal notranslate"><span class="pre">demultiply_count:</span> <span class="pre">N</span></code> which makes it possible for any node to slice outputs into <code class="docutils literal notranslate"><span class="pre">N</span></code> separate sub-outputs and branch pipeline execution into <code class="docutils literal notranslate"><span class="pre">N</span></code> sub-pipelines. Nodes that follow will be executed by event loop <code class="docutils literal notranslate"><span class="pre">N</span></code> times independently from each other and results gathered and packed into one output just before sending a response. Additionally, <code class="docutils literal notranslate"><span class="pre">gather_from_node:</span> <span class="pre">&lt;node_name&gt;</span></code> parameter can be used to specify gathering at any point in the Directed Acyclic Graph. The <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> node parameter value must match the first dimension of all node outputs. All node outputs must have at least 2 dimensions.</p>
+</section>
+<section id="basic-demultiplexer-example-and-metadata-explanation">
+<h2>Basic demultiplexer example and metadata explanation<a class="headerlink" href="#basic-demultiplexer-example-and-metadata-explanation" title="Permalink to this headline">¶</a></h2>
+<p>This example contains 2 consecutive models:</p>
+<ul class="simple">
+<li><p>Model A accepts one input named <code class="docutils literal notranslate"><span class="pre">input</span></code> with shape <code class="docutils literal notranslate"><span class="pre">(1,224,224)</span></code>, layout <code class="docutils literal notranslate"><span class="pre">NHW</span></code> and floating-point precision (later referred as <code class="docutils literal notranslate"><span class="pre">(1,224,224)</span> <span class="pre">FP32</span></code>) and produces 2 outputs: <code class="docutils literal notranslate"><span class="pre">output_A</span> <span class="pre">(3,1,100,100)</span> <span class="pre">FP32</span></code> and <code class="docutils literal notranslate"><span class="pre">output_B</span> <span class="pre">(3,1,40,130)</span> <span class="pre">FP32</span></code>. Since this model is configured as demultiplexer, the first dimension is very important - it must be equal to <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> parameter specified in config.json configuration file (in this case it has to be equal to 3). This allows scheduler to split all outputs into smaller chunks (so-called <code class="docutils literal notranslate"><span class="pre">demultiplexing</span></code> in the diagram below) and spawn new pipeline branches.</p></li>
+<li><p>Model B accepts 2 inputs: <code class="docutils literal notranslate"><span class="pre">input_A</span> <span class="pre">(1,100,100)</span> <span class="pre">FP32</span></code> and <code class="docutils literal notranslate"><span class="pre">input_B</span> <span class="pre">(1,40,130)</span> <span class="pre">FP32</span></code>. Please note how metadata must be matched with previous model output after demultiplication (with first dimension removed after slicing). Since in most cases it is not possible to match metadata, OpenVINO™ Model Server allows creating custom nodes to perform output postprocessing (<a class="reference internal" href="custom_node_development.html"><span class="doc std std-doc">custom node development</span></a>). This model produces one output: <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">(1,50)</span> <span class="pre">FP32</span></code>.</p></li>
+</ul>
+<p>This example has no <code class="docutils literal notranslate"><span class="pre">gather_from_node</span></code> parameter specified in config.json configuration file. This means gathering (shown in the diagram below) will be done automatically by <code class="docutils literal notranslate"><span class="pre">response</span></code> node at the end of the event loop processing. Gathering - packing all results from pipeline branches appends new dimension to output shape at the beginning of dimension list.</p>
+<p><img alt="diagram" src="../../../../_images/demultiplexer.svg" /></p>
+<p>Example configuration file with one demultiplexer (remove everything after arrows in lines containing those):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;model_config_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/models/model_a&quot;</span>
+        <span class="p">}},</span>
+        <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/models/model_b&quot;</span>
+        <span class="p">}}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;pipeline_config_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_pipeline_with_demultiplexer&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pipeline_input_name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DL model&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;demultiply_count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="o">&lt;------------------</span> <span class="n">this</span> <span class="n">parameter</span> <span class="n">specifies</span> <span class="n">how</span> <span class="n">many</span> <span class="n">branches</span> <span class="n">should</span> <span class="n">be</span> <span class="n">spawned</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+                                   <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;pipeline_input_name&quot;</span><span class="p">}}</span>
+                    <span class="p">],</span> 
+                    <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B_node&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DL model&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;input_A&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s2">&quot;input_B&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">}}</span>
+                    <span class="p">],</span> 
+                    <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;pipeline_output_name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B_node&quot;</span><span class="p">,</span>
+                                          <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-demultiply-count-parameter">
+<h2>Dynamic demultiply_count parameter<a class="headerlink" href="#dynamic-demultiply-count-parameter" title="Permalink to this headline">¶</a></h2>
+<p>There might be use cases where one custom node library is used to produce an unpredictable number of a batch. To achieve it, <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> can be set to <code class="docutils literal notranslate"><span class="pre">-1</span></code>. This indicates that the pipeline supports any number of batch returned by custom node: <code class="docutils literal notranslate"><span class="pre">(X,N,C,H,W,...)</span></code> - where <code class="docutils literal notranslate"><span class="pre">X</span></code> is dynamic <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code>. OpenVINO™ Model Server is capable of interpreting such dynamic batch and is able to split outputs into a dynamic number of the pipeline branches. When using dynamic <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> parameters, only one demultiplexer can exist in the pipeline. Important to note - in release 2021.3, when batch 0 is returned, the pipeline stops its execution and ABORTED status is returned. This may be changed in future releases.</p>
+</section>
+<section id="multiple-demultiplexers">
+<h2>Multiple demultiplexers<a class="headerlink" href="#multiple-demultiplexers" title="Permalink to this headline">¶</a></h2>
+<p>Directed Acyclic Graph Scheduler is not limited to a single demultiplexer node in one pipeline definition. Each demultiplexer node that is not referenced by <code class="docutils literal notranslate"><span class="pre">gather_from_node</span></code> parameter will be automatically gathered in <code class="docutils literal notranslate"><span class="pre">response</span></code> node - meaning each demultiplexer adds one new dimension equal to <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> into all  pipeline outputs shape. This must be taken into account when interpreting response data in client applications.</p>
+<p><img alt="diagram" src="../../../../_images/multiple_demultiplexers.svg" /></p>
+</section>
+<section id="configurable-gathering-step">
+<h2>Configurable gathering step<a class="headerlink" href="#configurable-gathering-step" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO™ Model Server provides ability to gather results from demultiplexers before any pipeline node execution and is not limited to gathering in <code class="docutils literal notranslate"><span class="pre">response</span></code> node. This operation does not append new dimension into pipeline output shape. This appends new dimension into gathering node inputs. To gather from any demultiplexer in pipeline, specify node name with <code class="docutils literal notranslate"><span class="pre">gather_from_node:</span> <span class="pre">&lt;node_name&gt;</span></code> parameter. The uses of this functionality is when pipeline shall collect responses from all branches and decide upon gathered result. This could be decision node for next branching (demultiplexing). This allows creating complex pipelines without a need to send intermediate results to the client.
+As real example, one could create pipeline with face detection model detecting <code class="docutils literal notranslate"><span class="pre">N</span></code> faces and setup emotion recognition model for each detected face. Next, by setting up gather node, scheduler can collect <code class="docutils literal notranslate"><span class="pre">N</span></code> emotion results, we may trigger next pipeline steps depending of dominant emotion of people included in the original image.</p>
+<p>Example pipeline with <code class="docutils literal notranslate"><span class="pre">gather_from_node</span></code> specified before Model C execution:</p>
+<p><img alt="diagram" src="../../../../_images/gather.svg" /></p>
+<p>Example configuration file for pipeline with <code class="docutils literal notranslate"><span class="pre">gather_from_node</span></code> specified before Model C execution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;model_config_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/models/model_a&quot;</span>
+        <span class="p">}},</span>
+        <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/models/model_b&quot;</span>
+        <span class="p">}}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;pipeline_config_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_pipeline_with_demultiplexer&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pipeline_input_name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DL model&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;demultiply_count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="o">&lt;-----------------</span> <span class="n">this</span> <span class="n">parameter</span> <span class="n">specifies</span> <span class="n">how</span> <span class="n">many</span> <span class="n">branches</span> <span class="n">should</span> <span class="n">be</span> <span class="n">spawned</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+                                   <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;pipeline_input_name&quot;</span><span class="p">}}</span>
+                    <span class="p">],</span> 
+                    <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B_node&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DL model&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;input_A&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_A&quot;</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s2">&quot;input_B&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output_B&quot;</span><span class="p">}}</span>
+                    <span class="p">],</span> 
+                    <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_C_node&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_C&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DL model&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;gather_from_node&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_A_node&quot;</span><span class="p">,</span>  <span class="o">&lt;-----------------</span> <span class="n">this</span> <span class="n">parameter</span> <span class="n">specifies</span> <span class="n">which</span> <span class="n">node</span> <span class="n">to</span> <span class="n">gather</span> <span class="kn">from</span> <span class="p">(</span><span class="n">must</span> <span class="n">be</span> <span class="n">demultiplexer</span> <span class="ow">and</span> <span class="ow">in</span> <span class="n">LIFO</span> <span class="n">order</span><span class="p">)</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_B_node&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}}</span>
+                    <span class="p">],</span> 
+                    <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;pipeline_output_name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;node_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Model_C_node&quot;</span><span class="p">,</span>
+                                          <span class="s2">&quot;data_item&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">}}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-batch-handling-with-demultiplexing">
+<h2>Dynamic batch handling with demultiplexing<a class="headerlink" href="#dynamic-batch-handling-with-demultiplexing" title="Permalink to this headline">¶</a></h2>
+<p>Demutliplexing feature enables handling requests with dynamic batch size without a model reloading.
+It is recommended for workloads with an arbitrary batch size in sequential requests.
+You can use the dynamic batching feature via requests demuliplexing by configuring a pipeline including a single model and an extra field ‘demultiply_count: -1’.
+To leverage this feature, input data requires an additional, first dimension, representing the batch size. It should be added to the original model shape with batch size 1.
+The response will include combined predictions from the split batch. That also adds an extra first dimension to the model output.</p>
+<p>In the case of the ResNet-50 model with shape (1,3,224,224) and N images, the inputs and outputs will be as presented below:</p>
+<p>Input: (N,1,3,224,224)
+Output: (N,1,1001)</p>
+<p>Because of this additional dimension, demultiplexing implementation is generic and can support any input and output data layout.</p>
+<p>Examplary usage of this feature is available in <a class="reference internal" href="dynamic_bs_demultiplexer.html"><span class="doc std std-doc">dynamic batch size guide</span></a>.</p>
+<p><em>Note:</em> You can use additional parameters in model config (‘nireq’ and ‘CPU_THROUGHPUT_STREAMS’) to fine-tune your performance for dynamic batch. ‘CPU_THROUGHPUT_STREAMS’ allows for multiple parallel
+inferences processing in OpenVINO™ which may increase throughput at the cost of latency of predict requests. ‘nireq’ specifies how many inference requests can be prepared.</p>
+<p><em>Note:</em> In case you are using a different device for inference than CPU you have check that device plugin configuration parameters.</p>
+</section>
+<section id="pipeline-configuration-rules">
+<h2>Pipeline configuration rules<a class="headerlink" href="#pipeline-configuration-rules" title="Permalink to this headline">¶</a></h2>
+<p>There are several rules for possible configurations in regards to demultiplexing and gathering:</p>
+<ul class="simple">
+<li><p>You can gather only from nodes with <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> specified (demultiplexer nodes).</p></li>
+<li><p>When pipeline with dynamic <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> encounters 0 results execution is stopped and gRPC/REST response returns specific error with such information.</p></li>
+<li><p>For pipelines with dynamic <code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> only 1 demultiplexer node is allowed.</p></li>
+<li><p>When pipeline contains at least one demultiplexer, only gathering nodes are allowed with input batch larger than 1.</p></li>
+<li><p>Demultiplexer nodes and gathering nodes should be in LIFO order. Meaning you need to gather nodes starting from closest demultiplexer going upstream in defined directed acyclic graph.</p></li>
+</ul>
+<p><img alt="diagram" src="../../../../_images/demultiplexing_restriction_lifo.svg" /></p>
+<ul class="simple">
+<li><p>Node inputs must be coming from the same level of nested demultiplexing. To reduce demultiplexing levels you can gather results at any stage using <code class="docutils literal notranslate"><span class="pre">gather_from_node</span></code> parameter.</p></li>
+</ul>
+<p><img alt="diagram" src="../../../../_images/demultiplexing_restriction_session_levels.svg" /></p>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

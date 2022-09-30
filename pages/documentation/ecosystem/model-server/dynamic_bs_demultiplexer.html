@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dynamic batch size with OpenVINO™ Model Server Demultiplexer {#ovms_docs_dynamic_bs_demultiplexer} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/dynamic_bs_demultiplexer.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps">
+   Steps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-the-pretrained-model">
+     Download the pretrained model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-the-latest-ovms-image-from-dockerhub">
+     Pull the latest OVMS image from dockerhub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ovms-configuration-file">
+     OVMS configuration file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-ovms-docker-container-with-downloaded-model">
+     Start ovms docker container with downloaded model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-metadata">
+     Checking metadata
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-the-client">
+     Run the client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#output-of-the-script">
+     Output of the script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="dynamic-batch-size-with-openvino-model-server-demultiplexer-ovms-docs-dynamic-bs-demultiplexer">
+<h1>Dynamic batch size with OpenVINO™ Model Server Demultiplexer {#ovms_docs_dynamic_bs_demultiplexer}<a class="headerlink" href="#dynamic-batch-size-with-openvino-model-server-demultiplexer-ovms-docs-dynamic-bs-demultiplexer" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This document shows how to configure a DAG Scheduler pipeline to send predict requests with an arbitrary batch size without model reloading.</p>
+<p>With OpenVINO™ Model Server Demultiplexing infer request sent from client application can have various batch sizes and changing batch size does not require model reload.</p>
+<p>More information about this feature can be found in <a class="reference internal" href="demultiplexing.html"><span class="doc std std-doc">dynamic batch size in demultiplexing</span></a></p>
+<blockquote>
+<div><p><strong>NOTE</strong>: Only one dynamic demultiplexer (<code class="docutils literal notranslate"><span class="pre">demultiply_count</span></code> with value <code class="docutils literal notranslate"><span class="pre">-1</span></code>) can exist in the pipeline.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Example client in python <a class="reference external" href="https://github.com/openvinotoolkit/model_server/blob/releases/2022/1/client/python/tensorflow-serving-api/samples/grpc_predict_resnet.py">grpc_predict_resnet.py</a> can be used to request the pipeline. Use <code class="docutils literal notranslate"><span class="pre">--dag-batch-size-auto</span></code> flag to add an additional dimension to the input shape which is required for demultiplexing feature.</p></li>
+<li><p>The example uses model <a class="reference external" href="https://github.com/openvinotoolkit/open_model_zoo/blob/2022.1.0/models/intel/resnet50-binary-0001/README.md">resnet</a>.</p></li>
+<li><p>While using resnet model with grpc_predict_resnet.py the script processes the output from the server and displays the inference results using the previously prepared file with labels. Inside this file, each image has an assigned number, which indicates the correct recognition answer.</p></li>
+</ul>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<p>Clone OpenVINO™ Model Server GitHub repository and enter <code class="docutils literal notranslate"><span class="pre">model_server</span></code> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">model_server</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">model_server</span>
+</pre></div>
+</div>
+<section id="download-the-pretrained-model">
+<h3>Download the pretrained model<a class="headerlink" href="#download-the-pretrained-model" title="Permalink to this headline">¶</a></h3>
+<p>Download model files and store them in the <code class="docutils literal notranslate"><span class="pre">models</span></code> directory</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>curl --create_dirs https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.bin https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.xml -o models/resnet/1/resnet50-binary-0001.bin -o models/resnet/1/resnet50-binary-0001.xml
+
+chmod -R <span class="m">755</span> ./models
+</pre></div>
+</div>
+</section>
+<section id="pull-the-latest-ovms-image-from-dockerhub">
+<h3>Pull the latest OVMS image from dockerhub<a class="headerlink" href="#pull-the-latest-ovms-image-from-dockerhub" title="Permalink to this headline">¶</a></h3>
+<p>Pull the latest version of OpenVINO™ Model Server from Dockerhub :</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>docker pull openvino/model_server:latest
+</pre></div>
+</div>
+</section>
+<section id="ovms-configuration-file">
+<h3>OVMS configuration file<a class="headerlink" href="#ovms-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>Go to the <code class="docutils literal notranslate"><span class="pre">models</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">models</span>
+</pre></div>
+</div>
+<p>Create a new file named <code class="docutils literal notranslate"><span class="pre">config.json</span></code> there:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;model_config_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnet&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="nt">&quot;base_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/models/resnet&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="nt">&quot;plugin_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;CPU_THROUGHPUT_STREAMS&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"></span>
+<span class="w">               </span><span class="p">}</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">],</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;pipeline_config_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnet50DAG&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;inputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">               </span><span class="s2">&quot;0&quot;</span><span class="w"></span>
+<span class="w">           </span><span class="p">],</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;demultiply_count&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">               </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnetNode&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnet&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DL model&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;inputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                       </span><span class="p">{</span><span class="w"></span>
+<span class="w">                           </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                               </span><span class="nt">&quot;node_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;request&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="nt">&quot;data_item&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"></span>
+<span class="w">                           </span><span class="p">}</span><span class="w"></span>
+<span class="w">                       </span><span class="p">}</span><span class="w"></span>
+<span class="w">                   </span><span class="p">],</span><span class="w"></span>
+<span class="w">                   </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                       </span><span class="p">{</span><span class="w"></span>
+<span class="w">                           </span><span class="nt">&quot;data_item&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1463&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1463&quot;</span><span class="w"></span>
+<span class="w">                       </span><span class="p">}</span><span class="w"></span>
+<span class="w">                   </span><span class="p">]</span><span class="w"></span>
+<span class="w">               </span><span class="p">}</span><span class="w"></span>
+<span class="w">           </span><span class="p">],</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">               </span><span class="p">{</span><span class="nt">&quot;1463&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                       </span><span class="nt">&quot;node_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnetNode&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="nt">&quot;data_item&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1463&quot;</span><span class="p">}}</span><span class="w"></span>
+<span class="w">           </span><span class="p">]</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="start-ovms-docker-container-with-downloaded-model">
+<h3>Start ovms docker container with downloaded model<a class="headerlink" href="#start-ovms-docker-container-with-downloaded-model" title="Permalink to this headline">¶</a></h3>
+<p>Start ovms container with image pulled in previous step and mount <code class="docutils literal notranslate"><span class="pre">models</span></code> directory :</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>docker run --rm -d -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/models:/models -p <span class="m">9000</span>:9000 openvino/model_server:latest --config_path /models/config.json --port <span class="m">9000</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-metadata">
+<h3>Checking metadata<a class="headerlink" href="#checking-metadata" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../client/python/tensorflow-serving-api/samples
+virtualenv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+
+python grpc_get_model_metadata.py --grpc_port <span class="m">9000</span> --model_name resnet50DAG
+</pre></div>
+</div>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>...
+Getting model metadata <span class="k">for</span> model: resnet50DAG
+Inputs metadata:
+        Input name: <span class="m">0</span><span class="p">;</span> shape: <span class="o">[</span>-1, <span class="m">1</span>, <span class="m">3</span>, <span class="m">224</span>, <span class="m">224</span><span class="o">]</span><span class="p">;</span> dtype: DT_FLOAT
+Outputs metadata:
+        Output name: <span class="m">1463</span><span class="p">;</span> shape: <span class="o">[</span>-1, <span class="m">1</span>, <span class="m">1000</span><span class="o">]</span><span class="p">;</span> dtype: DT_FLOAT
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE</strong>: While using the dynamic batching feature both input and output shape has an additional dimension, which represents split batch size. Setting batch size parameter to <code class="docutils literal notranslate"><span class="pre">--batchsize</span> <span class="pre">8</span></code> would set input shape to <code class="docutils literal notranslate"><span class="pre">[8,1,3,244,244]</span></code> and output shape to <code class="docutils literal notranslate"><span class="pre">[8,1,1000]</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="run-the-client">
+<h3>Run the client<a class="headerlink" href="#run-the-client" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>python grpc_predict_resnet.py --grpc_port <span class="m">9000</span> --images_numpy_path ../../imgs.npy --labels_numpy_path ../../lbs.npy --input_name <span class="m">0</span> --output_name <span class="m">1463</span> --model_name resnet50DAG --dag-batch-size-auto --transpose_input False --batchsize <span class="m">1</span> &gt; b1.txt <span class="o">&amp;&amp;</span> python grpc_predict_resnet.py --grpc_port <span class="m">9000</span> --images_numpy_path ../../imgs.npy --labels_numpy_path ../../lbs.npy --input_name <span class="m">0</span> --output_name <span class="m">1463</span> --model_name resnet50DAG --dag-batch-size-auto --transpose_input False --batchsize <span class="m">8</span> &gt; b8.txt<span class="p">;</span>
+</pre></div>
+</div>
+<p><em>Note:</em> Results of running the client will be available in .txt files in the current directory.</p>
+</section>
+<section id="output-of-the-script">
+<h3>Output of the script<a class="headerlink" href="#output-of-the-script" title="Permalink to this headline">¶</a></h3>
+<p>Output with <code class="docutils literal notranslate"><span class="pre">batchsize</span> <span class="pre">1</span></code> stored in <code class="docutils literal notranslate"><span class="pre">b1.txt</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>Image data range: <span class="m">0</span>.0 : <span class="m">255</span>.0
+Start processing:
+	Model name: resnet50DAG
+	Iterations: <span class="m">10</span>
+	Images numpy path: imgs.npy
+	Numpy file shape: <span class="o">(</span><span class="m">10</span>, <span class="m">3</span>, <span class="m">224</span>, <span class="m">224</span><span class="o">)</span>
+
+Iteration <span class="m">1</span><span class="p">;</span> Processing time: <span class="m">21</span>.16 ms<span class="p">;</span> speed <span class="m">47</span>.25 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> airliner <span class="m">404</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">2</span><span class="p">;</span> Processing time: <span class="m">8</span>.08 ms<span class="p">;</span> speed <span class="m">123</span>.79 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> Arctic fox, white fox, Alopex lagopus <span class="m">279</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">3</span><span class="p">;</span> Processing time: <span class="m">104</span>.76 ms<span class="p">;</span> speed <span class="m">9</span>.55 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> bee <span class="m">309</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">4</span><span class="p">;</span> Processing time: <span class="m">8</span>.86 ms<span class="p">;</span> speed <span class="m">112</span>.83 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> golden retriever <span class="m">207</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">5</span><span class="p">;</span> Processing time: <span class="m">19</span>.05 ms<span class="p">;</span> speed <span class="m">52</span>.48 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> gorilla, Gorilla gorilla <span class="m">366</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">6</span><span class="p">;</span> Processing time: <span class="m">9</span>.31 ms<span class="p">;</span> speed <span class="m">107</span>.47 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> magnetic compass <span class="m">635</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">7</span><span class="p">;</span> Processing time: <span class="m">7</span>.10 ms<span class="p">;</span> speed <span class="m">140</span>.81 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> peacock <span class="m">84</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">8</span><span class="p">;</span> Processing time: <span class="m">6</span>.83 ms<span class="p">;</span> speed <span class="m">146</span>.50 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> pelican <span class="m">144</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">9</span><span class="p">;</span> Processing time: <span class="m">6</span>.74 ms<span class="p">;</span> speed <span class="m">148</span>.26 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> snail <span class="m">113</span> <span class="p">;</span> Correct match.
+Iteration <span class="m">10</span><span class="p">;</span> Processing time: <span class="m">7</span>.08 ms<span class="p">;</span> speed <span class="m">141</span>.26 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> zebra <span class="m">340</span> <span class="p">;</span> Correct match.
+
+processing <span class="nb">time</span> <span class="k">for</span> all iterations
+average time: <span class="m">19</span>.50 ms<span class="p">;</span> average speed: <span class="m">51</span>.28 fps
+median time: <span class="m">8</span>.00 ms<span class="p">;</span> median speed: <span class="m">125</span>.00 fps
+max time: <span class="m">104</span>.00 ms<span class="p">;</span> min speed: <span class="m">9</span>.62 fps
+min time: <span class="m">6</span>.00 ms<span class="p">;</span> max speed: <span class="m">166</span>.67 fps
+<span class="nb">time</span> percentile <span class="m">90</span>: <span class="m">29</span>.30 ms<span class="p">;</span> speed percentile <span class="m">90</span>: <span class="m">34</span>.13 fps
+<span class="nb">time</span> percentile <span class="m">50</span>: <span class="m">8</span>.00 ms<span class="p">;</span> speed percentile <span class="m">50</span>: <span class="m">125</span>.00 fps
+<span class="nb">time</span> standard deviation: <span class="m">28</span>.63
+<span class="nb">time</span> variance: <span class="m">819</span>.45
+Classification accuracy: <span class="m">100</span>.00
+</pre></div>
+</div>
+<p>Output with <code class="docutils literal notranslate"><span class="pre">batchsize</span> <span class="pre">8</span></code> stored in <code class="docutils literal notranslate"><span class="pre">b8.txt</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>Image data range: <span class="m">0</span>.0 : <span class="m">255</span>.0
+Start processing:
+	Model name: resnet50DAG
+	Iterations: <span class="m">1</span>
+	Images numpy path: imgs.npy
+	Numpy file shape: <span class="o">(</span><span class="m">10</span>, <span class="m">3</span>, <span class="m">224</span>, <span class="m">224</span><span class="o">)</span>
+
+Iteration <span class="m">1</span><span class="p">;</span> Processing time: <span class="m">121</span>.12 ms<span class="p">;</span> speed <span class="m">66</span>.05 fps
+imagenet top results <span class="k">in</span> a single batch:
+	 <span class="m">0</span> airliner <span class="m">404</span> <span class="p">;</span> Correct match.
+	 <span class="m">1</span> Arctic fox, white fox, Alopex lagopus <span class="m">279</span> <span class="p">;</span> Correct match.
+	 <span class="m">2</span> bee <span class="m">309</span> <span class="p">;</span> Correct match.
+	 <span class="m">3</span> golden retriever <span class="m">207</span> <span class="p">;</span> Correct match.
+	 <span class="m">4</span> gorilla, Gorilla gorilla <span class="m">366</span> <span class="p">;</span> Correct match.
+	 <span class="m">5</span> magnetic compass <span class="m">635</span> <span class="p">;</span> Correct match.
+	 <span class="m">6</span> peacock <span class="m">84</span> <span class="p">;</span> Correct match.
+	 <span class="m">7</span> pelican <span class="m">144</span> <span class="p">;</span> Correct match.
+
+processing <span class="nb">time</span> <span class="k">for</span> all iterations
+average time: <span class="m">121</span>.00 ms<span class="p">;</span> average speed: <span class="m">66</span>.12 fps
+median time: <span class="m">121</span>.00 ms<span class="p">;</span> median speed: <span class="m">66</span>.12 fps
+max time: <span class="m">121</span>.00 ms<span class="p">;</span> min speed: <span class="m">66</span>.12 fps
+min time: <span class="m">121</span>.00 ms<span class="p">;</span> max speed: <span class="m">66</span>.12 fps
+<span class="nb">time</span> percentile <span class="m">90</span>: <span class="m">121</span>.00 ms<span class="p">;</span> speed percentile <span class="m">90</span>: <span class="m">66</span>.12 fps
+<span class="nb">time</span> percentile <span class="m">50</span>: <span class="m">121</span>.00 ms<span class="p">;</span> speed percentile <span class="m">50</span>: <span class="m">66</span>.12 fps
+<span class="nb">time</span> standard deviation: <span class="m">0</span>.00
+<span class="nb">time</span> variance: <span class="m">0</span>.00
+Classification accuracy: <span class="m">100</span>.00
+</pre></div>
+</div>
+<p>Each iteration presents the results of each infer request and details for each image in batch.</p>
+<p>With this feature, we were able to successfully run client simultaneously with different batch size parameters without performance impact from the model reloading.</p>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

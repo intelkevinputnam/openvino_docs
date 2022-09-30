@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Support for Binary Input Data {#ovms_docs_binary_input} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/binary_input.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-for-deployment">
+   Preparing for deployment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-specification">
+   API specification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage-example-with-binary-input">
+   Usage example with binary input
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-handling">
+   Error handling:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recommendations">
+   Recommendations:
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="support-for-binary-input-data-ovms-docs-binary-input">
+<h1>Support for Binary Input Data {#ovms_docs_binary_input}<a class="headerlink" href="#support-for-binary-input-data-ovms-docs-binary-input" title="Permalink to this headline">¶</a></h1>
+<p>&#64;sphinxdirective</p>
+<p>.. toctree::
+:maxdepth: 1
+:hidden:</p>
+<p>ovms_docs_demo_tensorflow_conversion</p>
+<p>&#64;endsphinxdirective</p>
+<p>While OpenVINO models don’t have the ability to process binary inputs, the model server can accept them and convert
+automatically using OpenCV library.</p>
+<p>OpenVINO Model Server API allows for sending the request data in a variety of formats inside the TensorProto objects.
+Array data is passed inside the tensor_content field, which represent the input data buffer.</p>
+<p>When the data is sent in the <code class="docutils literal notranslate"><span class="pre">string_val</span></code> field, it is interpreted as a binary format of the input data.</p>
+<p>Note, that while the model metadata reports the inputs shape with layout NHWC, the binary data must be sent with
+shape: [N] with dtype: DT_STRING. Where N represents number of images converted to string bytes.</p>
+<section id="preparing-for-deployment">
+<h2>Preparing for deployment<a class="headerlink" href="#preparing-for-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Before processing in the target AI model, binary image data is encoded by OVMS to a NHWC layout in BGR color format.
+It will also be resized to the model or pipeline node resolution. When the model resolution supports range of values and image data shape is out of range it will be adjusted to the nearer border. For example, when model shape is: [1,100:200,200,3]:</p>
+<ul class="simple">
+<li><p>if input shape is [1,90,200,3] it will be resized into [1,100,200,3]</p></li>
+<li><p>if input shape is [1,220,200,3] it will be resized into [1,200,200,3]</p></li>
+</ul>
+<p>In order to use binary input functionality, model or pipeline input layout needs to be compatible with <code class="docutils literal notranslate"><span class="pre">N...HWC</span></code> and have 4 (or 5 in case of <a class="reference internal" href="demultiplexing.html"><span class="doc std std-doc">demultiplexing</span></a>) shape dimensions. It means that input layout needs to resemble <code class="docutils literal notranslate"><span class="pre">NHWC</span></code> layout, e.g. default <code class="docutils literal notranslate"><span class="pre">N...</span></code> will work. On the other hand, binary image input is not supported for inputs with <code class="docutils literal notranslate"><span class="pre">NCHW</span></code> layout.</p>
+<p>To fully utilize binary input utility, automatic image size alignment will be done by OVMS when:</p>
+<ul class="simple">
+<li><p>input shape does not include dynamic dimension value (<code class="docutils literal notranslate"><span class="pre">-1</span></code>)</p></li>
+<li><p>input layout is configured to be either <code class="docutils literal notranslate"><span class="pre">...</span></code> (custom nodes) and <code class="docutils literal notranslate"><span class="pre">NHWC</span></code> or <code class="docutils literal notranslate"><span class="pre">N?HWC</span></code> (or <code class="docutils literal notranslate"><span class="pre">N?HWC</span></code>, when modified by a <a class="reference internal" href="demultiplexing.html"><span class="doc std std-doc">demultiplexer</span></a>)</p></li>
+</ul>
+<p>Processing the binary image requests requires the model or the custom nodes to accept BGR color
+format with data with the data range from 0-255. Original layout of the input data can be changed in the
+OVMS configuration in runtime. For example when the orignal model has input shape [1,3,224,224] add a parameter
+in the OVMS configuration “layout”: “NHWC:NCHW” or the command line parameter <code class="docutils literal notranslate"><span class="pre">--layout</span> <span class="pre">NHWC:NCHW</span></code>. In result, the model will
+have effective shape [1,224,224,3] and layout <code class="docutils literal notranslate"><span class="pre">NHWC</span></code>.</p>
+<p>In case the model was trained with RGB color format and a range other than 0-255, the <a class="reference internal" href="tf_model_binary_input.html"><span class="doc std std-doc">Model Optimizer</span></a> can apply the required adjustments:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--reverse_input_channels</span></code>: Switch the input channels order from RGB to BGR (or vice versa). Applied to original inputs of the model <strong>only</strong> if a number of channels equals 3. Applied after application of –mean_values and –scale_values options, so numbers in –mean_values and  –scale_values go in the order of channels used in the original model<br />
+<code class="docutils literal notranslate"><span class="pre">--scale</span></code> : All input values coming from original network inputs  will be divided by this value. When a list of inputs  is overridden by the –input parameter, this scale is  not applied for any input that does not match with the  original input of the model<br />
+<code class="docutils literal notranslate"><span class="pre">--mean_values</span></code> :  Mean values to be used for the input image per  channel. Values to be provided in the (R,G,B) or (B,G,R) format. Can be defined for desired input of the model, for example: “–mean_values data[255,255,255],info[255,255,255]”. The exact meaning and order of channels depend on how the original model was trained.</p>
+<p>Blob data precision from binary input decoding is set automatically based on the target model or the <a class="reference internal" href="dag_scheduler.html"><span class="doc std std-doc">DAG pipeline</span></a> node.</p>
+</section>
+<section id="api-specification">
+<h2>API specification<a class="headerlink" href="#api-specification" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="model_server_grpc_api.html"><span class="doc std std-doc">gRPC API Reference Guide</span></a></p></li>
+<li><p><a class="reference internal" href="model_server_rest_api.html"><span class="doc std std-doc">REST API Reference Guide</span></a></p></li>
+</ul>
+</section>
+<section id="usage-example-with-binary-input">
+<h2>Usage example with binary input<a class="headerlink" href="#usage-example-with-binary-input" title="Permalink to this headline">¶</a></h2>
+<p>Examples below assumes OVMS has been started with ResNet50 binary model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -d --rm -p <span class="m">8000</span>:8000 -p <span class="m">9000</span>:9000 openvino/model_server:latest <span class="se">\</span>
+--model_name resnet --model_path gs://ovms-public-eu/resnet50-binary --layout NHWC:NCHW --plugin_config <span class="s1">&#39;{&quot;CPU_THROUGHPUT_STREAMS&quot;: &quot;1&quot;}&#39;</span> <span class="se">\</span>
+--port <span class="m">9000</span> --rest_port <span class="m">8000</span>
+</pre></div>
+</div>
+<p>Prepare the client:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> model_server/client/python/ovmsclient/samples
+pip install -r requirements.txt
+</pre></div>
+</div>
+<p>Run the gRPC client sending the binary input:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">grpc_predict_binary_resnet</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">images_dir</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">resnet</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">magnetic_compass</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">magnetic</span> <span class="n">compass</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">pelican</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">pelican</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">gorilla</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">gorilla</span><span class="p">,</span> <span class="n">Gorilla</span> <span class="n">gorilla</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">snail</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">snail</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">zebra</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">zebra</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">arctic</span><span class="o">-</span><span class="n">fox</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">Arctic</span> <span class="n">fox</span><span class="p">,</span> <span class="n">white</span> <span class="n">fox</span><span class="p">,</span> <span class="n">Alopex</span> <span class="n">lagopus</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">bee</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">bee</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">peacock</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">peacock</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">airliner</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">airliner</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">golden_retriever</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">golden</span> <span class="n">retriever</span>
+</pre></div>
+</div>
+<p>Run the REST client sending the binary input:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">http_predict_binary_resnet</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">images_dir</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">resnet</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">magnetic_compass</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">magnetic</span> <span class="n">compass</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">pelican</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">pelican</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">gorilla</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">gorilla</span><span class="p">,</span> <span class="n">Gorilla</span> <span class="n">gorilla</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">snail</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">snail</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">zebra</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">zebra</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">arctic</span><span class="o">-</span><span class="n">fox</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">Arctic</span> <span class="n">fox</span><span class="p">,</span> <span class="n">white</span> <span class="n">fox</span><span class="p">,</span> <span class="n">Alopex</span> <span class="n">lagopus</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">bee</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">bee</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">peacock</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">peacock</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">airliner</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">airliner</span>
+<span class="n">Image</span> <span class="o">../../../../</span><span class="n">demos</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">golden_retriever</span><span class="o">.</span><span class="n">jpeg</span> <span class="n">has</span> <span class="n">been</span> <span class="n">classified</span> <span class="k">as</span> <span class="n">golden</span> <span class="n">retriever</span>
+
+</pre></div>
+</div>
+</section>
+<section id="error-handling">
+<h2>Error handling:<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
+<p>In case the binary input can not be converted to the array of correct shape, an error status is returned:</p>
+<ul class="simple">
+<li><p>400 - BAD_REQUEST for REST API</p></li>
+<li><p>3 - INVALID_ARGUMENT for gRPC API</p></li>
+</ul>
+</section>
+<section id="recommendations">
+<h2>Recommendations:<a class="headerlink" href="#recommendations" title="Permalink to this headline">¶</a></h2>
+<p>Sending the data in binary format can significantly simplify the client code and it’s preprocessing load. With the REST API
+client, curl and base64 tool or the requests python package is just needed. In case of the original input data is jpeg or png
+encoded, there is no preprocessing needed to send the request.</p>
+<p>Binary data can significantly reduce the network utilization. In many cases it allows reducing the latency and achieve
+very high throughput even with slower network bandwidth.</p>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

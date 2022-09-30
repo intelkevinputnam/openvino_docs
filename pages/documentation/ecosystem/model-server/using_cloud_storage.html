@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Using Cloud Storage as a Model Repository {#ovms_docs_cloud_storage} &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="../../../../_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../../../_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/tabs.css" type="text/css" />
+    <script src="../../../../_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="../../../../_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="../../../../_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/custom.js"></script>
+    <script src="../../../../_static/js/graphs.js"></script>
+    <script src="../../../../_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/pages/documentation/ecosystem/model-server/using_cloud_storage.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloud-storage-requirements-a-name-storage-a">
+   Cloud Storage Requirements
+   <a name="storage">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#azure-cloud-storage">
+   Azure Cloud Storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-cloud-storage">
+   Google Cloud Storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#amazon-s3-and-minio-storage">
+   Amazon S3 and MinIO Storage
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="using-cloud-storage-as-a-model-repository-ovms-docs-cloud-storage">
+<h1>Using Cloud Storage as a Model Repository {#ovms_docs_cloud_storage}<a class="headerlink" href="#using-cloud-storage-as-a-model-repository-ovms-docs-cloud-storage" title="Permalink to this headline">¶</a></h1>
+<section id="cloud-storage-requirements-a-name-storage-a">
+<h2>Cloud Storage Requirements<a name="storage"></a><a class="headerlink" href="#cloud-storage-requirements-a-name-storage-a" title="Permalink to this headline">¶</a></h2>
+<p>OpenVINO Model Server supports a range of cloud storage options. In general, “read” and “list” permissions are required for a model repository.</p>
+</section>
+<section id="azure-cloud-storage">
+<h2>Azure Cloud Storage<a class="headerlink" href="#azure-cloud-storage" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;azure&quot; class=&quot;switcher-anchor&quot;&gt;Azure Cloud Storage&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>Add the Azure Storage path as the model_path and pass the Azure Storage credentials to the Docker container.</p>
+<p>To start a Docker container with support for Azure Storage paths to your model use the AZURE_STORAGE_CONNECTION_STRING variable. This variable contains the connection string to the AS authentication storage account.</p>
+<p>Example connection string is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AZURE_STORAGE_CONNECTION_STRING</span><span class="o">=</span><span class="s2">&quot;DefaultEndpointsProtocol=https;AccountName=azure_account_name;AccountKey=smp/hashkey==;EndpointSuffix=core.windows.net&quot;</span>
+</pre></div>
+</div>
+<p>Example command with blob storage <code class="docutils literal notranslate"><span class="pre">az://&lt;container_name&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">AZURE_STORAGE_CONNECTION_STRING</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{AZURE_STORAGE_CONNECTION_STRING}</span><span class="s2">&quot;</span> \
+<span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span> \
+<span class="o">--</span><span class="n">model_path</span> <span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">container</span><span class="o">/</span><span class="n">model_path</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">az_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span>
+</pre></div>
+</div>
+<p>Example command with file storage <code class="docutils literal notranslate"><span class="pre">azfs://&lt;share&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">AZURE_STORAGE_CONNECTION_STRING</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{AZURE_STORAGE_CONNECTION_STRING}</span><span class="s2">&quot;</span> \
+<span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span> \
+<span class="o">--</span><span class="n">model_path</span> <span class="n">azfs</span><span class="p">:</span><span class="o">//</span><span class="n">share</span><span class="o">/</span><span class="n">model_path</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">az_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span>
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">&quot;http_proxy=$http_proxy&quot;</span> <span class="pre">-e</span> <span class="pre">&quot;https_proxy=$https_proxy&quot;</span></code> to docker run command for proxy cloud storage connection.</p>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">https_proxy</span></code> variable will be used. If you want to use <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code> please set the <code class="docutils literal notranslate"><span class="pre">AZURE_STORAGE_USE_HTTP_PROXY</span></code> environment variable to any value and pass it to the container.</p>
+</section>
+<section id="google-cloud-storage">
+<h2>Google Cloud Storage<a class="headerlink" href="#google-cloud-storage" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;gcs&quot; class=&quot;switcher-anchor&quot;&gt;Google Cloud Storage&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>Add the Google Cloud Storage path as the model_path and pass the Google Cloud Storage credentials to the Docker container.
+Exception: This is not required if you use GKE Kubernetes cluster. GKE Kubernetes clusters handle authorization.</p>
+<p>To start a Docker container with support for Google Cloud Storage paths to your model use the GOOGLE_APPLICATION_CREDENTIALS variable. This variable contains the path to the GCP authentication key.</p>
+<p>Example command with <code class="docutils literal notranslate"><span class="pre">gs://&lt;bucket&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -d -p 9001:9001 \
+-e GOOGLE_APPLICATION_CREDENTIALS=&quot;${GOOGLE_APPLICATION_CREDENTIALS}&quot; \
+-v ${GOOGLE_APPLICATION_CREDENTIALS}:${GOOGLE_APPLICATION_CREDENTIALS} \
+openvino/model_server:latest \
+--model_path gs://bucket/model_path --model_name gs_model --port 9001
+</pre></div>
+</div>
+</section>
+<section id="amazon-s3-and-minio-storage">
+<h2>Amazon S3 and MinIO Storage<a class="headerlink" href="#amazon-s3-and-minio-storage" title="Permalink to this headline">¶</a></h2>
+<p>&#64;sphinxdirective
+.. raw:: html</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;s3&quot; class=&quot;switcher-anchor&quot;&gt;S3 Cloud Storage&lt;/div&gt;
+</pre></div>
+</div>
+<p>&#64;endsphinxdirective</p>
+<p>Add the S3 path as the model_path and pass the credentials as environment variables to the Docker container.
+<code class="docutils literal notranslate"><span class="pre">S3_ENDPOINT</span></code> is optional for Amazon S3 storage and mandatory for MinIO and other S3-compatible storage types.</p>
+<p>Example command with <code class="docutils literal notranslate"><span class="pre">s3://&lt;bucket&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{AWS_ACCESS_KEY_ID}</span><span class="s2">&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{AWS_SECRET_ACCESS_KEY}</span><span class="s2">&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">AWS_REGION</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{AWS_REGION}</span><span class="s2">&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="n">S3_ENDPOINT</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{S3_ENDPOINT}</span><span class="s2">&quot;</span> \
+<span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span> \
+<span class="o">--</span><span class="n">model_path</span> <span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">bucket</span><span class="o">/</span><span class="n">model_path</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">s3_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span>
+</pre></div>
+</div>
+<p>You can also use anonymous access to public S3 paths.</p>
+<p>Example command with <code class="docutils literal notranslate"><span class="pre">s3://&lt;public_bucket&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span> \
+<span class="n">openvino</span><span class="o">/</span><span class="n">model_server</span><span class="p">:</span><span class="n">latest</span> \
+<span class="o">--</span><span class="n">model_path</span> <span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">public_bucket</span><span class="o">/</span><span class="n">model_path</span> <span class="o">--</span><span class="n">model_name</span> <span class="n">s3_model</span> <span class="o">--</span><span class="n">port</span> <span class="mi">9001</span>
+</pre></div>
+</div>
+<p>or set up a profile credentials file in the docker image described here
+<a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS Named profiles</a></p>
+<p>Example command with <code class="docutils literal notranslate"><span class="pre">s3://&lt;bucket&gt;/&lt;model_path&gt;:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -d -p 9001:9001 \
+-e AWS_PROFILE=&quot;${AWS_PROFILE}&quot; \
+-v ${HOME}/.aws/credentials:/home/ovms/.aws/credentials \
+openvino/model_server:latest \
+--model_path s3://bucket/model_path --model_name s3_model --port 9001
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="An installation guide for Jupyter notebooks on which Python tutorials run. The tutorials serve as introduction to the OpenVINO™ toolkit." name="description" />
+
+    <title>Installation of OpenVINO™ Notebooks &#8212; OpenVINO™  documentation</title>
+    
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/doxyrest-pygments.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <link href="_static/css/media/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="_static/css/openvino_sphinx_theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/button.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/input.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/textfield.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/tabs.css" type="text/css" />
+    <script src="_static/js/openvino_sphinx_theme.js"></script>
+    <link rel="stylesheet" href="_static/css/viewer.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-barchart-background@1.3.0/build/Plugin.Barchart.Background.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+    <script src="_static/js/viewer.min.js"></script>
+    <script src="/assets/versions_raw.js"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/js/custom.js"></script>
+    <script src="_static/js/graphs.js"></script>
+    <script src="_static/js/graphs_ov_tf.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/target-highlight.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="canonical" href="https://docs.openvino.ai/latest/notebooks-installation.html" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Samples" href="pages/get-started-guide/samples.html" />
+    <link rel="prev" title="Tutorials" href="tutorials.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+      <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="pages/get-started-guide.html">
+  Get Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="pages/documentation.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="api/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="model_zoo.html">
+  Model Zoo
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="pages/resources.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="languages/zh_CN/index.html">
+  简体中文
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/openvinotoolkit/openvino" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="sst-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+</ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu" aria-labelledby="version-selector">
+  </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        
+
+<div class="dropdown sst-dropdown sst-dropdown-navbar">
+  <button class="btn sst-btn dropdown-toggle" type="button" id="language-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+  <div class="dropdown-menu" aria-labelledby="language-selector">
+    
+      
+        <a class="dropdown-item font-weight-bold" href="/index.html">English</a>
+      
+    
+      
+        <a  class="dropdown-item" href="/languages/zh_CN/index.html">简体中文 (Simplified Chinese)</a>
+      
+    
+  </div>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        <div id="collapse-nav-wrapper" class="container-xl">
+          <button id="collapse-nav" class="button bttn-prm button-size-m" type="button" data-toggle="collapse" data-target="#nav-tree" aria-expanded="false" aria-controls="nav-tree">
+            Documentation navigation <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </nav>
+      <div class="transition-banner container-fluid alert alert-info alert-dismissible fade show" role="alert">
+        <p>OpenVINO 2022.1 introduces a new version of OpenVINO API (API 2.0). For more information on the changes and transition steps, see the <a href="https://docs.openvino.ai/latest/openvino_2_0_transition_guide.html">transition guide</a></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar" id="nav-tree"><form class="searchForm bd-search d-flex align-items-center" action="search.html" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="query" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Install &amp; Config
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/install-openvino-overview.html">
+   Installing OpenVINO™
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime.html">
+     OpenVINO Runtime
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux.html">
+       Linux
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+      <label for="toctree-checkbox-3">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/installer-linux.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/install-from-apt.html">
+         From APT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/install-from-yum.html">
+         From YUM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-linux/docker-linux.html">
+         Using Docker
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows.html">
+       Windows
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows/installer-windows.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-pypi.html">
+         From PyPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-windows/docker-windows.html">
+         Using Docker
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-macos.html">
+       macOS
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-macos/installer-macos.html">
+         Using Installer
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-pypi.html">
+         From PyPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-shared/install-from-anaconda.html">
+         From Anaconda Cloud
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-runtime/install-openvino-raspbian.html">
+       Raspbian OS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-openvino-dev-tools.html">
+     OpenVINO Development Tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://github.com/openvinotoolkit/openvino/wiki/BuildingCode">
+     Build from Source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-openvino-overview/install-create-yocto-image.html">
+     Creating a Yocto Image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/install-additional-configurations.html">
+   Additional Configurations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-intel-gpu.html">
+     For GPU
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-ncs2.html">
+     For NCS2
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-vpu.html">
+     For VPU
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-vpu/configuration-for-iei-card.html">
+       IEI Mustang-V100-MX8-R10 Card
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/install-additional-configurations/configuration-for-intel-gna.html">
+     For GNA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pages/get-started-guide/uninstall-openvino.html">
+   Uninstalling
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview.html">
+   Troubleshooting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-steps.html">
+     Troubleshooting Steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/troubleshooting-overview/troubleshooting-issues.html">
+     Issues &amp; Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Get Started Guides
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="tutorials.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Installation of OpenVINO™ Notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pages/get-started-guide/samples.html">
+   Samples
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/basic-openvino-workflow.html">
+     Basic OpenVINO™ Workflow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-image-classification.html">
+     Image Classification Async C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-image-classification.html">
+     Image Classification Async Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-classification.html">
+     Hello Classification C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/c-sample-hello-classification.html">
+     Hello Classification C Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-classification.html">
+     Hello Classification Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-reshape-ssd.html">
+     Hello Reshape SSD C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-reshape-ssd.html">
+     Hello Reshape SSD Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-nv12-input-classification.html">
+     Hello NV12 Input Classification C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/c-sample-hello-nv12-input-classification.html">
+     Hello NV12 Input Classification C Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-hello-query-device.html">
+     Hello Query Device C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-hello-query-device.html">
+     Hello Query Device Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-model-creation.html">
+     Model Creation C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-model-creation.html">
+     Model Creation Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-sample-automatic-speech-recognition.html">
+     Automatic Speech Recognition C++ Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-sample-automatic-speech-recognition.html">
+     Automatic Speech Recognition Python Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/cpp-benchmark-tool.html">
+     Benchmark C++ Tool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pages/get-started-guide/samples/python-benchmark-tool.html">
+     Benchmark Python Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-guide">
+   Installation Guide
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-prerequisites">
+     Installing prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-notebooks">
+     Installing notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-notebooks">
+   Run the Notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#launch-a-single-notebook">
+     Launch a Single Notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#launch-all-notebooks">
+     Launch All Notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manage-the-notebooks">
+   Manage the Notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shut-down-jupyter-kernel">
+     Shut Down Jupyter Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deactivate-virtual-environment">
+     Deactivate Virtual Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reactivate-virtual-environment">
+     Reactivate Virtual Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-virtual-environment">
+     Delete Virtual Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-openvino-env-kernel-from-jupyter">
+     Remove openvino_env Kernel from Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting">
+   Troubleshooting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#faq">
+   FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                <div class="tocsection download-docs">
+  <div class="dropdown sst-dropdown">
+    <button class="button bttn-prm button-size-m" data-display="static" type="button" id="download-options"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download Docs
+    </button>
+    <div class="dropdown-menu" aria-labelledby="download-options">
+      <a class="dropdown-item" href="#" onclick="window.print()">.pdf</a>
+      <a id="download-zip-btn" class="dropdown-item" href="#">.zip</a>
+    </div>
+  </div>
+</div>
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+              
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+
+<div class="tocsection editthispage">
+    <a href="None">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+            
+                <div>
+                  
+  <section id="installation-of-openvino-notebooks">
+<span id="notebooks-installation"></span><h1><a class="reference internal" href="#installation-of-openvino-notebooks">Installation of OpenVINO™ Notebooks</a><a class="headerlink" href="#installation-of-openvino-notebooks" title="Permalink to this headline">¶</a></h1>
+<p>The notebooks run almost anywhere, from browsers and desktops to even a cloud VM or a Docker container.
+Follow the guide below in order to run and manage the notebooks on your machine.</p>
+<hr class="docutils" />
+<p>Contents:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#-installation-guide">Installation Guide</a></p></li>
+<li><p><a class="reference external" href="#-run-the-notebooks">Run the Notebooks</a></p></li>
+<li><p><a class="reference external" href="#-manage-the-notebooks">Manage the notebooks</a></p></li>
+<li><p><a class="reference external" href="#-troubleshooting">Troubleshooting</a></p></li>
+<li><p><a class="reference external" href="#-faq">FAQ</a></p></li>
+</ul>
+<hr class="docutils" />
+<a name="-installation-guide"><section id="installation-guide">
+<h2><a class="reference internal" href="#installation-guide">Installation Guide</a><a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h2>
+<p>The table below lists the supported operating systems and Python versions.</p>
+<table class="table">
+<colgroup>
+<col style="width: 54%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Supported Operating System (64-bit)</p></th>
+<th class="head"><p><a class="reference external" href="https://www.python.org/">Python Version
+(64-bit
+)</a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ubuntu 18.04 LTS</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ubuntu 20.04 LTS</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-even"><td><p>Red Hat Enterprise Linux 8</p></td>
+<td><p>3.6, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>CentOS 7</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-even"><td><p>macOS 10.15.x versions</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows 10 Pro, Enterprise
+or Education editions</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+<tr class="row-even"><td><p>Windows Server 2016 or higher</p></td>
+<td><p>3.6, 3.7, 3.8, 3.9</p></td>
+</tr>
+</tbody>
+</table>
+<p>OpenVINO Notebooks also require Git. Follow the guide below for your
+operating system or environment.</p>
+<section id="installing-prerequisites">
+<h3><a class="reference internal" href="#installing-prerequisites">Installing prerequisites</a><a class="headerlink" href="#installing-prerequisites" title="Permalink to this headline">¶</a></h3>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">WINDOWS</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Install Python</strong></p>
+<p>Download 64 bit version of Python software (3.6, 3.7, 3.8, 3.9) from  <a class="reference external" href="https://www.python.org/downloads/windows/">python.org</a>.</p>
+<p>Run the installer by double clicking it. Follow the installation steps to set up the software.</p>
+<p>While installing, make sure you check the box to <em>add Python to system PATH</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python software available in the Microsoft Store is not recommended. It may require additional packages.</p>
+</div>
+</li>
+<li><p><strong>Install GIT</strong></p>
+<p>Download 64 bit version of GIT from <a class="reference external" href="https://github.com/git-for-windows/git/releases/download/v2.36.0.windows.1/Git-2.36.0-64-bit.exe">git-scm.org</a></p>
+<p>Run the installer by double clicking it. Follow the installation steps to set up the software.</p>
+</li>
+<li><p><strong>Install C++ Redistributable (For Python 3.8 only)</strong></p>
+<p>Download 64 bit version of  C++ Redistributable from <a class="reference external" href="https://download.visualstudio.microsoft.com/download/pr/4100b84d-1b4d-487d-9f89-1354a7138c8f/5B0CBB977F2F5253B1EBE5C9D30EDBDA35DBD68FB70DE7AF5FAAC6423DB575B5/VC_redist.x64.exe">here</a></p>
+<p>Run the installer by double clicking it. Follow the installation steps to set up the software.</p>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Linux Systems</label><div class="tab-content docutils">
+<ol class="arabic simple">
+<li><p><strong>Install Python and GIT</strong></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Linux Systems may require installation of additional libraries.</p>
+</div>
+<p>The following installation steps should work on Ubuntu Desktop 18.04, 20.04, 20.10, and on Ubuntu Server.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">python3</span><span class="o">-</span><span class="n">dev</span> <span class="n">git</span><span class="o">-</span><span class="nb">all</span>
+</pre></div>
+</div>
+<p>The following installation steps should work on a clean install of Red Hat, CentOS, Amazon Linux 2 or Fedora. If any issues occur, see the <a class="reference external" href="#-troubleshooting">Troubleshooting</a> section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">yum</span> <span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">python36</span><span class="o">-</span><span class="n">devel</span> <span class="n">mesa</span><span class="o">-</span><span class="n">libGL</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">macOS</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Install Python</strong></p>
+<p>Download Python software (3.7, 3.8, 3.9) from <cite>python.org</cite>. For example, this <a class="reference external" href="https://www.python.org/ftp/python/3.7.9/python-3.7.9-macosx10.9.pkg">installer</a>.</p>
+<p>Run the installer by double clicking it. Follow the installation steps to set up the software.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refer to the “Important Information” displayed during installation for information about SSL/TLS certificate validation and running the “Install Certificates.command”. These certificates are required to run some of the notebooks.</p>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--0-input--4" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--4">Azure ML</label><div class="tab-content docutils">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An Azure account and access to <a class="reference external" href="https://ml.azure.com/">Azure ML Studio</a> are required.</p>
+</div>
+<ol class="arabic">
+<li><p><strong>Adding a Compute Instance</strong></p>
+<p>In Azure ML Studio, <a class="reference external" href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-manage-compute-instance?tabs=python">add a compute instance</a> and pick any CPU-based instance. At least 4 CPU cores and 8GB of RAM are recommended.</p>
+<p><img alt="ml-studio-1" src="https://user-images.githubusercontent.com/15709723/117559437-17463180-b03a-11eb-9e8d-d4539d1502f2.png" /></p>
+</li>
+<li><p><strong>Start the Terminal</strong></p>
+<p>Once the compute instance has started, open the terminal window and then follow the installation steps below.</p>
+<p><img alt="ml-studio-2" src="https://user-images.githubusercontent.com/15709723/117582205-b6f4d580-b0b5-11eb-9b83-eb2004ad9b19.png" /></p>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--0-input--5" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--5">Docker</label><div class="tab-content docutils">
+<p>To run the notebooks inside a Linux-based Docker container, use the Dockerfile:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Source: <a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/blob/main/Dockerfile">https://github.com/openvinotoolkit/openvino_notebooks/blob/main/Dockerfile</a></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM quay.io/thoth-station/s2i-thoth-ubi8-py38:v0.29.0
+
+LABEL <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;OpenVINO(TM) Notebooks&quot;</span> <span class="se">\</span>
+<span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;helena.kloosterman@intel.com&quot;</span> <span class="se">\</span>
+<span class="nv">vendor</span><span class="o">=</span><span class="s2">&quot;Intel Corporation&quot;</span> <span class="se">\</span>
+<span class="nv">version</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span> <span class="se">\</span>
+<span class="nv">release</span><span class="o">=</span><span class="s2">&quot;2021.4&quot;</span> <span class="se">\</span>
+<span class="nv">summary</span><span class="o">=</span><span class="s2">&quot;OpenVINO(TM) Developer Tools and Jupyter Notebooks&quot;</span> <span class="se">\</span>
+<span class="nv">description</span><span class="o">=</span><span class="s2">&quot;OpenVINO(TM) Notebooks Container&quot;</span>
+
+ENV <span class="nv">JUPYTER_ENABLE_LAB</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="se">\</span>
+<span class="nv">ENABLE_MICROPIPENV</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">UPGRADE_PIP_TO_LATEST</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">WEB_CONCURRENCY</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">THOTH_ADVISE</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="se">\</span>
+<span class="nv">THOTH_ERROR_FALLBACK</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">THOTH_DRY_RUN</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">THAMOS_DEBUG</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="se">\</span>
+<span class="nv">THAMOS_VERBOSE</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="se">\</span>
+<span class="nv">THOTH_PROVENANCE_CHECK</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+
+USER root
+
+<span class="c1"># Upgrade NodeJS &gt; 12.0</span>
+<span class="c1"># Install dos2unix for line end conversion on Windows</span>
+RUN curl -sL https://rpm.nodesource.com/setup_14.x <span class="p">|</span> bash -  <span class="o">&amp;&amp;</span> <span class="se">\</span>
+yum remove -y nodejs <span class="o">&amp;&amp;</span> <span class="se">\</span>
+yum install -y nodejs mesa-libGL dos2unix libsndfile <span class="o">&amp;&amp;</span> <span class="se">\</span>
+yum -y update-minimal --security --sec-severity<span class="o">=</span>Important --sec-severity<span class="o">=</span>Critical --sec-severity<span class="o">=</span>Moderate
+
+<span class="c1"># Copying in override assemble/run scripts</span>
+COPY .docker/.s2i/bin /tmp/scripts
+<span class="c1"># Copying in source code</span>
+COPY .docker /tmp/src
+COPY .ci/patch_notebooks.py /tmp/scripts
+
+<span class="c1"># Git on Windows may convert line endings. Run dos2unix to enable</span>
+<span class="c1"># building the image when the scripts have CRLF line endings.</span>
+RUN dos2unix /tmp/scripts/*
+RUN dos2unix /tmp/src/builder/*
+
+<span class="c1"># Change file ownership to the assemble user. Builder image must support chown command.</span>
+RUN chown -R <span class="m">1001</span>:0 /tmp/scripts /tmp/src
+USER <span class="m">1001</span>
+RUN mkdir /opt/app-root/notebooks
+COPY notebooks/ /opt/app-root/notebooks
+RUN /tmp/scripts/assemble
+RUN pip check
+USER root
+RUN dos2unix /opt/app-root/bin/*sh
+RUN yum remove -y dos2unix
+RUN chown -R <span class="m">1001</span>:0 .
+RUN chown -R <span class="m">1001</span>:0 /opt/app-root/notebooks
+USER <span class="m">1001</span>
+<span class="c1"># RUN jupyter lab build</span>
+CMD /tmp/scripts/run
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-notebooks">
+<h3><a class="reference internal" href="#installing-notebooks">Installing notebooks</a><a class="headerlink" href="#installing-notebooks" title="Permalink to this headline">¶</a></h3>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">WINDOWS</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Create a Virtual Environment</strong></p>
+<p>If you already have installed <em>openvino-dev</em>, you may skip this step and proceed with the next one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the Environment</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openvino_env</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clone the Repository</strong></p>
+<p>Using the –depth=1 option for git clone reduces download size.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">openvino_notebooks</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Upgrade PIP</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install required packages</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the virtualenv Kernel in Jupyter</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Linux Systems</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Create a Virtual Environment</strong></p>
+<p>If you already have installed <em>openvino-dev</em>, you may skip this step and proceed with the next one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the Environment</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">openvino_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clone the Repository</strong></p>
+<p>Using the –depth=1 option for git clone reduces download size.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">openvino_notebooks</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Upgrade PIP</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install required packages</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the virtualenv Kernel in Jupyter</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--3" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--3">macOS</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Create a Virtual Environment</strong></p>
+<p>If you already have installed <em>openvino-dev</em>, you may skip this step and proceed with the next one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the Environment</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">openvino_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clone the Repository</strong></p>
+<p>Using the –depth=1 option for git clone reduces download size.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">openvino_notebooks</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Upgrade PIP</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install required packages</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the virtualenv Kernel in Jupyter</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--4" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--4">Azure ML</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Create a Virtual Environment</strong></p>
+<p>If you already have installed <em>openvino-dev</em>, you may skip this step and proceed with the next one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the Environment</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">openvino_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clone the Repository</strong></p>
+<p>Using the –depth=1 option for git clone reduces download size.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">openvino_notebooks</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Upgrade PIP</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install required packages</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the virtualenv Kernel in Jupyter</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="n">openvino_env</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--5" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--5">Docker</label><div class="tab-content docutils">
+<ol class="arabic">
+<li><p><strong>Clone the Repository</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openvinotoolkit</span><span class="o">/</span><span class="n">openvino_notebooks</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Build the Docker Image</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">openvino_notebooks</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run the Docker Image</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For using model training notebooks, allocate additional memory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="o">--</span><span class="n">shm</span><span class="o">-</span><span class="n">size</span> <span class="mi">8</span><span class="n">G</span> <span class="n">openvino_notebooks</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p><strong>Start the browser</strong></p>
+<p>Copy the URL printed in the terminal window and open in a browser. <br />
+If it is a remote machine, replace 127.0.0.1 with the correct IP address.</p>
+<p><img alt="docker-terminal-1" src="https://user-images.githubusercontent.com/15709723/127793994-355e4d29-d131-432d-a12a-b08ca6131223.png" /></p>
+<p>The Dockerfile can be used to run a local image on Windows, Linux or macOS.
+It is also compatible with Open Data Hub and Red Hat OpenShift Data Science.
+The base layer is a <a class="reference external" href="https://catalog.redhat.com/software/containers/ubi8/5c647760bed8bd28d0e38f9f?container-tabs=overview">UBI 8</a>-based image provided by <a class="reference external" href="https://thoth-station.ninja/">Project Thoth</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While running the container on Windows and macOS, only CPU devices can be used. To access the iGPU, install the notebooks locally, following the instructions above.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<hr class="docutils" />
+<a name="-run-the-notebooks"/></section>
+</section>
+<section id="run-the-notebooks">
+<h2><a class="reference internal" href="#run-the-notebooks">Run the Notebooks</a><a class="headerlink" href="#run-the-notebooks" title="Permalink to this headline">¶</a></h2>
+<section id="launch-a-single-notebook">
+<h3>Launch a Single Notebook<a class="headerlink" href="#launch-a-single-notebook" title="Permalink to this headline">¶</a></h3>
+<p>If you want to launch only one notebook, such as the <em>Monodepth</em> notebook, run the command below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter <span class="m">201</span>-vision-monodepth.ipynb
+</pre></div>
+</div>
+</section>
+<section id="launch-all-notebooks">
+<h3>Launch All Notebooks<a class="headerlink" href="#launch-all-notebooks" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter lab notebooks
+</pre></div>
+</div>
+<p>In your browser, select a notebook from the file browser in Jupyter Lab, using the left sidebar. Each tutorial is located in a subdirectory within the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory.</p>
+<p><img alt="launch-jupyter" src="https://user-images.githubusercontent.com/15709723/120527271-006fd200-c38f-11eb-9935-2d36d50bab9f.gif" /></p>
+<hr class="docutils" />
+<a name="-manage-the-notebooks"/></section>
+</section>
+<section id="manage-the-notebooks">
+<h2><a class="reference internal" href="#manage-the-notebooks">Manage the Notebooks</a><a class="headerlink" href="#manage-the-notebooks" title="Permalink to this headline">¶</a></h2>
+<section id="shut-down-jupyter-kernel">
+<h3>Shut Down Jupyter Kernel<a class="headerlink" href="#shut-down-jupyter-kernel" title="Permalink to this headline">¶</a></h3>
+<p>To end your Jupyter session, press <code class="docutils literal notranslate"><span class="pre">Ctrl-c</span></code>. This will prompt you to
+<code class="docutils literal notranslate"><span class="pre">Shutdown</span> <span class="pre">this</span> <span class="pre">Jupyter</span> <span class="pre">server</span> <span class="pre">(y/[n])?</span></code> enter <code class="docutils literal notranslate"><span class="pre">y</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
+</section>
+<section id="deactivate-virtual-environment">
+<h3>Deactivate Virtual Environment<a class="headerlink" href="#deactivate-virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>First, make sure you use the terminal window where you activated <code class="docutils literal notranslate"><span class="pre">openvino_env</span></code>. To deactivate your <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+<p>This will deactivate your virtual environment.</p>
+</section>
+<section id="reactivate-virtual-environment">
+<h3>Reactivate Virtual Environment<a class="headerlink" href="#reactivate-virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>To reactivate your environment, run:</p>
+<p>Then type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> to launch the notebooks again.</p>
+</section>
+<section id="delete-virtual-environment">
+<h3>Delete Virtual Environment<a class="headerlink" href="#delete-virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>This operation is optional. However, if you want to remove your virtual environment, simply delete the <code class="docutils literal notranslate"><span class="pre">openvino_env</span></code> directory:</p>
+</section>
+<section id="remove-openvino-env-kernel-from-jupyter">
+<h3>Remove openvino_env Kernel from Jupyter<a class="headerlink" href="#remove-openvino-env-kernel-from-jupyter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter kernelspec remove openvino_env
+</pre></div>
+</div>
+<p>If you run into issues, check the <a class="reference external" href="#-troubleshooting">Troubleshooting</a>, and <a class="reference external" href="#-faq">FAQs</a> sections or start a GitHub
+<a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/discussions">discussion</a>.</p>
+<hr class="docutils" />
+<a name="-troubleshooting"/></section>
+</section>
+<section id="troubleshooting">
+<h2><a class="reference internal" href="#troubleshooting">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To check some common installation problems, run
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">check_install.py</span></code>. This script is located in the
+openvino_notebooks directory. Run it after activating the
+<code class="docutils literal notranslate"><span class="pre">openvino_env</span></code> virtual environment.</p></li>
+<li><p>If you get an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>, doublecheck that you installed the
+Jupyter kernel. If necessary, choose the <code class="docutils literal notranslate"><span class="pre">openvino_env</span></code> kernel from the
+<em>Kernel-&gt;Change Kernel</em> menu) in Jupyter Lab or Jupyter Notebook</p></li>
+<li><p>If OpenVINO is installed globally, do not run installation commands
+in a terminal where <code class="docutils literal notranslate"><span class="pre">setupvars.bat</span></code> or <code class="docutils literal notranslate"><span class="pre">setupvars.sh</span></code> are sourced.</p></li>
+<li><p>For Windows installation, it is recommended to use <em>Command Prompt
+(cmd.exe)</em>, not <em>PowerShell</em>.</p></li>
+</ul>
+<p>If the following tips do not solve your problem, feel free to open a <a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/discussions">discussion
+topic</a>
+or create an
+<a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/issues">issue</a>! on Github.</p>
+<a name="-faq"/></section>
+<section id="faq">
+<h2><a class="reference internal" href="#faq">FAQ</a><a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.openvino.ai/2022.1/openvino_docs_OV_UG_supported_plugins_Supported_Devices.html">Which devices does OpenVINO
+support?</a></p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/system-requirements.html">What is the first CPU generation that OpenVINO
+supports?</a></p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/internet-of-things/ai-in-production/success-stories.html">Are there any success stories about deploying real-world solutions
+with
+OpenVINO?</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="additional-resources">
+<h3><a class="reference internal" href="#additional-resources">Additional Resources</a><a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openvinotoolkit/openvino_notebooks/blob/main/README.md">OpenVINO™ Notebooks - Github Repository</a></p></li>
+<li><p><a class="reference external" href="https://docs.openvino.ai/nightly/openvino_docs_install_guides_install_dev_tools.html">Install OpenVINO™ Development Tools</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </div>
+            
+            
+                <div class='prev-next-bottom'>
+                  
+    <a class='button bttn-sec button-size-l' id="prev-link" href="tutorials.html" title="previous page">Prev</a>
+    <a class='button bttn-sec button-size-l' id="next-link" href="pages/get-started-guide/samples.html" title="next page">Next</a>
+
+                </div>
+            
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Intel®.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
