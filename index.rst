@@ -110,3 +110,4 @@ OpenVINO™ Documentation
    api/api_reference
    model_zoo
    pages/resources
+   languages/zh_CN/index
