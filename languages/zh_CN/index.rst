@@ -9,5 +9,5 @@
    child2
    child3
 
-We've got some options about how things will display
+We've got some options about how things will display.
 
